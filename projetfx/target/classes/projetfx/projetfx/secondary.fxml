@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="361.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetfx.projetfx.SecondaryController">
+      <children>
+         <VBox layoutX="182.0" layoutY="131.0" prefHeight="120.0" prefWidth="91.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Modifiez votre pseudo" wrappingWidth="128.21630859375" />
+               <TextField fx:id="pseudo" translateY="10.0" />
+               <Button fx:id="valider" mnemonicParsing="false" onAction="#handler" text="Valider" translateX="35.0" translateY="20.0" />
+            </children>
+         </VBox>
+         <VBox layoutX="14.0" layoutY="23.0" prefHeight="263.0" prefWidth="143.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Utilisateurs connectés" textAlignment="CENTER" wrappingWidth="144.21630859375" />
+            </children>
+         </VBox>
+         <Button layoutX="59.0" layoutY="299.0" mnemonicParsing="false"  onAction="#deconnexion" text="Déconnexion" />
+      </children>
+</AnchorPane>
+
+
