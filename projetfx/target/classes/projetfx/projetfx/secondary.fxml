@@ -13,7 +13,7 @@
          <VBox layoutX="182.0" layoutY="131.0" prefHeight="120.0" prefWidth="91.0">
             <children>
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Modifiez votre pseudo" wrappingWidth="128.21630859375" />
-               <TextField fx:id="pseudo" translateY="10.0" />
+               <TextField id="pseudo" fx:id="pseudo" translateY="10.0" />
                <Button fx:id="valider" mnemonicParsing="false" onAction="#handler" text="Valider" translateX="35.0" translateY="20.0" />
             </children>
          </VBox>

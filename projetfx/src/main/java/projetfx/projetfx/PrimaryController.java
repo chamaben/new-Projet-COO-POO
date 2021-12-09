@@ -9,8 +9,11 @@ import javafx.scene.control.TextField;
 
 public class PrimaryController {
 	
+	@FXML
 	private TextField login;
+	@FXML
 	private TextField password;
+	@FXML
 	private TextField pseudo;
 	protected User user;
 	

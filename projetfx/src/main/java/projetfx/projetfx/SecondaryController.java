@@ -9,11 +9,14 @@ import javafx.scene.control.TextField;
 
 public class SecondaryController {
 	
+	@FXML
 	private TextField pseudo;
+
 	private User user;
 	
+	
 	public void connected(User user1) {
-		user= user1;
+		user= new User (user1.login, user1.password, user1.pseudo);
 	}
 	
 	@FXML
