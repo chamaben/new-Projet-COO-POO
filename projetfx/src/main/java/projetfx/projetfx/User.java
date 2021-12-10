@@ -18,7 +18,6 @@ public class User {
 	public String password;
 	public String pseudo;
 	public int etat;
-	public static ObservableList<User> activeMembers = FXCollections.observableArrayList();
 	public static int id=0;
 	
 	User(String login1,String password1,String pseudo1){
@@ -61,7 +60,7 @@ public class User {
 		Statement stmt = DbConnect.connection.createStatement();
 		String query = "UPDATE user SET pseudo='"+pseudo1+"' WHERE login='"+login1+"'";
 		stmt.executeUpdate(query);
-		
+		DbConnect.FinConnexion();
 	}
 	
 	
@@ -108,18 +107,8 @@ public class User {
 		return false;
 	}
 	
-	public static ArrayList<User> ActiveUsers () throws SQLException, ClassNotFoundException{
-		DbConnect.Connexion();
-		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user WHERE etat='1'");
-		ArrayList<User> liste = new ArrayList<User>(id);
-		if (rs.next()) {
-			liste.add((User) rs);
-		}else {
-				return liste;
-		}
-		DbConnect.FinConnexion();
-		return liste;
+
 		
-	}
+	
 }
 

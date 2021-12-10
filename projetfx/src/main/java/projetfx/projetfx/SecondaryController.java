@@ -36,12 +36,6 @@ public class SecondaryController {
 	@FXML
 	private void deconnexion() throws ClassNotFoundException, SQLException, IOException 
     {
-    	user.etat=0;
-    	DbConnect.Connexion();
-		Statement stmt = DbConnect.connection.createStatement();
-		String query = "UPDATE user SET etat='0' WHERE login='"+user.login+"'";
-		stmt.executeUpdate(query);
-		System.out.println("user " + user.pseudo + " déconnecté");
 		App.setRoot("primary");
     }
 }
