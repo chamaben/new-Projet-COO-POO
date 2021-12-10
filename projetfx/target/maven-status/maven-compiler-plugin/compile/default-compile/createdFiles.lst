@@ -1,7 +1,10 @@
+projetfx\projetfx\WindowModel.class
+projetfx\projetfx\Message.class
+projetfx\projetfx\PrimaryController.class
 projetfx\projetfx\App.class
 projetfx\projetfx\SecondaryController.class
 module-info.class
-projetfx\projetfx\Message.class
+projetfx\projetfx\TCP_serveur.class
 projetfx\projetfx\DbConnect.class
-projetfx\projetfx\PrimaryController.class
 projetfx\projetfx\User.class
+projetfx\projetfx\TCP_client.class

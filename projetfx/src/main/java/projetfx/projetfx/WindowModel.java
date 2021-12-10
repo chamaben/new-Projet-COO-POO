@@ -13,34 +13,52 @@ import javafx.scene.control.TextField;
 public class WindowModel {
 	
 	
-	public User user;
-	public static ObservableList<User> activeMembers = FXCollections.observableArrayList();
+	public static User user;
+	//public static ObservableList<User> activeMembers = FXCollections.observableArrayList();
+	public static ArrayList<User> activeMembers;
 	public static ArrayList<User> userList;
 	
-	public WindowModel(String login1, String password1, String pseudo1) {
+	public WindowModel(String login1, String password1, String pseudo1) throws ClassNotFoundException, SQLException {
 		user = new User(login1, password1, pseudo1);
-		activeMembers.add(user);
-		userList.add(user);
+		activeMembers = ActiveUsers ();
+		userList = UserList ();
 	}
 	
-	public void deconnexion (User user1) throws ClassNotFoundException, SQLException {
-		user1.etat=0;
+	public static void deconnexion () throws ClassNotFoundException, SQLException {
+		user.etat=0;
 		DbConnect.Connexion();
 		Statement stmt = DbConnect.connection.createStatement();
-		String query = "UPDATE user SET etat='1' WHERE login='"+user.login+"'";
+		String query = "UPDATE user SET etat='0' WHERE login='"+user.login+"'";
 		stmt.executeUpdate(query);
 		DbConnect.FinConnexion();
 		// supprime le user de la liste active members
-		boolean rem = activeMembers.remove(user1);
+		boolean rem = activeMembers.remove(user);
 		
 	}
 	
+	public static ArrayList<User> UserList () throws SQLException, ClassNotFoundException{
+		User user_ajoute;
+		DbConnect.Connexion();
+		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user");
+		ArrayList<User> liste = new ArrayList<User>(User.id);
+		if (rs.next()) {
+			user_ajoute= new User(rs.getString(2),rs.getString(3),rs.getString(4));
+			liste.add(user_ajoute);
+		}else {
+				return liste;
+		}
+		DbConnect.FinConnexion();
+		return liste;
+	}
+	
 	public static ArrayList<User> ActiveUsers () throws SQLException, ClassNotFoundException{
+		User user_ajoute;
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user WHERE etat='1'");
 		ArrayList<User> liste = new ArrayList<User>(User.id);
 		if (rs.next()) {
-			liste.add((User) rs);
+			user_ajoute= new User(rs.getString(2),rs.getString(3),rs.getString(4));
+			liste.add(user_ajoute);
 		}else {
 				return liste;
 		}

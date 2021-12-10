@@ -12,23 +12,16 @@ public class SecondaryController {
 	@FXML
 	private TextField pseudo;
 
-	private User user;
-	
-	
-	public void connected(User user1) {
-		user= new User (user1.login, user1.password, user1.pseudo);
-	}
-	
 	@FXML
 	private void handler() throws ClassNotFoundException, SQLException 
     {
     	String pseudo1= pseudo.getText();
-    	if (!User.PseudoValide(user.login, pseudo1)) {
+    	if (!User.PseudoValide(WindowModel.user.login, pseudo1)) {
     		// message d'erreur: pseudo non valide
     		System.out.println("pseudo non valide 2");
     	} else {
     		// set pseudo pour le user
-    		user.modifyPseudo(user.login, pseudo1);
+    		WindowModel.user.modifyPseudo(WindowModel.user, pseudo1);
     	}
         //outputText.setText(inputText.getText());*/
     }
@@ -36,6 +29,7 @@ public class SecondaryController {
 	@FXML
 	private void deconnexion() throws ClassNotFoundException, SQLException, IOException 
     {
+		WindowModel.deconnexion ();
 		App.setRoot("primary");
     }
 }
