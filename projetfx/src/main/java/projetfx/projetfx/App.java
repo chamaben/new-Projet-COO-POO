@@ -15,8 +15,16 @@ public class App extends Application {
 
     private static Scene scene;
     protected User user;
+    
+    /*@Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/primary.fxml"));
+        primaryStage.setTitle("Clavardage app");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }*/
 
-    @Override
+   @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
@@ -29,11 +37,12 @@ public class App extends Application {
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        fxmlLoader.setController(fxmlLoader);
         return fxmlLoader.load();
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 
 }

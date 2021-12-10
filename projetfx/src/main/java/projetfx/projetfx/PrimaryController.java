@@ -1,13 +1,17 @@
 package projetfx.projetfx;
 
 import java.io.IOException;
+import java.net.URL;
 //import java.sql.SQLException;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
-public class PrimaryController {
+public class PrimaryController implements Initializable{
+	
 	
 	@FXML
 	private TextField login;
@@ -15,18 +19,23 @@ public class PrimaryController {
 	private TextField password;
 	@FXML
 	private TextField pseudo;
-	protected User user;
 	
+	String pseudo1;
+	String login1;
+	String password1;
+	
+	
+	WindowModel windowmodel;
 	
 	@FXML
 	private void handler() throws IOException, ClassNotFoundException, SQLException 
     {
 		
-    	String pseudo1= pseudo.getText();
-    	String login1= login.getText();
-    	String password1= password.getText();
+    	pseudo1= pseudo.getText();
+    	login1= login.getText();
+    	password1= password.getText();
 		
-		user= new User(login1, password1, pseudo1);
+		windowmodel.user= new User(login1, password1, pseudo1);
 		SecondaryController secondaryController = new SecondaryController();
     	
     	
@@ -40,11 +49,11 @@ public class PrimaryController {
     			System.out.println("Le user existe");
     			if (User.VerifPassword(login1,password1)) {
     				// connexion: passage à la page suivante
-    				user.modifyPseudo(login1, pseudo1);
+    				windowmodel.user.modifyPseudo(login1, pseudo1);
     				System.out.println("mot de passe ok");
     				App.setRoot("secondary");
-    				secondaryController.connected(user);
-    				System.out.println("User " + user.pseudo + " connecté");
+    				secondaryController.connected(windowmodel.user);
+    				System.out.println("User " + windowmodel.user.pseudo + " connecté");
     			}
     			else {
     				// message d'erreur: mot de passe erroné
@@ -54,14 +63,28 @@ public class PrimaryController {
     			System.out.println("Le user n'existe pas");
     			// création d'un nouveau user et passage à la page suivante
     			// la création de user est gérée par la fonction UserExist
-				User.CreateUser(user.login, user.password, user.pseudo, user.etat);
-				System.out.println("Nouveau user " + user.pseudo + " connecté");
+				User.CreateUser(windowmodel.user.login, windowmodel.user.password, windowmodel.user.pseudo, windowmodel.user.etat);
+				System.out.println("Nouveau user " + windowmodel.user.pseudo + " connecté");
 				App.setRoot("secondary");
-				secondaryController.connected(user);
+				secondaryController.connected(windowmodel.user);
     		}
     	}
         //outputText.setText(inputText.getText());
     }
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// get model
+		windowmodel = new WindowModel(login1, password1, pseudo1);
+		
+		// link model with view
+		
+		// link controller to view
+		
+		
+		
+	}
 
 }
 
