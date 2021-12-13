@@ -1,7 +1,6 @@
 package projetfx.projetfx;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -12,7 +11,8 @@ public class TCP_client {
 	
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		// TODO Auto-generated method stub
-		Socket link = new Socket(LocalIP.address,7878);
+		Socket link = new Socket("ad ip user",7878);
+		//new BufferedReader(new InputStreamReader(link.getInputStream()));
 		PrintWriter out = new PrintWriter(link.getOutputStream(),true);
 		link.close();
 	}
