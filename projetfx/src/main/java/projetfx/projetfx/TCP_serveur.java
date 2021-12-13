@@ -14,21 +14,24 @@ public class TCP_serveur
 	public static void main(String[] args) throws IOException {		
 		
 		//création du socket
-		ServerSocket s = new ServerSocket(7878);
+		ServerSocket s = new ServerSocket(7884);
 	    System.out.println(s.getLocalPort());
 	    
 	    while(true) {
+	    System.out.println("Début while");
 	    	//Mise en attente du serveur
 	      Socket serviceSocket =  s.accept();
+	      System.out.println("Serveur en attente");
 	      
 	    //Mise en place des échange de données en entrée et sortie
 	      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
-	      
-	   // Envoyer et recevoir de la donnée
+	      System.out.println("Flux de données");
+	    //Envoyer et recevoir de la donnée
 	      output.println(new Date());
 	      
 	    //Fermer la connection
 	      serviceSocket.close();
+	      System.out.println("Fermeture de connexion");
 	    }
 	    
 	}
