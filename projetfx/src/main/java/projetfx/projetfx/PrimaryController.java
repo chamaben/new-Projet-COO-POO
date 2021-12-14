@@ -53,7 +53,7 @@ public class PrimaryController{
     				// connexion: passage à la page suivante
     				WindowModel.user.modifyPseudo(WindowModel.user, pseudo1);
     				System.out.println("mot de passe ok");
-    				App.setRoot("secondary");
+    				//App.setRoot("secondary");
     				// secondaryController.connected(windowmodel.user);
     				System.out.println("User " + WindowModel.user.pseudo + " connecté");
     			}
@@ -67,7 +67,7 @@ public class PrimaryController{
     			// la création de user est gérée par la fonction UserExist
 				User.CreateUser(WindowModel.user.login, WindowModel.user.password, windowmodel.user.pseudo, windowmodel.user.etat);
 				System.out.println("Nouveau user " + WindowModel.user.pseudo + " connecté");
-				App.setRoot("secondary");
+				//App.setRoot("secondary");
 				//secondaryController.connected(windowmodel.user);
     		}
     	}
