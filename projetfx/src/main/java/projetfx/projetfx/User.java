@@ -18,9 +18,14 @@ public class User {
 	public String login;
 	public String password;
 	public String pseudo;
+	public InetAddress adress_IP;
 	public int etat;
+<<<<<<< HEAD
+	// public static int id=0;
+=======
 	public static int id=0;
 	public InetAddress adIP;
+>>>>>>> c018ec42640e8d953d9b7be45c8cca8d6fe8fb84
 	
 	User(String login1,String password1,String pseudo1,InetAddress adIP){
 		this.login = login1;
@@ -49,7 +54,7 @@ public class User {
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user");
 		while (rs.next()) {
-			if (pseudo.equals(rs.getString(4)) && !login.equals(rs.getString(2))){
+			if (pseudo.equals(rs.getString(3)) && !login.equals(rs.getString(1))){
 			found= false;
 			}
 			
@@ -73,7 +78,7 @@ public class User {
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user");
 		while (rs.next()) {
-			if (user.equals(rs.getString(2))){
+			if (user.equals(rs.getString(1))){
 			found= true;
 			}
 		}
@@ -84,8 +89,7 @@ public class User {
 	public static void CreateUser(String login, String password, String pseudo, int etat) throws SQLException, ClassNotFoundException {
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user");
-		id++;
-		int c = DbConnect.statement.executeUpdate("INSERT INTO `tp_servlet_002`.`user` (`iduser`, `login`, `password`, `pseudo`, `etat`) VALUES ('"+Integer.toString(id)+"', '"+login+"','"+password+"', '"+pseudo+"', '"+Integer.toString(etat)+"')");
+		int c = DbConnect.statement.executeUpdate("INSERT INTO `tp_servlet_002`.`user` (`login`, `password`, `pseudo`, `etat`) VALUES ('"+login+"','"+password+"', '"+pseudo+"', '"+Integer.toString(etat)+"')");
 		System.out.println("user ajouté");
 	}
 		
@@ -97,11 +101,11 @@ public class User {
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user WHERE login='"+user+"'");
 		if (rs.next()) {
-			if (user.equals(rs.getString(2))) {
+			if (user.equals(rs.getString(1))) {
 			}else {
 				return false;
 			}
-			if (pswd.equals(rs.getString(3))) {
+			if (pswd.equals(rs.getString(2))) {
 				return true;
 			}else {
 				return false;

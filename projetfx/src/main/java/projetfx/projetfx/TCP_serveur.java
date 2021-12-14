@@ -13,6 +13,10 @@ public class TCP_serveur
 	// le serveur est en état accept, quand il reçoit la requête, il accepte la connexion, lance un thread qui va envoyer le messages, et rebouble sur accept
 	public static void main(String[] args) throws IOException {		
 		
+		BufferedWriter os = null;
+		System.out.println("Salut");
+		String line;
+		
 		try {
 			//création du socket
 			ServerSocket s = new ServerSocket(7892);
@@ -21,20 +25,29 @@ public class TCP_serveur
 		    //while(true) {
 		    	//Mise en attente du serveur
 		      Socket serviceSocket =  s.accept();
+		      BufferedReader br = new BufferedReader(new InputStreamReader(serviceSocket.getInputStream()));  
+		      System.out.println("accept fait ");
 		      
 		    //Mise en place des échange de données en entrée et sortie
 		      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
+		      System.out.println("échange de données mit en place ");
 		      
 		   // Envoyer et recevoir de la donnée
 		      output.println(new Date());
+		      System.out.println("envoi et réception de donnée ");
+		      
+		      line = br.readLine();
+		      System.out.println(line+"\n");
 		      
 		    //Fermer la connection
 		      serviceSocket.close();
+		      System.out.println("fermeture de connection ");
 		    //}
 		} catch (IOException e) {
+			 System.out.println("exception levée");
 	        e.printStackTrace();
-/*
-		//création du socket
+
+	/*	//création du socket
 		ServerSocket s = new ServerSocket(7884);
 	    System.out.println(s.getLocalPort());
 	    
@@ -55,7 +68,6 @@ public class TCP_serveur
 	      
 	    }
 	    */
-	        
 	}
 		//System.out.println("Fermeture de connexion");
 	}

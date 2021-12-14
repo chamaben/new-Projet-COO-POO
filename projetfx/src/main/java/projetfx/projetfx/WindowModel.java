@@ -14,14 +14,14 @@ public class WindowModel {
 	
 	
 	public static User user;
-	//public static ObservableList<User> activeMembers = FXCollections.observableArrayList();
-	public static ArrayList<User> activeMembers;
-	public static ArrayList<User> userList;
+	public static ObservableList<User> activeMembers = FXCollections.observableArrayList();
+	// public static ObservableList<User> activeMembers;
+	
+	// ObservableList<String> items =FXCollections.observableArrayList ();
 	
 	public WindowModel(String login1, String password1, String pseudo1) throws ClassNotFoundException, SQLException {
 		user = new User(login1, password1, pseudo1);
 		activeMembers = ActiveUsers ();
-		userList = UserList ();
 	}
 	
 	public static void deconnexion () throws ClassNotFoundException, SQLException {
@@ -35,34 +35,18 @@ public class WindowModel {
 		boolean rem = activeMembers.remove(user);
 		
 	}
+
 	
-	public static ArrayList<User> UserList () throws SQLException, ClassNotFoundException{
-		User user_ajoute;
-		DbConnect.Connexion();
-		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user");
-		ArrayList<User> liste = new ArrayList<User>(User.id);
-		if (rs.next()) {
-			user_ajoute= new User(rs.getString(2),rs.getString(3),rs.getString(4));
-			liste.add(user_ajoute);
-		}else {
-				return liste;
-		}
-		DbConnect.FinConnexion();
-		return liste;
-	}
-	
-	public static ArrayList<User> ActiveUsers () throws SQLException, ClassNotFoundException{
+	public static ObservableList<User> ActiveUsers () throws SQLException, ClassNotFoundException{
 		User user_ajoute;
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user WHERE etat='1'");
-		ArrayList<User> liste = new ArrayList<User>(User.id);
 		if (rs.next()) {
 			user_ajoute= new User(rs.getString(2),rs.getString(3),rs.getString(4));
-			liste.add(user_ajoute);
-		}else {
-				return liste;
+			activeMembers.add(user_ajoute);
 		}
 		DbConnect.FinConnexion();
-		return liste;
+		return activeMembers;
 	}
+	
 }
