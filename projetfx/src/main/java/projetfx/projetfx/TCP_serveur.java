@@ -15,7 +15,7 @@ public class TCP_serveur
 		
 		try {
 			//création du socket
-			ServerSocket s = new ServerSocket(7891);
+			ServerSocket s = new ServerSocket(7892);
 		    System.out.println(s.getLocalPort());
 		    
 		    //while(true) {
@@ -33,7 +33,7 @@ public class TCP_serveur
 		    //}
 		} catch (IOException e) {
 	        e.printStackTrace();
-
+/*
 		//création du socket
 		ServerSocket s = new ServerSocket(7884);
 	    System.out.println(s.getLocalPort());
@@ -52,10 +52,12 @@ public class TCP_serveur
 	      
 	    //Fermer la connection
 	      serviceSocket.close();
-	      System.out.println("Fermeture de connexion");
+	      
 	    }
-	    
+	    */
+	        
 	}
+		//System.out.println("Fermeture de connexion");
 	}
 }
 	

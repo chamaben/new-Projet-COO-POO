@@ -1,5 +1,6 @@
 package projetfx.projetfx;
 import java.io.*;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -33,7 +34,7 @@ public class TCP_client {
 	        sb.append(line);      
 	        sb.append("\n");   
 	        words = line.split(",");
-		    //System.out.println(words[1]);  
+		    
 	      }
 	      fr.close();    
 	      //System.out.println("Contenu du fichier: ");
@@ -44,37 +45,36 @@ public class TCP_client {
 	      e.printStackTrace();
 	    }
 	    
-	    System.out.println("avant création socket");
-		Socket socketOfClient = new Socket("localhost",Integer.parseInt(words[2]));
+	    System.out.println("avant création socket\n");
+		//Socket socketOfClient = new Socket("localhost",Integer.parseInt(words[2]));
+	    System.out.println(words[1]); 
+	    System.out.println(words[2]);
+		Socket socketOfClient = new Socket(InetAddress.getByName(words[1]),Integer.parseInt(words[2]));
 		System.out.println("sock créé");
 		// Create output stream at the client (to send data to the server)
         os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
-
+        System.out.println("output stream\n");
+        
         // Input stream at Client (Receive data from the server).
         is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
+        System.out.println("input stream\n");
         
         try {
 
             // Write data to the output stream of the Client Socket.
             os.write("HELO");
+            System.out.println("write1\n");
   
             // End of line
             os.newLine();
     
             // Flush data.
-            os.flush();  
-            os.write("I am Tom Cat");
-            os.newLine();
             os.flush();
-            os.write("QUIT");
-            os.newLine();
-            os.flush();
-
-
             
             // Read data sent from the server.
             // By reading the input stream of the Client Socket.
             String responseLine = is.readLine();
+            System.out.println("read\n"+responseLine);
             /*while ((responseLine = is.readLine()) != null) {
                 System.out.println("Server: " + responseLine);
                 if (responseLine.indexOf("OK") != -1) {
