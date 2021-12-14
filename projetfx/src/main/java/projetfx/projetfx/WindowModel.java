@@ -14,7 +14,7 @@ public class WindowModel {
 	
 	
 	public static User user;
-	public static ObservableList<User> activeMembers = FXCollections.observableArrayList();
+	public static ObservableList<String> activeMembers = FXCollections.observableArrayList();
 	// public static ObservableList<User> activeMembers;
 	
 	// ObservableList<String> items =FXCollections.observableArrayList ();
@@ -37,13 +37,13 @@ public class WindowModel {
 	}
 
 	
-	public static ObservableList<User> ActiveUsers () throws SQLException, ClassNotFoundException{
+	public static ObservableList<String> ActiveUsers () throws SQLException, ClassNotFoundException{
 		User user_ajoute;
 		DbConnect.Connexion();
-		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user WHERE etat='1'");
-		if (rs.next()) {
-			user_ajoute= new User(rs.getString(2),rs.getString(3),rs.getString(4));
-			activeMembers.add(user_ajoute);
+		ResultSet rs = DbConnect.statement.executeQuery("SELECT pseudo FROM user WHERE etat='1'");
+		while (rs.next()) {
+			System.out.println("utilisateur "+ rs.getString(1) + " added1");
+			activeMembers.add(rs.getString(1));
 		}
 		DbConnect.FinConnexion();
 		return activeMembers;
