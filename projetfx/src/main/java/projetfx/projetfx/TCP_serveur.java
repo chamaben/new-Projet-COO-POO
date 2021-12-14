@@ -1,36 +1,61 @@
 package projetfx.projetfx;
-import java.net.*;
+
 import java.io.*;
-import javax.swing.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Date;
+
 
 
 public class TCP_serveur
 {
+	
 	// le serveur est en état accept, quand il reçoit la requête, il accepte la connexion, lance un thread qui va envoyer le messages, et rebouble sur accept
-	public static void main(String[] args) throws IOException { 
-	
-	//Find an IP address:class ip finder à faire à part 
-	String host;
-	host = JOptionPane.showInputDialog("Please input the server's name");
-	try
-		{InetAddress address = InetAddress.getByName(host); JOptionPane.showMessageDialog(null,"IP address: " + address.toString());
-		}
-	catch (UnknownHostException e) 
-		{JOptionPane.showMessageDialog(null,"Could not find " + host); 
-		}
-	
-	
-	//récupérer l'IP de la machine locale
-	try
-		{ InetAddress address = InetAddress.getLocalHost();
-	System.out.println (address); 
-		}
-	catch (UnknownHostException e)
-		{
-		System.out.println ("Could not find local address!");
-		}
-	
-	}
-	
+	public static void main(String[] args) throws IOException {		
 		
+		try {
+			//création du socket
+			ServerSocket s = new ServerSocket(7891);
+		    System.out.println(s.getLocalPort());
+		    
+		    //while(true) {
+		    	//Mise en attente du serveur
+		      Socket serviceSocket =  s.accept();
+		      
+		    //Mise en place des échange de données en entrée et sortie
+		      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
+		      
+		   // Envoyer et recevoir de la donnée
+		      output.println(new Date());
+		      
+		    //Fermer la connection
+		      serviceSocket.close();
+		    //}
+		} catch (IOException e) {
+	        e.printStackTrace();
+
+		//création du socket
+		ServerSocket s = new ServerSocket(7884);
+	    System.out.println(s.getLocalPort());
+	    
+	    while(true) {
+	    System.out.println("Début while");
+	    	//Mise en attente du serveur
+	      Socket serviceSocket =  s.accept();
+	      System.out.println("Serveur en attente");
+	      
+	    //Mise en place des échange de données en entrée et sortie
+	      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
+	      System.out.println("Flux de données");
+	    //Envoyer et recevoir de la donnée
+	      output.println(new Date());
+	      
+	    //Fermer la connection
+	      serviceSocket.close();
+	      System.out.println("Fermeture de connexion");
+	    }
+	    
+	}
+	}
 }
+	

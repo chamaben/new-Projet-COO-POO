@@ -20,13 +20,19 @@ public class User {
 	public String pseudo;
 	public InetAddress adress_IP;
 	public int etat;
+<<<<<<< HEAD
 	// public static int id=0;
+=======
+	public static int id=0;
+	public InetAddress adIP;
+>>>>>>> c018ec42640e8d953d9b7be45c8cca8d6fe8fb84
 	
-	User(String login1,String password1,String pseudo1){
+	User(String login1,String password1,String pseudo1,InetAddress adIP){
 		this.login = login1;
 		this.password = password1;
 		this.pseudo = pseudo1;
 		this.etat = 1;
+		this.adIP = adIP;
 	}
 	
 	public void setPseudo(String pseudo){
