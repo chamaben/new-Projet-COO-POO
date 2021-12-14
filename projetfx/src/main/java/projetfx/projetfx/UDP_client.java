@@ -1,15 +1,22 @@
 package projetfx.projetfx;
 
+import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketAddress;
+
 
 public class UDP_client {
+	private static Message message;
+	private static SocketAddress port;
+	private static int host;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		//crée un objet datagramsocket
 		DatagramSocket dgramSocket = new DatagramSocket();
+		
 		//crée le datagramme sortant
 		DatagramPacket outPacket = new DatagramPacket(message.getBytes(),message.length(),host, port);
 		//envoie le datagram

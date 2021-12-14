@@ -16,4 +16,14 @@ public class Message {
 		this.date= date1;
 	}
 
+	public byte[] getBytes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int length() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

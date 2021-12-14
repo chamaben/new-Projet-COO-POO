@@ -66,13 +66,11 @@ public class SecondaryController {
 		bonjourfield.setText("Bonjour " + WindowModel.user.pseudo);
 	}
 	
-	@FXML
-	private void setListe() {
-		
-	}
 	
+	// Start chat
+	// a voir: est-ce qu'on envoie une demande de connexion TCP à cette étape
 	@FXML
-	private void StartChat() throws IOException {
+	private void StartChat() throws IOException, ClassNotFoundException, SQLException {
 		// étabissmenent connexion TCP
 		 if (activelist.getSelectionModel().getSelectedIndices().size() > 0){
 	             int index = activelist.getSelectionModel().getSelectedIndices().get(0);
@@ -80,16 +78,7 @@ public class SecondaryController {
 
 	            System.out.println(pseudo_destinataire);
 	            
-	            FXMLLoader loader = new FXMLLoader();   
-	            AnchorPane pane = loader.load(getClass().getResource("conversation.fxml").openStream());
-	            VBox vbox = (VBox) pane.getChildren().get(0);
-
-	            AnchorPane pane1 = (AnchorPane) vbox.getChildren().get(0);
-	            Label messageLabel = (Label) pane1.getChildren().get(0);
-	            //messageLabel.setText(content);
-
-	            AnchorPane pane2 = (AnchorPane) vbox.getChildren().get(1);
-	            Label dateLabel = (Label) pane2.getChildren().get(0);
+	            getHistory(pseudo_destinataire);
 	            //dateLabel.setText(date);
 	            
 	            //messageList.getChildren().add(pane);
@@ -98,11 +87,30 @@ public class SecondaryController {
 		// pour l'utilisateur qui reçoit la demande de connexion,  le thread affiche la nouvelle interface
 	}
 	
+	private void getHistory(String pseudo_destinataire) throws SQLException, ClassNotFoundException {
+		// a faire : récupérer les messages dans la base de donnée
+		DbConnect.Connexion();
+		Statement stmt = DbConnect.connection.createStatement();
+	}
+	
+	// affiche le message 
+	private void DisplayMessage(Message message) {
+		// afficher le message à droite si le message est envoyé et à gauche s'il est reçu
+	}
+	
+	// déconnexion
 	@FXML
 	private void deconnexion() throws ClassNotFoundException, SQLException, IOException 
     {
-		WindowModel.deconnexion ();
-		//App.setRoot("primary");
+		WindowModel.user.etat=0;
+		DbConnect.Connexion();
+		Statement stmt = DbConnect.connection.createStatement();
+		String query = "UPDATE user SET etat='0' WHERE login='"+WindowModel.user.login+"'";
+		stmt.executeUpdate(query);
+		DbConnect.FinConnexion();
+		// supprime le user de la liste active members
+		boolean rem = WindowModel.activeMembers.remove(WindowModel.user);
+			
     }
 	
 	
