@@ -106,7 +106,7 @@ public class SecondaryController {
 	private void deconnexion() throws ClassNotFoundException, SQLException, IOException 
     {
 		WindowModel.deconnexion ();
-		App.setRoot("primary");
+		//App.setRoot("primary");
     }
 	
 	
