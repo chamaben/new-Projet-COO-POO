@@ -1,6 +1,7 @@
 package projetfx.projetfx;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.function.Consumer;
@@ -30,22 +31,21 @@ public class SecondaryController {
 	
 	@FXML
 	private ListView<String> activelist; 
+	
 	@FXML 
 	private Text bonjourfield;
 	
 	@FXML
+	private TextField message;
+	Message message1;
+	
+	@FXML
     private void initialize() throws ClassNotFoundException, SQLException {
 		BonjourMessage();
-		activelist.setItems(WindowModel.activeMembers);
 		// créer la liste de pseudos à afficher
-		if (!WindowModel.activeMembers.isEmpty()) {
-			for (String p : WindowModel.activeMembers) {
-				System.out.println("utilisateur "+ p + " added");
-		      }
-			
-		}
-		
+		activelist.setItems(WindowModel.activeMembers);
     }
+	
 
 	@FXML
 	private void handler() throws ClassNotFoundException, SQLException 
@@ -64,6 +64,17 @@ public class SecondaryController {
 	@FXML
 	private void BonjourMessage() {
 		bonjourfield.setText("Bonjour " + WindowModel.user.pseudo);
+	}
+	
+	// actualise la liste des users actifs
+	@FXML
+	private void RefreshPage() throws ClassNotFoundException, SQLException {
+		WindowModel.activeMembers.clear();
+		WindowModel.activeMembers = WindowModel.ActiveUsers();
+		// supprimer tous les éléments de la liste
+		activelist.refresh();
+		// créer la liste de pseudos à afficher
+		activelist.setItems(WindowModel.activeMembers);
 	}
 	
 	
@@ -87,15 +98,44 @@ public class SecondaryController {
 		// pour l'utilisateur qui reçoit la demande de connexion,  le thread affiche la nouvelle interface
 	}
 	
+	// affiche l'historique si on clique sur une personne
+	@FXML
 	private void getHistory(String pseudo_destinataire) throws SQLException, ClassNotFoundException {
 		// a faire : récupérer les messages dans la base de donnée
 		DbConnect.Connexion();
-		Statement stmt = DbConnect.connection.createStatement();
+		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM message WHERE (emetteur='"+pseudo_destinataire+"' AND recepteur='"+WindowModel.user.pseudo+"') OR (emetteur='"+WindowModel.user.pseudo+"' AND recepteur='"+pseudo_destinataire+"')");
+		// '"+user1.login+"'
+		if (!rs.next()) {
+			// afficher que la conversation est vide
+		}
+		else {
+			while (rs.next()) {
+			message1= new Message(rs.getString(1), rs.getString(2), rs.getString(4), rs.getDate(3));
+			message1.DisplayMessage();
+			}
+		}
+		DbConnect.FinConnexion();
 	}
 	
-	// affiche le message 
-	private void DisplayMessage(Message message) {
-		// afficher le message à droite si le message est envoyé et à gauche s'il est reçu
+	
+	@FXML
+	public void Send(Message message) {
+		// creation d'une instance message
+		// envoyer au user2
+		// afficher message sur l'écran
+		message.DisplayMessage();
+	}
+	
+	// affiche le message reçu à l'écran
+	@FXML
+	public void recieve_message(Message message) {
+		// affiche le message reçu à l'écran
+	}
+	
+	// 
+	@FXML
+	public void EndChat() {
+		// terminer la connexion TCP
 	}
 	
 	// déconnexion
