@@ -44,6 +44,16 @@ public class User {
 		return this.etat;
 	}
 	
+	public void setEtat(int l) throws SQLException, ClassNotFoundException {
+		this.etat= l;
+		DbConnect.Connexion();
+		Statement stmt = DbConnect.connection.createStatement();
+		String query = "UPDATE user SET etat='"+l+"' WHERE login='"+this.login+"'";
+		stmt.executeUpdate(query);
+		DbConnect.FinConnexion();
+		
+	}
+	
 	public static boolean PseudoValide(String login, String pseudo) throws SQLException, ClassNotFoundException{
 		//doit regarder dans la BDD tous les pseudos
 		// Si le pseudo existe renvoie faux sinon renvoie vrai

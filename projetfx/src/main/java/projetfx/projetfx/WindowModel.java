@@ -24,26 +24,17 @@ public class WindowModel {
 		activeMembers = ActiveUsers ();
 	}
 	
-	public static void deconnexion () throws ClassNotFoundException, SQLException {
-		user.etat=0;
-		DbConnect.Connexion();
-		Statement stmt = DbConnect.connection.createStatement();
-		String query = "UPDATE user SET etat='0' WHERE login='"+user.login+"'";
-		stmt.executeUpdate(query);
-		DbConnect.FinConnexion();
-		// supprime le user de la liste active members
-		boolean rem = activeMembers.remove(user);
-		
-	}
 
 	
 	public static ObservableList<String> ActiveUsers () throws SQLException, ClassNotFoundException{
-		User user_ajoute;
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT pseudo FROM user WHERE etat='1'");
 		while (rs.next()) {
-			System.out.println("utilisateur "+ rs.getString(1) + " added1");
-			activeMembers.add(rs.getString(1));
+			if (rs.getString(1) != WindowModel.user.pseudo) {
+				System.out.println(rs.getString(1) != WindowModel.user.pseudo);
+				System.out.println("utilisateur "+ rs.getString(1) + " added1");
+				activeMembers.add(rs.getString(1));
+			}
 		}
 		DbConnect.FinConnexion();
 		return activeMembers;

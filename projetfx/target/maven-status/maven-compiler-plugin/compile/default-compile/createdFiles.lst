@@ -1,6 +1,7 @@
 projetfx\projetfx\WindowModel.class
 projetfx\projetfx\Message.class
 projetfx\projetfx\PrimaryController.class
+projetfx\projetfx\UDP_client.class
 projetfx\projetfx\App.class
 projetfx\projetfx\SecondaryController.class
 module-info.class
@@ -8,3 +9,5 @@ projetfx\projetfx\TCP_serveur.class
 projetfx\projetfx\DbConnect.class
 projetfx\projetfx\User.class
 projetfx\projetfx\TCP_client.class
+projetfx\projetfx\ConversationController.class
+projetfx\projetfx\UDP_serveur.class
