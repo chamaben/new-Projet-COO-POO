@@ -2,13 +2,14 @@ package projetfx.projetfx;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DbConnect {
 
+	@SuppressWarnings("exports")
 	public static Connection connection;
+	@SuppressWarnings("exports")
 	public static Statement statement;
 	
 	public static void Connexion() throws SQLException, ClassNotFoundException {

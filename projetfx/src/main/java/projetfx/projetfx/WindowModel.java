@@ -2,13 +2,8 @@ package projetfx.projetfx;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 
 public class WindowModel {
 	
@@ -30,7 +25,7 @@ public class WindowModel {
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT pseudo FROM user WHERE etat='1'");
 		while (rs.next()) {
-			if (rs.getString(1) != WindowModel.user.pseudo) {
+			if (!(rs.getString(1).equals(WindowModel.user.pseudo))) {
 				System.out.println(rs.getString(1) != WindowModel.user.pseudo);
 				System.out.println("utilisateur "+ rs.getString(1) + " added1");
 				activeMembers.add(rs.getString(1));

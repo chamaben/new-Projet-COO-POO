@@ -1,17 +1,8 @@
 package projetfx.projetfx;
 import java.net.InetAddress;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-
-
-import javafx.beans.property.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
 
 public class User {
 	
@@ -60,6 +51,8 @@ public class User {
 		boolean found = true;
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user");
+		System.out.println("le pseudo est " + pseudo);
+		System.out.println("le login est "+ login);
 		while (rs.next()) {
 			if (pseudo.equals(rs.getString(3)) && !login.equals(rs.getString(1))){
 			found= false;
@@ -93,6 +86,7 @@ public class User {
 		return found;
 	}
 	
+	@SuppressWarnings("unused")
 	public static void CreateUser(String login, String password, String pseudo, int etat) throws SQLException, ClassNotFoundException {
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user");

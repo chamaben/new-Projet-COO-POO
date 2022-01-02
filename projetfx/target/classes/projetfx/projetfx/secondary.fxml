@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -28,9 +28,12 @@
       <AnchorPane layoutX="204.0" layoutY="61.0" prefHeight="402.0" prefWidth="286.0">
          <children>
             <TextField fx:id="message" layoutY="363.0" prefHeight="38.0" prefWidth="216.0" promptText="Tapez votre message ici" />
+            <ScrollPane prefHeight="366.0" prefWidth="286.0">
+               <content>
+                  <VBox fx:id="conversation" prefHeight="353.0" prefWidth="271.0" />
+               </content>
+            </ScrollPane>
             <Button fx:id="envoyer" layoutX="218.0" layoutY="363.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="68.0" text="Envoyer" />
-            <ScrollBar layoutX="272.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="363.0" prefWidth="14.0" />
-            <AnchorPane layoutX="2.0" layoutY="-1.0" prefHeight="363.0" prefWidth="269.0" />
          </children>
       </AnchorPane>
       <Button layoutX="4.0" layoutY="2.0" mnemonicParsing="false" onAction="#RefreshPage" text="Refresh" />

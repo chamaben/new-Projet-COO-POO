@@ -1,14 +1,9 @@
 package projetfx.projetfx;
 
 import java.io.IOException;
-import java.net.URL;
 //import java.sql.SQLException;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class PrimaryController{
@@ -66,7 +61,7 @@ public class PrimaryController{
     			System.out.println("Le user n'existe pas");
     			// création d'un nouveau user et passage à la page suivante
     			// la création de user est gérée par la fonction UserExist
-				User.CreateUser(WindowModel.user.login, WindowModel.user.password, windowmodel.user.pseudo, windowmodel.user.etat);
+				User.CreateUser(WindowModel.user.login, WindowModel.user.password, WindowModel.user.pseudo, WindowModel.user.etat);
 				System.out.println("Nouveau user " + WindowModel.user.pseudo + " connecté");
 				App.setRoot("secondary");
     		}

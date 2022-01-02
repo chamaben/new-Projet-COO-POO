@@ -17,15 +17,9 @@ public class App extends Application {
     private static Stage stage;
     protected User user;
     
-    /*@Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/primary.fxml"));
-        primaryStage.setTitle("Clavardage app");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-    }*/
 
-   @Override
+   @SuppressWarnings("exports")
+@Override
     public void start(Stage primarystage) throws IOException {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage= primarystage;

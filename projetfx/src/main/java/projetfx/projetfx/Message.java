@@ -12,17 +12,14 @@ public class Message {
 	public String contenu;
 	public Date date;
 	
-	public Message(String emetteur1, String recepteur1, String contenu1, Date date1) {
+	public Message(String emetteur1, String recepteur1, String contenu1, Date date2) {
 		this.emetteur= emetteur1;
 		this.recepteur= recepteur1;
 		this.contenu= contenu1;
-		this.date= date1;
+		this.date= date2;
 	}
 
-	// affiche le message 
-	public void DisplayMessage() {
-		// afficher le message à droite si le message est envoyé et à gauche s'il est reçu
-	}
+	
 
 	public byte[] getBytes() {
 		// TODO Auto-generated method stub
