@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.net.*;
 
 public class UDP_serveur {
+	static String response;
 
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
 		//crée un object datagramsocket
 		DatagramSocket dgramSocket = new DatagramSocket(7892);
 		//crée un buffer pour les datagrams entrants
@@ -19,9 +19,11 @@ public class UDP_serveur {
 		InetAddress clientAddress = inPacket.getAddress();
 		int clientPort = inPacket.getPort();
 		//récupère la donnée dans le buffer
-		String response = new String(inPacket.getData(),0,inPacket.getLength());
+		String message = new String(inPacket.getData(),0,inPacket.getLength());
+		System.out.println("j'ai reçu le message : "+message);
 		//crée le datagram réponse
 		DatagramPacket outPacket = new DatagramPacket(response.getBytes(),response.length(),clientAddress,clientPort);
+		System.out.println("le message réponse est : "+response);
 		//envoie le datagram réponse
 		dgramSocket.send(outPacket);
 		//fermeture datagramsocket
