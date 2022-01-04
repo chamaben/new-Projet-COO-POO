@@ -25,6 +25,7 @@ public class UDP_serveur {
 		
 		//accepte un datagram entrant
 		dgramSocket.receive(inPacket);
+		System.out.println(Integer.ParseInt(dgramSocket.receive(inPacket).getData()));
 		System.out.println("Datagram entrant accepté");
 		
 		//accepte les infos du paquet
