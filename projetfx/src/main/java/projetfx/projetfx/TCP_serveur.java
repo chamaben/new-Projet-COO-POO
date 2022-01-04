@@ -22,7 +22,7 @@ public class TCP_serveur
 		    System.out.println(s.getLocalPort());
 		    
 		    while(true) {
-	    	//Mise en attente du serveur
+	    	//Mise en attente du serveur On associe au thread son service socket 
 	      Socket serviceSocket =  s.accept();
 	     
 		      
@@ -52,13 +52,12 @@ public class TCP_serveur
 		    
 		    //Mise en place des échange de données en entrée et sortie
 		      Socket serviceSocket =  s.accept();
-		      // On associe au thread son service socket 
 		      
 		      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
 		      System.out.println("échange de données mit en place ");
 		      
 		   // Envoyer et recevoir de la donnée
-		      output.println(message+date+pseudo);
+		      output.println(message+","+date+","+pseudo);
 		      System.out.println("envoi et réception de donnée ");
 		      
 		    //Fermer la connection

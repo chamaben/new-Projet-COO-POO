@@ -39,8 +39,17 @@ public class MyThread extends Thread
 	      
 	   // Recevoir de la donnée
 	      
+	      //message+date+pseudo
 	      line = br.readLine();
 	      System.out.println(line+"\n");
+	      String[] recup = line.split(",");
+	      String message = recup[0];
+	      String pseudo = recup[1];
+	      String date = recup[2];
+	      
+	      
+	      //Reconstitution du message
+	     Message message2 = new Message(pseudo,WindowModel.user.pseudo, message, date);
 	      
 	    //Fermer la connection
 	      service.close();
