@@ -13,7 +13,7 @@ public class TCP_client {
 	static BufferedWriter os = null;
     static BufferedReader is = null;
 	String[] words = null;
-	static int port = 7894;
+	static int port = 7899;
 	
 	//le destinataire reçoit la requête TCP, il l'accepte et lance un thread puis revient sur accept (boucle infinie)
 	//initialiser la connexion TCP

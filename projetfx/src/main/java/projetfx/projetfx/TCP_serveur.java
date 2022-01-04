@@ -12,7 +12,7 @@ public class TCP_serveur
 	
 	BufferedWriter os = null;
 	static String line;
-	static int port = 7894;
+	static int port = 7899;
 	
 	public static void receive() {
 			
