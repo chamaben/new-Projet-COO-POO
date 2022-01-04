@@ -13,7 +13,7 @@ public class TCP_client {
 	static BufferedWriter os = null;
     static BufferedReader is = null;
 	String[] words = null;
-	static int port = 7894;
+	static int port = 7899;
 	
 	//le destinataire reçoit la requête TCP, il l'accepte et lance un thread puis revient sur accept (boucle infinie)
 	//initialiser la connexion TCP
@@ -39,7 +39,7 @@ public class TCP_client {
         }
 	}
 	
-public static void send(String message) {
+public static void send(String message, String date, String pseudo) {
 		
 	String[] words = null;
 	
@@ -85,8 +85,7 @@ public static void send(String message) {
         PrintStream output = new PrintStream(socketOfClient.getOutputStream());
 	    System.out.println("échange de données mit en place ");
 	    
-        output.println(message);
-        output.println(new Date());
+        output.println(message+date+pseudo);
 	    System.out.println("envoi et réception de donnée ");
     	
         output.close();
@@ -100,7 +99,7 @@ public static void send(String message) {
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		// TODO Auto-generated method stub
 		//receive();
-		send("hello");
+		//send("hello");
 		
 	}
 }

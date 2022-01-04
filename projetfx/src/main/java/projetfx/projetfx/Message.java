@@ -1,5 +1,6 @@
 package projetfx.projetfx;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Message {
@@ -19,7 +20,7 @@ public class Message {
 		this.date= date2;
 	}
 
-	
+	/*
 
 	public byte[] getBytes() {
 		// TODO Auto-generated method stub
@@ -30,5 +31,5 @@ public class Message {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+*/
 }

@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +27,9 @@ public class SecondaryController {
 	@FXML
 	private ListView<String> activelist; 
 	
+	@FXML
+	private TextField message_ecrit;
+	
 	@FXML 
 	private Text bonjourfield;
 	@FXML VBox conversation;
@@ -32,6 +38,7 @@ public class SecondaryController {
 	@FXML
 	private Label date;
 	Message message1;
+	String pseudo_destinataire= null;
 	
 	@FXML
     private void initialize() throws ClassNotFoundException, SQLException {
@@ -82,7 +89,7 @@ public class SecondaryController {
 		 conversation.getChildren().clear();
 		 if (activelist.getSelectionModel().getSelectedIndices().size() > 0){
 	             int index = activelist.getSelectionModel().getSelectedIndices().get(0);
-	             String pseudo_destinataire = activelist.getItems().get(index).toString();
+	             pseudo_destinataire = activelist.getItems().get(index).toString();
 
 	            System.out.println(pseudo_destinataire);
 	            
@@ -128,28 +135,18 @@ public class SecondaryController {
 			
 			if (message.emetteur.equals(WindowModel.user.pseudo)) {
 				chemin = "sent_message.fxml";
-				System.out.println("1");
-				FXMLLoader loader = new FXMLLoader(); 
-				System.out.println("2");
+				FXMLLoader loader = new FXMLLoader();  
 		        AnchorPane pane = loader.load(getClass().getResource(chemin).openStream());
-		        System.out.println("3");
 		        VBox vbox = (VBox) pane.getChildren().get(0);
-		        System.out.println("4");
 		        
 		        AnchorPane pane1 = (AnchorPane) vbox.getChildren().get(0);
-		        System.out.println("5");
 		        Label contenu1 = (Label) pane1.getChildren().get(0);
-		        System.out.println("6");
 		        contenu1.setText(message.contenu);
-		        System.out.println("7");
 
 		        Label date1 =  (Label) pane1.getChildren().get(1);
-		        System.out.println("8");
 		        date1.setText(strDate);
-		        System.out.println("9");
 		        
 		        conversation.getChildren().add(pane);
-		        System.out.println("10");
 			}
 			else if (message.recepteur.equals(WindowModel.user.pseudo)) {
 				chemin = "received_message.fxml";
@@ -172,9 +169,24 @@ public class SecondaryController {
 	
 	
 	@FXML
-	public void Send() throws IOException {
+	public void Send() throws IOException, SQLException, ClassNotFoundException {
 		// creation d'une instance message
+		String contenu1= message_ecrit.getText(); 
+		Date now = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+        String strDate = dateFormat.format(now);  
+		Message message = new Message(WindowModel.user.pseudo, pseudo_destinataire, contenu1, now);
+		// mettre le message dans la bdd
+		DbConnect.Connexion();
+		Statement stmt = DbConnect.connection.createStatement();
+		String query = "INSERT INTO message VALUES ('"+WindowModel.user.pseudo+"', '"+pseudo_destinataire+"', '"+contenu1+"', '"+now+"')";
+		stmt.executeUpdate(query);
+		DbConnect.FinConnexion();
 		// envoyer au user2
+		// faire la difference entre tcp serveur et tcp client avec if
+		TCP_client.send(contenu1, strDate, WindowModel.user.pseudo);
+		// clear le textfield message
+		message_ecrit.clear();
 		// afficher message sur l'écran
 		DisplayMessage(message1);
 	}

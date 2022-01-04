@@ -35,7 +35,7 @@
          </children>
       </AnchorPane>
       <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#RefreshPage" text="Refresh" />
-      <TextField fx:id="message" layoutX="229.0" layoutY="522.0" prefHeight="38.0" prefWidth="216.0" promptText="Tapez votre message ici" />
-      <Button fx:id="envoyer" layoutX="532.0" layoutY="525.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="68.0" text="Envoyer" />
+      <TextField fx:id="message_ecrit" layoutX="229.0" layoutY="522.0" prefHeight="38.0" prefWidth="288.0" promptText="Tapez votre message ici" />
+      <Button fx:id="envoyer" layoutX="532.0" layoutY="525.0" mnemonicParsing="false" onAction="#Send" prefHeight="38.0" prefWidth="68.0" text="Envoyer" />
       </children>
 </AnchorPane>

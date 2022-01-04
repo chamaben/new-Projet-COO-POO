@@ -12,7 +12,7 @@ public class TCP_serveur
 	
 	BufferedWriter os = null;
 	static String line;
-	static int port = 7894;
+	static int port = 7899;
 	
 	public static void receive() {
 			
@@ -53,7 +53,7 @@ public class TCP_serveur
 		
 		}
 		
-	public static void send() {
+	public static void send(String message, String date, String pseudo) {
 			
 		try {
 			//création du socket
@@ -67,7 +67,7 @@ public class TCP_serveur
 		      System.out.println("échange de données mit en place ");
 		      
 		   // Envoyer et recevoir de la donnée
-		      output.println(new Date());
+		      output.println(message+date+pseudo);
 		      System.out.println("envoi et réception de donnée ");
 		      
 		    //Fermer la connection
@@ -86,7 +86,7 @@ public class TCP_serveur
 	// le serveur est en état accept, quand il reçoit la requête, il accepte la connexion, lance un thread qui va envoyer le messages, et rebouble sur accept
 	public static void main(String[] args) throws IOException {		
 		receive();
-		//send();
+		//send("hello");
 		
 	}
 }
