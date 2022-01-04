@@ -76,6 +76,7 @@ public static void send(String message, String date, String pseudo) {
     
     try {
     	System.out.println("avant création socket");
+    	//System.out.println(InetAddress.getByName(words[1]));
     	//Socket socketOfClient = new Socket("host",Integer.parseInt(words[2]));
     	Socket socketOfClient = new Socket(InetAddress.getByName(words[1]),Integer.parseInt(words[2]));
     	System.out.println("sock créé");
@@ -99,7 +100,7 @@ public static void send(String message, String date, String pseudo) {
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		// TODO Auto-generated method stub
 		//receive();
-		//send("hello");
+		send("hello","ee","rr");
 		
 	}
 }

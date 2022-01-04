@@ -4,29 +4,28 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.SocketAddress;
 import java.util.Date;
 
 
 public class UDP_client {
 	private static Message message;
-	private static int port = 7896;
+	private static int port = 7905;
+	private static InetAddress host;
 
 	public static void main(String[] args) throws IOException {
 		message = new Message("ordi1","ordi2","j'envoie en UDP",new Date());
+		String line = "10.1.5.255";
+		host = InetAddress.getByName(line);
 		
 		//crée un objet datagramsocket
-		System.out.println("Cré=ation de l'objet datagramsocket");
 		DatagramSocket dgramSocket = new DatagramSocket();
-		System.out.println("Objet datagramsocket créé");
+		System.out.println("Objet datagramsocket créé");		
 		
 		//crée le datagramme sortant
-		System.out.println("Création du datagramme sortant");
-		DatagramPacket outPacket = new DatagramPacket(message.contenu.getBytes(),message.contenu.length(),10.1.5.255, port);
+		DatagramPacket outPacket = new DatagramPacket(message.contenu.getBytes(),message.contenu.length(),host, port);
 		System.out.println("le message envoyé est : "+message.contenu);
 		
 		//envoie le datagram
-		System.out.println("Envoi du datagram");
 		dgramSocket.send(outPacket);
 		System.out.println("Datagram envoyé");
 		
