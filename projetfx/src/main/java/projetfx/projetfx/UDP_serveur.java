@@ -32,7 +32,6 @@ public class UDP_serveur {
 			InetAddress clientAddress = inPacket.getAddress();
 			int clientPort = inPacket.getPort();
 			System.out.println("Infos du paquet acceptées");
-			System.out.println(clientPort);
 			
 			inPacket = new DatagramPacket(this.buffer,this.buffer.length,clientAddress,clientPort);
 			

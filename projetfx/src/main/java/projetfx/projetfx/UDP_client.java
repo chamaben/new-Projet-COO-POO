@@ -17,7 +17,7 @@ public class UDP_client {
 	}
 
 	public String sendBroadcast(String message) throws IOException {
-		String line = "10.1.5.255";
+		String line = "10.32.3.255";
 		host = InetAddress.getByName(line);
 		this.dgramSocket.setBroadcast(true);
 		
@@ -64,6 +64,7 @@ public class UDP_client {
 		} else {
 			System.out.println("attention erreur");
 		}
+		envoi = client.sendBroadcast("fin");
 		client.close();
 	}
 }
