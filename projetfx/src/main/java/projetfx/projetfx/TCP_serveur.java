@@ -3,7 +3,6 @@ package projetfx.projetfx;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Date;
 
 
 
@@ -11,8 +10,9 @@ public class TCP_serveur
 {
 	
 	BufferedWriter os = null;
-	static String line;
-	static int port = 7894;
+	static int port = 7899;
+	public static  int num = 0;
+	
 	
 	public static void receive() {
 			
@@ -21,37 +21,26 @@ public class TCP_serveur
 			ServerSocket s = new ServerSocket(port);
 		    System.out.println(s.getLocalPort());
 		    
-		    //while(true) {
-		    	//Mise en attente du serveur
-		      Socket serviceSocket =  s.accept();
-		      BufferedReader br = new BufferedReader(new InputStreamReader(serviceSocket.getInputStream())); 
-		      //fork pour créer un thread
-		      Tab[num].fork(); 
-		      System.out.println("accept fait ");
+		    while(true) {
+	    	//Mise en attente du serveur On associe au thread son service socket 
+	      Socket serviceSocket =  s.accept();
+	     
 		      
-		    //Mise en place des échange de données en entrée et sortie
-		      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
-		      System.out.println("échange de données mis en place ");
+	      //créer un élément de la liste qui va ensuite se lance de son côté: le thread
+	      MyThread thread = new MyThread (num,serviceSocket);
+	      (MyThread.Tab).add(thread);
+	      num++;
+
+	      System.out.println("accept fait ");
+	    }
 		      
-		   // Recevoir de la donnée
-		      
-		      line = br.readLine();
-		      System.out.println(line+"\n");
-		      
-		    //Fermer la connection
-		      
-		      //faire le join
-		      Tab[num].join();
-		      serviceSocket.close();
-		      System.out.println("fermeture de connection ");
-		    //}
 		} catch (IOException e) {
 			 System.out.println("exception levée");
 	        e.printStackTrace();
 
-	}
-		
 		}
+		
+	}
 		
 	public static void send(String message, String date, String pseudo) {
 			
@@ -63,11 +52,12 @@ public class TCP_serveur
 		    
 		    //Mise en place des échange de données en entrée et sortie
 		      Socket serviceSocket =  s.accept();
+		      
 		      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
 		      System.out.println("échange de données mit en place ");
 		      
 		   // Envoyer et recevoir de la donnée
-		      output.println(message+date+pseudo);
+		      output.println(message+","+date+","+pseudo);
 		      System.out.println("envoi et réception de donnée ");
 		      
 		    //Fermer la connection
