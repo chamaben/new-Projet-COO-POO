@@ -1,5 +1,6 @@
 package projetfx.projetfx;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -11,9 +12,9 @@ public class Message {
 	//public User recepteur;
 	public String recepteur;
 	public String contenu;
-	public Date date;
+	public Timestamp date;
 	
-	public Message(String emetteur1, String recepteur1, String contenu1, Date date2) {
+	public Message(String emetteur1, String recepteur1, String contenu1, Timestamp date2) {
 		this.emetteur= emetteur1;
 		this.recepteur= recepteur1;
 		this.contenu= contenu1;
