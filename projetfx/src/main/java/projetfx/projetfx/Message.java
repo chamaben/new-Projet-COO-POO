@@ -11,9 +11,9 @@ public class Message {
 	//public User recepteur;
 	public String recepteur;
 	public String contenu;
-	public LocalDateTime date;
+	public Date date;
 	
-	public Message(String emetteur1, String recepteur1, String contenu1, LocalDateTime date2) {
+	public Message(String emetteur1, String recepteur1, String contenu1, Date date2) {
 		this.emetteur= emetteur1;
 		this.recepteur= recepteur1;
 		this.contenu= contenu1;
