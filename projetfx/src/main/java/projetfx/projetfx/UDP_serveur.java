@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.*;
 
 public class UDP_serveur {
-	private int port = 7908;
+	private int port = 7907;
 	private DatagramSocket dgramSocket;
 	private boolean running;
 	private byte[] buffer = new byte[256];
@@ -44,7 +44,7 @@ public class UDP_serveur {
 			DatagramPacket outPacket = new DatagramPacket(response.getBytes(),response.length(),clientAddress,clientPort);
 			System.out.println("le message réponse est : "+response);
 			
-			if (message.equals("finnnnnnnnnnnnnnnnnnnnnnnnnnnn")) {
+			if (message.equals("fin")) {
 				this.running = false;
 			}
 			//envoie le datagram réponse
