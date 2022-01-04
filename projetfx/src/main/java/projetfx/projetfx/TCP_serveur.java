@@ -48,7 +48,7 @@ public class TCP_serveur
 		
 		}
 		
-	public static void send() {
+	public static void send(String message) {
 			
 		try {
 			//création du socket
@@ -62,7 +62,7 @@ public class TCP_serveur
 		      System.out.println("échange de données mit en place ");
 		      
 		   // Envoyer et recevoir de la donnée
-		      output.println(new Date());
+		      output.println(message);
 		      System.out.println("envoi et réception de donnée ");
 		      
 		    //Fermer la connection
@@ -81,7 +81,7 @@ public class TCP_serveur
 	// le serveur est en état accept, quand il reçoit la requête, il accepte la connexion, lance un thread qui va envoyer le messages, et rebouble sur accept
 	public static void main(String[] args) throws IOException {		
 		receive();
-		//send();
+		//send("hello");
 		
 	}
 }
