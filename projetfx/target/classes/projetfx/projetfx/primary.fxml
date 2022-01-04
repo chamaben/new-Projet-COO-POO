@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="200" prefWidth="200" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetfx.projetfx.PrimaryController">
+<AnchorPane prefHeight="50" prefWidth="210" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetfx.projetfx.PrimaryController">
       <children>
-         <VBox layoutX="3.0" prefHeight="247.0" prefWidth="197.0">
+         <VBox layoutX="3.0" prefHeight="50.0" prefWidth="210.0">
             <children>
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez entrer vos informations" wrappingWidth="196.21630859375" />
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login" translateY="20.0" wrappingWidth="193.21630859375" />
@@ -21,4 +21,5 @@
                <Button fx:id="valider" mnemonicParsing="false" onAction="#handler" text="Valider" translateX="70.0" translateY="50.0" />
             </children>
          </VBox>
-      </children></AnchorPane>
+      </children>
+</AnchorPane>

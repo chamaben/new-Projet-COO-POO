@@ -24,7 +24,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage= primarystage;
         stage.setScene(scene);
-        stage.setTitle("CCC");
+        stage.setTitle("Chat");
         stage.show();
     }
    
