@@ -24,7 +24,9 @@ public class TCP_serveur
 		    //while(true) {
 		    	//Mise en attente du serveur
 		      Socket serviceSocket =  s.accept();
-		      BufferedReader br = new BufferedReader(new InputStreamReader(serviceSocket.getInputStream()));  
+		      BufferedReader br = new BufferedReader(new InputStreamReader(serviceSocket.getInputStream())); 
+		      //fork pour créer un thread
+		      Tab[num].fork(); 
 		      System.out.println("accept fait ");
 		      
 		    //Mise en place des échange de données en entrée et sortie
@@ -37,6 +39,9 @@ public class TCP_serveur
 		      System.out.println(line+"\n");
 		      
 		    //Fermer la connection
+		      
+		      //faire le join
+		      Tab[num].join();
 		      serviceSocket.close();
 		      System.out.println("fermeture de connection ");
 		    //}
