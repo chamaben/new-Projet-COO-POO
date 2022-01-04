@@ -173,6 +173,8 @@ public class SecondaryController {
 		// creation d'une instance message
 		String contenu1= message_ecrit.getText(); 
 		Date now = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+        String strDate = dateFormat.format(now);  
 		Message message = new Message(WindowModel.user.pseudo, pseudo_destinataire, contenu1, now);
 		// mettre le message dans la bdd
 		DbConnect.Connexion();
@@ -182,7 +184,9 @@ public class SecondaryController {
 		DbConnect.FinConnexion();
 		// envoyer au user2
 		// faire la difference entre tcp serveur et tcp client avec if
-		TCP_client.send(contenu1);
+		TCP_client.send(contenu1, strDate, WindowModel.user.pseudo);
+		// clear le textfield message
+		message_ecrit.clear();
 		// afficher message sur l'écran
 		DisplayMessage(message1);
 	}
