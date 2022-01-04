@@ -128,18 +128,28 @@ public class SecondaryController {
 			
 			if (message.emetteur.equals(WindowModel.user.pseudo)) {
 				chemin = "sent_message.fxml";
-				FXMLLoader loader = new FXMLLoader();  
+				System.out.println("1");
+				FXMLLoader loader = new FXMLLoader(); 
+				System.out.println("2");
 		        AnchorPane pane = loader.load(getClass().getResource(chemin).openStream());
+		        System.out.println("3");
 		        VBox vbox = (VBox) pane.getChildren().get(0);
+		        System.out.println("4");
 		        
 		        AnchorPane pane1 = (AnchorPane) vbox.getChildren().get(0);
+		        System.out.println("5");
 		        Label contenu1 = (Label) pane1.getChildren().get(0);
+		        System.out.println("6");
 		        contenu1.setText(message.contenu);
+		        System.out.println("7");
 
 		        Label date1 =  (Label) pane1.getChildren().get(1);
+		        System.out.println("8");
 		        date1.setText(strDate);
+		        System.out.println("9");
 		        
 		        conversation.getChildren().add(pane);
+		        System.out.println("10");
 			}
 			else if (message.recepteur.equals(WindowModel.user.pseudo)) {
 				chemin = "received_message.fxml";
