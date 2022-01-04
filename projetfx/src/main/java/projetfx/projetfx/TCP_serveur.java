@@ -11,13 +11,14 @@ public class TCP_serveur
 {
 	
 	BufferedWriter os = null;
-	String line;
+	static String line;
+	static int port = 7894;
 	
-	public void receive() {
+	public static void receive() {
 			
 		try {
 			//création du socket
-			ServerSocket s = new ServerSocket(7892);
+			ServerSocket s = new ServerSocket(port);
 		    System.out.println(s.getLocalPort());
 		    
 		    //while(true) {
@@ -28,7 +29,7 @@ public class TCP_serveur
 		      
 		    //Mise en place des échange de données en entrée et sortie
 		      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
-		      System.out.println("échange de données mit en place ");
+		      System.out.println("échange de données mis en place ");
 		      
 		   // Recevoir de la donnée
 		      
@@ -47,11 +48,11 @@ public class TCP_serveur
 		
 		}
 		
-	public void send() {
+	public static void send() {
 			
 		try {
 			//création du socket
-			ServerSocket s = new ServerSocket(7892);
+			ServerSocket s = new ServerSocket(port);
 		    System.out.println(s.getLocalPort());
 		    
 		    
@@ -79,7 +80,8 @@ public class TCP_serveur
 	
 	// le serveur est en état accept, quand il reçoit la requête, il accepte la connexion, lance un thread qui va envoyer le messages, et rebouble sur accept
 	public static void main(String[] args) throws IOException {		
-		
+		receive();
+		//send();
 		
 	}
 }

@@ -1,25 +1,28 @@
 package projetfx.projetfx;
 import java.io.*;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Date;
 
 //A faire: Séparer les méthodes receive et send et dans le receive faire un thread qui boucle pour attendre les messsages
 //Chaque client/serveur a sa méthode send et receive
 
 public class TCP_client {
 	
-	BufferedWriter os = null;
-    BufferedReader is = null;
+	static BufferedWriter os = null;
+    static BufferedReader is = null;
 	String[] words = null;
+	static int port = 7894;
 	
 	//le destinataire reçoit la requête TCP, il l'accepte et lance un thread puis revient sur accept (boucle infinie)
 	//initialiser la connexion TCP
 	
-	public void receive() {
+	public static void receive() {
         
         try {
         	//récupérer le port sur lequel on va écouter 
-    		Socket socketOfClient = new Socket("localhost",(1992));
+    		Socket socketOfClient = new Socket("host",port);
     		System.out.println("sock créé");
 
             // Input stream at Client (Receive data from the server).
@@ -36,7 +39,7 @@ public class TCP_client {
         }
 	}
 	
-public void send() {
+public static void send(String message) {
 		
 	String[] words = null;
 	
@@ -55,6 +58,8 @@ public void send() {
       {
         // ajoute la ligne au buffer
         sb.append(line);      
+        
+        System.out.println(line);
         sb.append("\n");   
         words = line.split(",");
 	    //System.out.println(words[1]);  
@@ -71,12 +76,20 @@ public void send() {
     
     try {
     	System.out.println("avant création socket");
-    	Socket socketOfClient = new Socket("localhost",Integer.parseInt(words[2]));
+    	//Socket socketOfClient = new Socket("host",Integer.parseInt(words[2]));
+    	Socket socketOfClient = new Socket(InetAddress.getByName(words[1]),Integer.parseInt(words[2]));
     	System.out.println("sock créé");
     	// Create output stream at the client (to send data to the server)
-        os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
+        //os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
+        
+        PrintStream output = new PrintStream(socketOfClient.getOutputStream());
+	    System.out.println("échange de données mit en place ");
+	    
+        output.println(message);
+        output.println(new Date());
+	    System.out.println("envoi et réception de donnée ");
     	
-        os.close();
+        output.close();
         socketOfClient.close();
     } catch (IOException e) {
         System.err.println("IOException:  " + e);
@@ -87,7 +100,7 @@ public void send() {
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		// TODO Auto-generated method stub
 		//receive();
-		//send();
+		send("hello");
 		
 	}
 }
