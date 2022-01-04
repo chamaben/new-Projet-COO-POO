@@ -11,20 +11,18 @@ import java.util.Date;
 public class UDP_client {
 	private static Message message;
 	private static int port = 7896;
-	private static InetAddress host;
 
 	public static void main(String[] args) throws IOException {
-		host = InetAddress.getByName("10.1.5.255");
 		message = new Message("ordi1","ordi2","j'envoie en UDP",new Date());
 		
 		//crée un objet datagramsocket
-		System.out.println("Création de l'objet datagramsocket");
+		System.out.println("Cré=ation de l'objet datagramsocket");
 		DatagramSocket dgramSocket = new DatagramSocket();
 		System.out.println("Objet datagramsocket créé");
 		
 		//crée le datagramme sortant
 		System.out.println("Création du datagramme sortant");
-		DatagramPacket outPacket = new DatagramPacket(message.contenu.getBytes(),message.contenu.length(),host, port);
+		DatagramPacket outPacket = new DatagramPacket(message.contenu.getBytes(),message.contenu.length(),10.1.5.255, port);
 		System.out.println("le message envoyé est : "+message.contenu);
 		
 		//envoie le datagram
