@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +34,7 @@ public class SecondaryController {
 	@FXML
 	private Label date;
 	Message message1;
+	String pseudo_destinataire= null;
 	
 	@FXML
     private void initialize() throws ClassNotFoundException, SQLException {
@@ -82,7 +85,7 @@ public class SecondaryController {
 		 conversation.getChildren().clear();
 		 if (activelist.getSelectionModel().getSelectedIndices().size() > 0){
 	             int index = activelist.getSelectionModel().getSelectedIndices().get(0);
-	             String pseudo_destinataire = activelist.getItems().get(index).toString();
+	             pseudo_destinataire = activelist.getItems().get(index).toString();
 
 	            System.out.println(pseudo_destinataire);
 	            
@@ -174,6 +177,10 @@ public class SecondaryController {
 	@FXML
 	public void Send() throws IOException {
 		// creation d'une instance message
+		String contenu1= ; 
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now();  
+		Message message = new Message(WindowModel.user.pseudo, pseudo_destinataire, contenu1, now);
 		// envoyer au user2
 		// afficher message sur l'écran
 		DisplayMessage(message1);
