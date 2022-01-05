@@ -31,7 +31,8 @@ public class SecondaryController {
 	
 	@FXML 
 	private Text bonjourfield;
-	@FXML VBox conversation;
+	@FXML 
+	private static VBox conversation;
 	@FXML
 	private Label contenu;
 	@FXML
@@ -196,6 +197,7 @@ public class SecondaryController {
 			DisplayMessage(message1);
 		}
 	}
+	
 	
 	// 
 	@FXML

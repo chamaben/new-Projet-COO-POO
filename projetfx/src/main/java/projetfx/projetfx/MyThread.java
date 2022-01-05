@@ -17,6 +17,7 @@ public class MyThread extends Thread
 		static String line;
 		public static ArrayList<MyThread> Tab = new ArrayList<MyThread>(); 
 		Socket service; 
+		private SecondaryController secondarycontroller;
 	
 	//constructeur
 	MyThread(int num, Socket serviceassocie) {
@@ -46,11 +47,13 @@ public class MyThread extends Thread
 	      String[] recup = line.split(",");
 	      String message = recup[0];
 	      String pseudo = recup[1];
-	      Timestamp date = recup[2];
+	      String sdate = recup[2];
+	      Timestamp date= Timestamp.valueOf(sdate);
 	      
 	      
 	      //Reconstitution du message
 	     Message message2 = new Message(pseudo,WindowModel.user.pseudo, message, date);
+	     secondarycontroller.DisplayMessage(message2);
 	      
 	    //Fermer la connection
 	      service.close();
