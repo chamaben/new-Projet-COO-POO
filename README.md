@@ -2,6 +2,10 @@
 
 Implementation project of a chat application for a company. 
 
+## State
+- Last update: DATE
+- Dire ce qui marche et ce qui marche pas ici 
+
 ## Requierements
 - [tests](https://graphviz.org/) à remplir et changer le lien 
 - [install](https://dune.build/) à remplir et changer le lien 
