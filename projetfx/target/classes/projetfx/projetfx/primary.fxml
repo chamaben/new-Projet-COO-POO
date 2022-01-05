@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="50" prefWidth="210" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetfx.projetfx.PrimaryController">
+<AnchorPane prefHeight="234.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetfx.projetfx.PrimaryController">
       <children>
-         <VBox layoutX="3.0" prefHeight="50.0" prefWidth="210.0">
+         <VBox prefHeight="234.0" prefWidth="234.0" style="-fx-background-color: white;">
             <children>
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez entrer vos informations" wrappingWidth="196.21630859375" />
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login" translateY="20.0" wrappingWidth="193.21630859375" />
-               <TextField id="login" fx:id="login" translateY="20.0" />
+               <TextField id="login" fx:id="login" prefHeight="25.0" prefWidth="210.0" translateY="20.0" />
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" translateY="30.0" wrappingWidth="185.21630859375" />
             <TextField fx:id="password" translateY="30.0" />
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pseudo" translateY="40.0" wrappingWidth="195.21630859375" />
                <TextField id="pseudo" fx:id="pseudo" translateY="40.0" />
-               <Button fx:id="valider" mnemonicParsing="false" onAction="#handler" text="Valider" translateX="70.0" translateY="50.0" />
+               <Button fx:id="valider" mnemonicParsing="false" onAction="#handler" text="Valider" translateX="85.0" translateY="50.0" />
             </children>
          </VBox>
       </children>
 </AnchorPane>
+

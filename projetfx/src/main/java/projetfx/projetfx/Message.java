@@ -1,8 +1,6 @@
 package projetfx.projetfx;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Message {
 	
@@ -12,12 +10,25 @@ public class Message {
 	//public User recepteur;
 	public String recepteur;
 	public String contenu;
-	public Timestamp date;
+	public Timestamp time;
 	
-	public Message(String emetteur1, String recepteur1, String contenu1, Timestamp date2) {
+	public Message(String emetteur1, String recepteur1, String contenu1, Timestamp time2) {
 		this.emetteur= emetteur1;
 		this.recepteur= recepteur1;
 		this.contenu= contenu1;
-		this.date= date2;
+		this.time= time2;
 	}
+
+	
+
+	public byte[] getBytes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int length() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

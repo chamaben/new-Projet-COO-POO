@@ -32,23 +32,6 @@ public class DbConnect {
 		connection.close();
 	}
 
-	/*public static void main(String[] args) throws ClassNotFoundException {
-		// TODO Auto-generated method stub
-		try {
-			User.User("carina","caca","caca");
-			
-			User.UserExist("idio", "null");
-			if (User.VerifPassword("carina","hello")) {
-				System.out.println("Le password est bon");
-			}else {
-				System.out.println("Mauvais mot de passe");
-			}
-			Connexion();
-			System.out.println("je rame pas");
-			FinConnexion();
-		} catch (SQLException e) {
-			System.out.println("Erreur en se connectant à la database"+e);
-		}
-	}*/
+
 
 }

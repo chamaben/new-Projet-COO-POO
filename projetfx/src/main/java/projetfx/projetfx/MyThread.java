@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class MyThread extends Thread
@@ -45,7 +46,7 @@ public class MyThread extends Thread
 	      String[] recup = line.split(",");
 	      String message = recup[0];
 	      String pseudo = recup[1];
-	      String date = recup[2];
+	      Timestamp date = recup[2];
 	      
 	      
 	      //Reconstitution du message

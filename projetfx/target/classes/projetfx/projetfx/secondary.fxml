@@ -6,26 +6,30 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="579.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetfx.projetfx.SecondaryController">
       <children>
-         <VBox layoutX="31.0" layoutY="431.0" prefHeight="98.0" prefWidth="129.0">
+         <VBox layoutX="41.0" layoutY="456.0" prefHeight="98.0" prefWidth="129.0">
             <children>
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Modifiez votre pseudo" wrappingWidth="128.21630859375" />
                <TextField id="pseudo" fx:id="pseudo" translateY="10.0" />
                <Button fx:id="valider" mnemonicParsing="false" onAction="#handler" text="Valider" translateX="35.0" translateY="20.0" />
             </children>
          </VBox>
-         <VBox layoutX="22.0" layoutY="115.0" prefHeight="263.0" prefWidth="167.0">
+         <VBox layoutX="22.0" layoutY="84.0" prefHeight="340.0" prefWidth="167.0">
             <children>
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Utilisateurs connectés" textAlignment="CENTER" wrappingWidth="144.21630859375" />
-            <ListView fx:id="activelist" onMouseClicked="#StartChat" prefHeight="248.0" prefWidth="157.0" />
+            <ListView fx:id="activelist" onMouseClicked="#StartChat" prefHeight="323.0" prefWidth="167.0" />
             </children>
          </VBox>
-         <Button layoutX="532.0" layoutY="15.0" mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
-      <Text fx:id="bonjourfield" layoutX="118.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <AnchorPane layoutX="204.0" layoutY="61.0" prefHeight="402.0" prefWidth="286.0">
+         <Button layoutX="532.0" layoutY="2.0" mnemonicParsing="false" onAction="#deconnexion" text="Déconnexion" />
+      <Text fx:id="bonjourfield" layoutX="9.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <AnchorPane layoutX="201.0" layoutY="80.0" prefHeight="402.0" prefWidth="286.0">
          <children>
             <ScrollPane prefHeight="419.0" prefWidth="417.0">
                <content>
@@ -34,8 +38,10 @@
             </ScrollPane>
          </children>
       </AnchorPane>
-      <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#RefreshPage" text="Refresh" />
+      <Button layoutX="68.0" layoutY="46.0" mnemonicParsing="false" onAction="#RefreshPage" text="Refresh" />
       <TextField fx:id="message_ecrit" layoutX="229.0" layoutY="522.0" prefHeight="38.0" prefWidth="288.0" promptText="Tapez votre message ici" />
-      <Button fx:id="envoyer" layoutX="532.0" layoutY="525.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="68.0" text="Envoyer" />
+      <Button fx:id="envoyer" layoutX="532.0" layoutY="525.0" mnemonicParsing="false" onAction="#Send" prefHeight="38.0" prefWidth="68.0" text="Envoyer" />
+      <TextField fx:id="historique" layoutX="201.0" layoutY="46.0" prefHeight="25.0" prefWidth="338.0" promptText="Rechercher dans l'historique" />
+      <Button fx:id="rechercher" layoutX="542.0" layoutY="46.0" mnemonicParsing="false" onAction="#Rechercher" text="Rechercher" />
       </children>
 </AnchorPane>

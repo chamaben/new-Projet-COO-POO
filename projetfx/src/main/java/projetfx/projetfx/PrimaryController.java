@@ -39,30 +39,28 @@ public class PrimaryController{
     	
     	if (!User.PseudoValide(login1, pseudo1)) {
     		// message d'erreur: pseudo non valide
-    		System.out.println("pseudo non valide 1");
     		
     	} else {
     		System.out.println("pseudo valide 1");
     		if (User.UserExist(login1, password1)) {
-    			System.out.println("Le user existe");
     			if (User.VerifPassword(login1,password1)) {
     				// connexion: passage à la page suivante
     				WindowModel.user.modifyPseudo(WindowModel.user, pseudo1);
-    				System.out.println("mot de passe ok");
     				WindowModel.user.setEtat(1);
+    				App.stage.setWidth(653);
+    				App.stage.setHeight(610);
     				App.setRoot("secondary");
-    				System.out.println("User " + WindowModel.user.pseudo + " connecté");
     			}
     			else {
     				// message d'erreur: mot de passe erroné
-    				System.out.println("mot de passe erroné");
     			}
     		} else {
-    			System.out.println("Le user n'existe pas");
     			// création d'un nouveau user et passage à la page suivante
     			// la création de user est gérée par la fonction UserExist
 				User.CreateUser(WindowModel.user.login, WindowModel.user.password, WindowModel.user.pseudo, WindowModel.user.etat);
 				System.out.println("Nouveau user " + WindowModel.user.pseudo + " connecté");
+				App.stage.setWidth(660);
+				App.stage.setHeight(579);
 				App.setRoot("secondary");
     		}
     	}
@@ -70,9 +68,9 @@ public class PrimaryController{
     }
 
 
+
 		
 		
 
 }
-
 

@@ -1,14 +1,12 @@
 package projetfx.projetfx;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +21,8 @@ public class SecondaryController {
 	
 	@FXML
 	private TextField pseudo;
-	
+	@FXML 
+	private TextField historique;
 	@FXML
 	private ListView<String> activelist; 
 	
@@ -55,7 +54,6 @@ public class SecondaryController {
     	String pseudo1= pseudo.getText();
     	if (!User.PseudoValide(WindowModel.user.login, pseudo1)) {
     		// message d'erreur: pseudo non valide
-    		System.out.println("pseudo non valide 2");
     	} else {
     		// set pseudo pour le user
     		WindowModel.user.modifyPseudo(WindowModel.user, pseudo1);
@@ -90,8 +88,6 @@ public class SecondaryController {
 		 if (activelist.getSelectionModel().getSelectedIndices().size() > 0){
 	             int index = activelist.getSelectionModel().getSelectedIndices().get(0);
 	             pseudo_destinataire = activelist.getItems().get(index).toString();
-
-	            System.out.println(pseudo_destinataire);
 	            
 	            getHistory(pseudo_destinataire);
 	            //dateLabel.setText(date);
@@ -113,11 +109,8 @@ public class SecondaryController {
 			// afficher que la conversation est vide
 		//}
 		//else {
-			System.out.println("yes ");
 			while (rs.next()) {
-			message1= new Message(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4));
-			System.out.println("contenu: " + rs.getString(3));
-			System.out.println("date: " + rs.getString(4));
+			message1= new Message(rs.getString(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4));
 			DisplayMessage(message1);
 			}
 		//}
@@ -126,12 +119,8 @@ public class SecondaryController {
 	
 	// affiche le message 
 		public void DisplayMessage(Message message) throws IOException {
-			// afficher le message à droite si le message est envoyé et à gauche s'il est reçu
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
-			String strDate = dateFormat.format(message.date);
+			String s = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(message.time);
 			String chemin = null;
-			System.out.println("date:" + message.date);
-			System.out.println("date stngdate:" + strDate);
 			
 			if (message.emetteur.equals(WindowModel.user.pseudo)) {
 				chemin = "sent_message.fxml";
@@ -142,9 +131,10 @@ public class SecondaryController {
 		        AnchorPane pane1 = (AnchorPane) vbox.getChildren().get(0);
 		        Label contenu1 = (Label) pane1.getChildren().get(0);
 		        contenu1.setText(message.contenu);
-
 		        Label date1 =  (Label) pane1.getChildren().get(1);
-		        date1.setText(strDate);
+		        date1.setText(s);
+		        Label pseudo1 = (Label) pane1.getChildren().get(2);
+		        pseudo1.setText("Moi");
 		        
 		        conversation.getChildren().add(pane);
 			}
@@ -153,12 +143,14 @@ public class SecondaryController {
 				FXMLLoader loader = new FXMLLoader();  
 		        AnchorPane pane = loader.load(getClass().getResource(chemin).openStream());
 		        VBox vbox = (VBox) pane.getChildren().get(0);
+		        
 		        AnchorPane pane1 = (AnchorPane) vbox.getChildren().get(0);
 		        Label contenu1 = (Label) pane1.getChildren().get(0);
 		        contenu1.setText(message.contenu);
-
 		        Label date1 =  (Label) pane1.getChildren().get(1);
-		        date1.setText(strDate);
+		        date1.setText(s);
+		        Label pseudo1 = (Label) pane1.getChildren().get(2);
+		        pseudo1.setText(message.emetteur);
 		        
 		        conversation.getChildren().add(pane);
 			}
@@ -172,29 +164,37 @@ public class SecondaryController {
 	public void Send() throws IOException, SQLException, ClassNotFoundException {
 		// creation d'une instance message
 		String contenu1= message_ecrit.getText(); 
-		Date now = new Date();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
-        String strDate = dateFormat.format(now);  
-		Message message = new Message(WindowModel.user.pseudo, pseudo_destinataire, contenu1, now);
+		java.sql.Timestamp ts = new Timestamp(System.currentTimeMillis());
+		Message message = new Message(WindowModel.user.pseudo, pseudo_destinataire, contenu1, (Timestamp) ts);
 		// mettre le message dans la bdd
 		DbConnect.Connexion();
-		Statement stmt = DbConnect.connection.createStatement();
-		String query = "INSERT INTO message VALUES ('"+WindowModel.user.pseudo+"', '"+pseudo_destinataire+"', '"+contenu1+"', '"+now+"')";
-		stmt.executeUpdate(query);
+		PreparedStatement stmt = DbConnect.connection.prepareStatement("INSERT INTO message VALUES (?, ?, ?, ?)");
+		stmt.setString(1,WindowModel.user.pseudo); 
+		stmt.setString(2,pseudo_destinataire); 
+		stmt.setString(3,contenu1); 
+		stmt.setTimestamp(4,ts); 
+		stmt.executeUpdate();
 		DbConnect.FinConnexion();
 		// envoyer au user2
 		// faire la difference entre tcp serveur et tcp client avec if
-		TCP_client.send(contenu1, strDate, WindowModel.user.pseudo);
+		//TCP_client.send(contenu1, strDate, WindowModel.user.pseudo);
 		// clear le textfield message
 		message_ecrit.clear();
 		// afficher message sur l'écran
-		DisplayMessage(message1);
+		DisplayMessage(message);
 	}
 	
 	// affiche le message reçu à l'écran
 	@FXML
-	public void recieve_message() {
-		// affiche le message reçu à l'écran
+	public void Rechercher() throws SQLException, ClassNotFoundException, IOException {
+		String recherche= historique.getText();
+		conversation.getChildren().clear();
+		DbConnect.Connexion();
+		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM message WHERE ((emetteur='"+pseudo_destinataire+"' AND recepteur='"+WindowModel.user.pseudo+"') OR (emetteur='"+WindowModel.user.pseudo+"' AND recepteur='"+pseudo_destinataire+"')) AND (contenu='"+recherche+"')  ORDER BY date");
+		while (rs.next()) {
+			message1= new Message(rs.getString(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4));
+			DisplayMessage(message1);
+		}
 	}
 	
 	// 

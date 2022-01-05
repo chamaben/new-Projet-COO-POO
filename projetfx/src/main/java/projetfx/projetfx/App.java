@@ -13,15 +13,15 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
-    private static Stage stage;
+    protected static Scene scene;
+    protected static Stage stage;
     protected User user;
     
 
    @SuppressWarnings("exports")
 @Override
     public void start(Stage primarystage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("primary"), 234, 234);
         stage= primarystage;
         stage.setScene(scene);
         stage.setTitle("Chat");
@@ -32,7 +32,7 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    protected static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
