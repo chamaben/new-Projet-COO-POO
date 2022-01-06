@@ -177,7 +177,7 @@ public class SecondaryController {
 		DbConnect.FinConnexion();
 		// envoyer au user2
 		// faire la difference entre tcp serveur et tcp client avec if
-		//TCP_client.send(contenu1, strDate, WindowModel.user.pseudo);
+		TCP_client.send(contenu1, ts.toString(), WindowModel.user.pseudo);
 		// clear le textfield message
 		message_ecrit.clear();
 		// afficher message sur l'écran
