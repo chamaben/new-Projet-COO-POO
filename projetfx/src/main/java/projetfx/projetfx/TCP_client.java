@@ -3,9 +3,12 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 //A faire: généraliser l'ad ip avec bdd
+//s'assurer que tcp fonctionne dans les 2 sens
 
 public class TCP_client {
 	
@@ -38,70 +41,80 @@ public class TCP_client {
         }
 	}
 	
-public static void send(String message, String date, String pseudo) {
+	public static void send(String message, String date, String pseudo) throws ClassNotFoundException, SQLException {
 		
-	String[] words = null;
-	String line = "10.1.5.152";
-	/*
-	//lire l'ad IP dans le fichier
-    try
-    {
-      // Le fichier d'entrée
-      File file = new File("/projetfx/src/main/java/projetfx/projetfx/liste.txt");    
-      // Créer l'objet File Reader
-      FileReader fr = new FileReader(file);  
-      // Créer l'objet BufferedReader        
-      BufferedReader br = new BufferedReader(fr);  
-      StringBuffer sb = new StringBuffer();    
-      String line;
-      System.out.println("lecture dans le fichier");
-      while((line = br.readLine()) != null)
-      {
-        // ajoute la ligne au buffer
-        sb.append(line);      
-        
-        System.out.println(line);
-        sb.append("\n");   
-        words = line.split(",");
-	    System.out.println(words[1]);  
-      }
-      fr.close();    
-      System.out.println("Contenu du fichier: ");
-      System.out.println(sb.toString());  
-    }
-    catch(IOException e)
-    {
-      e.printStackTrace();
-    }
+		String dest = SecondaryController.pseudo_destinataire;
+		boolean found = true;
+		DbConnect.Connexion();
+		System.out.println("bdd");
+		ResultSet rs = DbConnect.statement.executeQuery("SELECT adIP FROM user WHERE pseudo="+dest);
+		while (rs.next()) {
+			System.out.println(rs);
+			//ResultSet rs = DbConnect.statement.executeQuery("SELECT adIP FROM user WHERE pseudo="+dest);
+		}
+		DbConnect.FinConnexion();
+		
+		String line = "10.1.5.152";
+		/*
+		//lire l'ad IP dans le fichier
+	    try
+	    {
+	      // Le fichier d'entrée
+	      File file = new File("/projetfx/src/main/java/projetfx/projetfx/liste.txt");    
+	      // Créer l'objet File Reader
+	      FileReader fr = new FileReader(file);  
+	      // Créer l'objet BufferedReader        
+	      BufferedReader br = new BufferedReader(fr);  
+	      StringBuffer sb = new StringBuffer();    
+	      String line;
+	      System.out.println("lecture dans le fichier");
+	      while((line = br.readLine()) != null)
+	      {
+	        // ajoute la ligne au buffer
+	        sb.append(line);      
+	        
+	        System.out.println(line);
+	        sb.append("\n");   
+	        words = line.split(",");
+		    System.out.println(words[1]);  
+	      }
+	      fr.close();    
+	      System.out.println("Contenu du fichier: ");
+	      System.out.println(sb.toString());  
+	    }
+	    catch(IOException e)
+	    {
+	      e.printStackTrace();
+	    }
     
-    */
-    try {
-    	System.out.println("avant création socket");
-    	System.out.println(line);
-    	//Socket socketOfClient = new Socket("host",Integer.parseInt(words[2]));
-    	Socket socketOfClient = new Socket(InetAddress.getByName(line),port);
-    	System.out.println("sock créé");
-    	// Create output stream at the client (to send data to the server)
-        //os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
-        
-        PrintStream output = new PrintStream(socketOfClient.getOutputStream());
-	    System.out.println("échange de données mit en place ");
-	    
-        output.println(message+","+date+","+pseudo);
-	    System.out.println("envoi et réception de donnée ");
-    	
-        output.close();
-        socketOfClient.close();
-    } catch (IOException e) {
-        System.err.println("IOException:  " + e);
-    }
-	
+	    */
+	    try {
+	    	System.out.println("avant création socket");
+	    	System.out.println(line);
+	    	//Socket socketOfClient = new Socket("host",Integer.parseInt(words[2]));
+	    	Socket socketOfClient = new Socket(InetAddress.getByName(line),port);
+	    	System.out.println("sock créé");
+	    	// Create output stream at the client (to send data to the server)
+	        //os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
+	        
+	        PrintStream output = new PrintStream(socketOfClient.getOutputStream());
+		    System.out.println("échange de données mit en place ");
+		    
+	        output.println(message+","+date+","+pseudo);
+		    System.out.println("envoi et réception de donnée ");
+	    	
+	        output.close();
+	        socketOfClient.close();
+	    } catch (IOException e) {
+	        System.err.println("IOException:  " + e);
+	    }
+		
 	}
 	
-	/*public static void main(String[] args) throws UnknownHostException, IOException {
+	public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		//receive();
 		send("hello","ee","rr");
 		
-	}*/
+	}
 }
