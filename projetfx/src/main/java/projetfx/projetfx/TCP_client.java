@@ -99,10 +99,10 @@ public static void send(String message, String date, String pseudo) {
 	
 	}
 	
-	public static void main(String[] args) throws UnknownHostException, IOException {
+	/*public static void main(String[] args) throws UnknownHostException, IOException {
 		// TODO Auto-generated method stub
 		//receive();
 		send("hello","ee","rr");
 		
-	}
+	}*/
 }

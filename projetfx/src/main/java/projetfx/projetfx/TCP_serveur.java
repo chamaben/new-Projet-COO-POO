@@ -32,33 +32,13 @@ public class TCP_serveur
 			
 			//Mise en place des échange de données en entrée et sortie
 		      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
-		      System.out.println("échange de données mis en place ");
-		      
-		   // Recevoir de la donnée
-		      
-		      //message+date+pseudo
-		      line = br.readLine();
-		      System.out.println(line+"\n");
-		      String[] recup = line.split(",");
-		      String message = recup[0];
-		      String pseudo = recup[1];
-		      String sdate = recup[2];
-		      Timestamp date= Timestamp.valueOf(sdate);
-		      
-		      
-		      //Reconstitution du message
-		     Message message2 = new Message(pseudo,WindowModel.user.pseudo, message, date);
-		     //secondarycontroller.DisplayMessage(message2);
-		      
-		    //Fermer la connection
-		      serviceSocket.close();
-		      System.out.println("fermeture de connection ");    
+		      System.out.println("échange de données mis en place ");  
 	      
 	      
 	      //créer un élément de la liste qui va ensuite se lance de son côté: le thread
-	      //MyThread thread = new MyThread (num,serviceSocket);
-	      //(MyThread.Tab).add(thread);
-	      //num++;
+	      MyThread thread = new MyThread (num,serviceSocket);
+	      (MyThread.Tab).add(thread);
+	      num++;
 
 	      System.out.println("accept fait ");
 	    }
