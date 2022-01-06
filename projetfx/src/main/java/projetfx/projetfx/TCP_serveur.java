@@ -28,10 +28,10 @@ public class TCP_serveur
 	    	//Mise en attente du serveur On associe au thread son service socket 
 	      Socket serviceSocket =  s.accept();
 	     
-	      BufferedReader br = new BufferedReader(new InputStreamReader(service.getInputStream()));
+	      BufferedReader br = new BufferedReader(new InputStreamReader(serviceSocket.getInputStream()));
 			
 			//Mise en place des échange de données en entrée et sortie
-		      PrintStream output = new PrintStream(service.getOutputStream());
+		      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
 		      System.out.println("échange de données mis en place ");
 		      
 		   // Recevoir de la donnée
@@ -51,7 +51,7 @@ public class TCP_serveur
 		     //secondarycontroller.DisplayMessage(message2);
 		      
 		    //Fermer la connection
-		      service.close();
+		      serviceSocket.close();
 		      System.out.println("fermeture de connection ");    
 	      
 	      
