@@ -33,6 +33,7 @@ public class MyThread extends Thread
 		try {
 			
 		BufferedReader br = new BufferedReader(new InputStreamReader(service.getInputStream()));
+		System.out.println("br fait");
 			
 		//Mise en place des échange de données en entrée et sortie
 	      PrintStream output = new PrintStream(service.getOutputStream());
@@ -48,11 +49,13 @@ public class MyThread extends Thread
 	      String pseudo = recup[1];
 	      String sdate = recup[2];
 	      Timestamp date= Timestamp.valueOf(sdate);
+	      System.out.println("donnée récupérée ");
 	      
 	      
 	      //Reconstitution du message
 	     Message message2 = new Message(pseudo,WindowModel.user.pseudo, message, date);
 	     secondarycontroller.DisplayMessage(message2);
+	     System.out.println("message reconstitué");
 	      
 	    //Fermer la connection
 	      service.close();
