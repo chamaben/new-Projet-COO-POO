@@ -14,10 +14,10 @@ public class TCP_serveur
 	static int port = 7899;
 	public static  int num = 0;
 	static String line;
-	Socket service; 
+	public static Socket service; 
 	public SecondaryController secondarycontroller;
 	
-	public void receive() {
+	public static void receive() {
 			
 		try {
 			//création du socket
@@ -28,10 +28,10 @@ public class TCP_serveur
 	    	//Mise en attente du serveur On associe au thread son service socket 
 	      Socket serviceSocket =  s.accept();
 	     
-	      BufferedReader br = new BufferedReader(new InputStreamReader(service.getInputStream()));
+	      BufferedReader br = new BufferedReader(new InputStreamReader(serviceSocket.getInputStream()));
 			
 			//Mise en place des échange de données en entrée et sortie
-		      PrintStream output = new PrintStream(service.getOutputStream());
+		      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
 		      System.out.println("échange de données mis en place ");
 		      
 		   // Recevoir de la donnée
@@ -48,10 +48,10 @@ public class TCP_serveur
 		      
 		      //Reconstitution du message
 		     Message message2 = new Message(pseudo,WindowModel.user.pseudo, message, date);
-		     secondarycontroller.DisplayMessage(message2);
+		     //secondarycontroller.DisplayMessage(message2);
 		      
 		    //Fermer la connection
-		      service.close();
+		      serviceSocket.close();
 		      System.out.println("fermeture de connection ");    
 	      
 	      
@@ -104,7 +104,7 @@ public class TCP_serveur
 	
 	// le serveur est en état accept, quand il reçoit la requête, il accepte la connexion, lance un thread qui va envoyer le messages, et rebouble sur accept
 	public static void main(String[] args) throws IOException {		
-		//receive();
+		receive();
 		//send("hello");
 		
 	}
