@@ -62,6 +62,7 @@ public class PrimaryController{
 				App.stage.setWidth(660);
 				App.stage.setHeight(579);
 				App.setRoot("secondary");
+				WindowModel.serveur.receive();
     		}
     	}
         //outputText.setText(inputText.getText());

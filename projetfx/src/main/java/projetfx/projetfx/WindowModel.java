@@ -10,6 +10,7 @@ public class WindowModel {
 	
 	public static User user;
 	public static ObservableList<String> activeMembers = FXCollections.observableArrayList();
+	public static TCP_serveur serveur;
 	// public static ObservableList<User> activeMembers;
 	
 	// ObservableList<String> items =FXCollections.observableArrayList ();
