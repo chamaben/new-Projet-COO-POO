@@ -5,8 +5,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.nio.*;
-import java.util.*;
 
 //change pseudo et se connecter à chaque fois
 //dans réception udp, stocker l'adresse ip reçue dans la bdd
@@ -21,7 +19,7 @@ public class UDP_client {
 	}
 
 	public String sendBroadcast(String message) throws IOException {
-		String line = "10.32.3.255";
+		String line = "10.1.5.255";
 		host = InetAddress.getByName(line);
 		this.dgramSocket.setBroadcast(true);
 		
@@ -36,7 +34,6 @@ public class UDP_client {
 		//crée un objet datagrampacket pour les datagrams entrants
 		outPacket = new DatagramPacket(buf,buf.length);
 		System.out.println("Datagrampacket créé");
-		buf.clear();
 		
 		//accepte un datagram entrant
 		this.dgramSocket.receive(outPacket);
@@ -63,15 +60,12 @@ public class UDP_client {
 		} else {
 			System.out.println("attention erreur");
 		}
-		/*envoi = client.sendBroadcast("je parle au serveur");
+		envoi = client.sendBroadcast("je parle au serveur");
 		if (envoi.equals("je suis le client")) {
 			System.out.println("envoi N OK");
 		} else {
 			System.out.println("attention erreur");
-		}*/
-		
-		
-		
+		}
 		envoi = client.sendBroadcast("fin");
 		client.close();
 	}

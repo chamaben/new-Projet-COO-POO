@@ -6,7 +6,7 @@ import java.net.*;
 public class UDP_serveur {
 	private int port = 7907;
 	private DatagramSocket dgramSocket;
-	private boolean running;
+	//private boolean running;
 	private byte[] buffer = new byte[256];
 	
 	public UDP_serveur() throws SocketException {
@@ -15,9 +15,9 @@ public class UDP_serveur {
 
 	public void run() throws IOException {
 		
-		this.running = true;
+		//this.running = true;
 		
-		while (this.running) {
+		for (int i=0;i<2;i++) {
 			
 			//crée un objet datagrampacket pour les datagrams entrants
 			DatagramPacket inPacket = new DatagramPacket(this.buffer,this.buffer.length);
@@ -44,9 +44,9 @@ public class UDP_serveur {
 			DatagramPacket outPacket = new DatagramPacket(response.getBytes(),response.length(),clientAddress,clientPort);
 			System.out.println("le message réponse est : "+response);
 			
-			if (message.equals("fin")) {
+			/*if (message.equals("fin")) {
 				this.running = false;
-			}
+			}*/
 			//envoie le datagram réponse
 			dgramSocket.send(outPacket);
 			this.dgramSocket.send(inPacket);
