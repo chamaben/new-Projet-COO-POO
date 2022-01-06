@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.*;
 
 public class UDP_serveur {
-	private int port = 7907;
+	private int port = 7908;
 	private DatagramSocket dgramSocket;
 	//private boolean running;
 	private byte[] buffer = new byte[256];
