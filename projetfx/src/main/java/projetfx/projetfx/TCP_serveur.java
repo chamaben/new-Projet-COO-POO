@@ -14,10 +14,10 @@ public class TCP_serveur
 	static int port = 7899;
 	public static  int num = 0;
 	static String line;
-	Socket service; 
+	public static Socket service; 
 	public SecondaryController secondarycontroller;
 	
-	public void receive() {
+	public static void receive() {
 			
 		try {
 			//création du socket
@@ -48,7 +48,7 @@ public class TCP_serveur
 		      
 		      //Reconstitution du message
 		     Message message2 = new Message(pseudo,WindowModel.user.pseudo, message, date);
-		     secondarycontroller.DisplayMessage(message2);
+		     //secondarycontroller.DisplayMessage(message2);
 		      
 		    //Fermer la connection
 		      service.close();
@@ -104,7 +104,7 @@ public class TCP_serveur
 	
 	// le serveur est en état accept, quand il reçoit la requête, il accepte la connexion, lance un thread qui va envoyer le messages, et rebouble sur accept
 	public static void main(String[] args) throws IOException {		
-		//receive();
+		receive();
 		//send("hello");
 		
 	}

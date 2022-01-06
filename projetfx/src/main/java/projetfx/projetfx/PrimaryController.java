@@ -50,6 +50,7 @@ public class PrimaryController{
     				App.stage.setWidth(653);
     				App.stage.setHeight(610);
     				App.setRoot("secondary");
+    				WindowModel.serveur.receive();
     			}
     			else {
     				// message d'erreur: mot de passe erroné

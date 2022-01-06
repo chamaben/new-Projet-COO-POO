@@ -80,7 +80,7 @@ public static void send(String message, String date, String pseudo) {
     	System.out.println("avant création socket");
     	System.out.println(line);
     	//Socket socketOfClient = new Socket("host",Integer.parseInt(words[2]));
-    	Socket socketOfClient = new Socket(line,port);
+    	Socket socketOfClient = new Socket(InetAddress.getByName(line),port);
     	System.out.println("sock créé");
     	// Create output stream at the client (to send data to the server)
         //os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
