@@ -43,52 +43,17 @@ public class TCP_client {
 	
 	public static void send(String message, String date, String pseudo) throws ClassNotFoundException, SQLException {
 		
-		String dest = SecondaryController.pseudo_destinataire;
-		boolean found = true;
-		DbConnect.Connexion();
-		System.out.println("bdd");
-		ResultSet rs = DbConnect.statement.executeQuery("SELECT adIP FROM user WHERE pseudo="+dest);
-		while (rs.next()) {
-			System.out.println(rs);
-			//ResultSet rs = DbConnect.statement.executeQuery("SELECT adIP FROM user WHERE pseudo="+dest);
-		}
-		DbConnect.FinConnexion();
+		try {
+			String dest = "hello";//SecondaryController.pseudo_destinataire;
+			String line;
+			DbConnect.Connexion();
+			System.out.println("bdd");
+			String query = "SELECT adIP FROM tp_servlet_002.user WHERE pseudo='"+dest+"'";
+			ResultSet rs = DbConnect.statement.executeQuery(query);
+			if (rs.next()) {}
+			line = rs.getString(1);
+			DbConnect.FinConnexion();
 		
-		String line = "10.1.5.152";
-		/*
-		//lire l'ad IP dans le fichier
-	    try
-	    {
-	      // Le fichier d'entrée
-	      File file = new File("/projetfx/src/main/java/projetfx/projetfx/liste.txt");    
-	      // Créer l'objet File Reader
-	      FileReader fr = new FileReader(file);  
-	      // Créer l'objet BufferedReader        
-	      BufferedReader br = new BufferedReader(fr);  
-	      StringBuffer sb = new StringBuffer();    
-	      String line;
-	      System.out.println("lecture dans le fichier");
-	      while((line = br.readLine()) != null)
-	      {
-	        // ajoute la ligne au buffer
-	        sb.append(line);      
-	        
-	        System.out.println(line);
-	        sb.append("\n");   
-	        words = line.split(",");
-		    System.out.println(words[1]);  
-	      }
-	      fr.close();    
-	      System.out.println("Contenu du fichier: ");
-	      System.out.println(sb.toString());  
-	    }
-	    catch(IOException e)
-	    {
-	      e.printStackTrace();
-	    }
-    
-	    */
-	    try {
 	    	System.out.println("avant création socket");
 	    	System.out.println(line);
 	    	//Socket socketOfClient = new Socket("host",Integer.parseInt(words[2]));
