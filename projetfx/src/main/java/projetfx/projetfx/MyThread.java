@@ -46,8 +46,8 @@ public class MyThread extends Thread
 	      System.out.println(line+"\n");
 	      String[] recup = line.split(",");
 	      String message = recup[0];
-	      String pseudo = recup[1];
-	      String sdate = recup[2];
+	      String sdate = recup[1];
+	      String pseudo  = recup[2];
 	      Timestamp date= Timestamp.valueOf(sdate);
 	      System.out.println("donnée récupérée ");
 	      

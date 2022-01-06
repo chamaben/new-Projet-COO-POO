@@ -88,7 +88,7 @@ public static void send(String message, String date, String pseudo) {
         PrintStream output = new PrintStream(socketOfClient.getOutputStream());
 	    System.out.println("échange de données mit en place ");
 	    
-        output.println(message+date+pseudo);
+        output.println(message+","+date+","+pseudo);
 	    System.out.println("envoi et réception de donnée ");
     	
         output.close();
