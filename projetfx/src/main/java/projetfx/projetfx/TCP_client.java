@@ -54,6 +54,7 @@ public static void send(String message, String date, String pseudo) {
       BufferedReader br = new BufferedReader(fr);  
       StringBuffer sb = new StringBuffer();    
       String line;
+      System.out.println("lecture dans le fichier");
       while((line = br.readLine()) != null)
       {
         // ajoute la ligne au buffer
@@ -62,11 +63,11 @@ public static void send(String message, String date, String pseudo) {
         System.out.println(line);
         sb.append("\n");   
         words = line.split(",");
-	    //System.out.println(words[1]);  
+	    System.out.println(words[1]);  
       }
       fr.close();    
-      //System.out.println("Contenu du fichier: ");
-      //System.out.println(sb.toString());  
+      System.out.println("Contenu du fichier: ");
+      System.out.println(sb.toString());  
     }
     catch(IOException e)
     {
@@ -76,7 +77,7 @@ public static void send(String message, String date, String pseudo) {
     
     try {
     	System.out.println("avant création socket");
-    	//System.out.println(InetAddress.getByName(words[1]));
+    	System.out.println(InetAddress.getByName(words[1]));
     	//Socket socketOfClient = new Socket("host",Integer.parseInt(words[2]));
     	Socket socketOfClient = new Socket(InetAddress.getByName(words[1]),Integer.parseInt(words[2]));
     	System.out.println("sock créé");

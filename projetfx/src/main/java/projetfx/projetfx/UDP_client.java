@@ -19,7 +19,7 @@ public class UDP_client {
 	}
 
 	public String sendBroadcast(String message) throws IOException {
-		String line = "10.1.5.255";
+		String line = "10.255.255.255";
 		host = InetAddress.getByName(line);
 		this.dgramSocket.setBroadcast(true);
 		

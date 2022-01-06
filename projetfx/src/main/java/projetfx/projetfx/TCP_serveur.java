@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 public class TCP_serveur
 {
 	
-	BufferedWriter os = null;
+	static BufferedWriter os = null;
 	static int port = 7899;
 	public static  int num = 0;
 	static String line;
