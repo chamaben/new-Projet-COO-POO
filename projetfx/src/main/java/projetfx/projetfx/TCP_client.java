@@ -42,12 +42,13 @@ public class TCP_client {
 public static void send(String message, String date, String pseudo) {
 		
 	String[] words = null;
-	
+	String line = "10.1.5.152";
+	/*
 	//lire l'ad IP dans le fichier
     try
     {
       // Le fichier d'entrée
-      File file = new File("/home/mallevil/Documents/POO/projetfx/src/main/java/projetfx/projetfx/liste.txt");    
+      File file = new File("/projetfx/src/main/java/projetfx/projetfx/liste.txt");    
       // Créer l'objet File Reader
       FileReader fr = new FileReader(file);  
       // Créer l'objet BufferedReader        
@@ -74,12 +75,12 @@ public static void send(String message, String date, String pseudo) {
       e.printStackTrace();
     }
     
-    
+    */
     try {
     	System.out.println("avant création socket");
-    	System.out.println(InetAddress.getByName(words[1]));
+    	System.out.println(line);
     	//Socket socketOfClient = new Socket("host",Integer.parseInt(words[2]));
-    	Socket socketOfClient = new Socket(InetAddress.getByName(words[1]),Integer.parseInt(words[2]));
+    	Socket socketOfClient = new Socket(line,port);
     	System.out.println("sock créé");
     	// Create output stream at the client (to send data to the server)
         //os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
