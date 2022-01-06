@@ -3,6 +3,7 @@ package projetfx.projetfx;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.Timestamp;
 
 
 
@@ -12,9 +13,11 @@ public class TCP_serveur
 	BufferedWriter os = null;
 	static int port = 7899;
 	public static  int num = 0;
+	static String line;
+	Socket service; 
+	public SecondaryController secondarycontroller;
 	
-	
-	public static void receive() {
+	public void receive() {
 			
 		try {
 			//création du socket
@@ -25,11 +28,37 @@ public class TCP_serveur
 	    	//Mise en attente du serveur On associe au thread son service socket 
 	      Socket serviceSocket =  s.accept();
 	     
+	      BufferedReader br = new BufferedReader(new InputStreamReader(service.getInputStream()));
+			
+			//Mise en place des échange de données en entrée et sortie
+		      PrintStream output = new PrintStream(service.getOutputStream());
+		      System.out.println("échange de données mis en place ");
 		      
+		   // Recevoir de la donnée
+		      
+		      //message+date+pseudo
+		      line = br.readLine();
+		      System.out.println(line+"\n");
+		      String[] recup = line.split(",");
+		      String message = recup[0];
+		      String pseudo = recup[1];
+		      String sdate = recup[2];
+		      Timestamp date= Timestamp.valueOf(sdate);
+		      
+		      
+		      //Reconstitution du message
+		     Message message2 = new Message(pseudo,WindowModel.user.pseudo, message, date);
+		     secondarycontroller.DisplayMessage(message2);
+		      
+		    //Fermer la connection
+		      service.close();
+		      System.out.println("fermeture de connection ");    
+	      
+	      
 	      //créer un élément de la liste qui va ensuite se lance de son côté: le thread
-	      MyThread thread = new MyThread (num,serviceSocket);
-	      (MyThread.Tab).add(thread);
-	      num++;
+	      //MyThread thread = new MyThread (num,serviceSocket);
+	      //(MyThread.Tab).add(thread);
+	      //num++;
 
 	      System.out.println("accept fait ");
 	    }
@@ -75,7 +104,7 @@ public class TCP_serveur
 	
 	// le serveur est en état accept, quand il reçoit la requête, il accepte la connexion, lance un thread qui va envoyer le messages, et rebouble sur accept
 	public static void main(String[] args) throws IOException {		
-		receive();
+		//receive();
 		//send("hello");
 		
 	}
