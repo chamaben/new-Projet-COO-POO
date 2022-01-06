@@ -38,7 +38,7 @@ public class SecondaryController {
 	@FXML
 	private Label date;
 	Message message1;
-	static String pseudo_destinataire= null;
+	static String pseudo_destinataire = null;
 	
 	@FXML
     private void initialize() throws ClassNotFoundException, SQLException, SocketException {

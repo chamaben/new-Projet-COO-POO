@@ -44,7 +44,7 @@ public class TCP_client {
 	public static void send(String message, String date, String pseudo) throws ClassNotFoundException, SQLException {
 		
 		try {
-			String dest = "hello";//SecondaryController.pseudo_destinataire;
+			String dest = SecondaryController.pseudo_destinataire;
 			String line;
 			DbConnect.Connexion();
 			System.out.println("bdd");
