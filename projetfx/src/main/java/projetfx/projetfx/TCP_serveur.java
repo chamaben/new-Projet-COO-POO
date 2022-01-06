@@ -15,33 +15,19 @@ public class TCP_serveur
 	public static  int num = 0;
 	static String line;
 	public static Socket service; 
+	static ServerSocket s;
 	public SecondaryController secondarycontroller;
 	
 	public static void receive() {
 			
 		try {
 			//création du socket
-			ServerSocket s = new ServerSocket(port);
+			s = new ServerSocket(port);
 		    System.out.println(s.getLocalPort());
-		    
-		    while(true) {
-	    	//Mise en attente du serveur On associe au thread son service socket 
-	      Socket serviceSocket =  s.accept();
-	     
-	      BufferedReader br = new BufferedReader(new InputStreamReader(serviceSocket.getInputStream()));
-			
-			//Mise en place des échange de données en entrée et sortie
-		      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
-		      System.out.println("échange de données mis en place ");  
-	      
-	      
-	      //créer un élément de la liste qui va ensuite se lance de son côté: le thread
-	      MyThread thread = new MyThread (num,serviceSocket);
-	      (MyThread.Tab).add(thread);
-	      num++;
-
-	      System.out.println("accept fait ");
-	    }
+		    Socket serviceSocket = null;
+		    Thread_serveur thread = new Thread_serveur(num,serviceSocket);
+		      (Thread_serveur.Tab_s).add(thread);
+		      num++;
 		      
 		} catch (IOException e) {
 			 System.out.println("exception levée");

@@ -12,7 +12,7 @@ public class MyThread extends Thread
 
 {
 	//attributs
-		static int port = 7894;
+		static int port = 7899;
 		public static  int num = 0;
 		static String line;
 		public static ArrayList<MyThread> Tab = new ArrayList<MyThread>(); 
