@@ -42,5 +42,4 @@ public class Thread_serveur extends Thread {
 				}
 		    }
 	}
-	//crée un thread pour conversation
 }

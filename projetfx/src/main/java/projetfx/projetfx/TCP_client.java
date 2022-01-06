@@ -5,8 +5,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Date;
 
-//A faire: Séparer les méthodes receive et send et dans le receive faire un thread qui boucle pour attendre les messsages
-//Chaque client/serveur a sa méthode send et receive
+//A faire: généraliser l'ad ip avec bdd
 
 public class TCP_client {
 	

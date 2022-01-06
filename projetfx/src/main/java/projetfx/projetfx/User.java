@@ -1,5 +1,6 @@
 package projetfx.projetfx;
 import java.net.InetAddress;
+import java.net.SocketException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,14 +14,14 @@ public class User {
 	public int etat;
 
 	public static int id=0;
-	public InetAddress adIP;
+	public String adIP;
 	
-	User(String login1,String password1,String pseudo1){
+	User(String login1,String password1,String pseudo1) throws SocketException{
 		this.login = login1;
 		this.password = password1;
 		this.pseudo = pseudo1;
 		this.etat = 1;
-		//this.adIP = adIP;
+		this.adIP = UDP_client.GetIP();
 	}
 	
 	public void setPseudo(String pseudo){
@@ -87,10 +88,10 @@ public class User {
 	}
 	
 	@SuppressWarnings("unused")
-	public static void CreateUser(String login, String password, String pseudo, int etat) throws SQLException, ClassNotFoundException {
+	public static void CreateUser(String login, String password, String pseudo, int etat) throws SQLException, ClassNotFoundException, SocketException {
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user");
-		int c = DbConnect.statement.executeUpdate("INSERT INTO `tp_servlet_002`.`user` (`login`, `password`, `pseudo`, `etat`) VALUES ('"+login+"','"+password+"', '"+pseudo+"', '"+Integer.toString(etat)+"')");
+		int c = DbConnect.statement.executeUpdate("INSERT INTO `tp_servlet_002`.`user` (`login`, `password`, `pseudo`, `etat`, `adIP`) VALUES ('"+login+"','"+password+"', '"+pseudo+"', '"+Integer.toString(etat)+"', '"+UDP_client.GetIP()+"')");
 		System.out.println("user ajouté");
 	}
 		

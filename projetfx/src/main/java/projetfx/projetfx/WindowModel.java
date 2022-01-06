@@ -1,5 +1,6 @@
 package projetfx.projetfx;
 
+import java.net.SocketException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
@@ -15,7 +16,7 @@ public class WindowModel {
 	
 	// ObservableList<String> items =FXCollections.observableArrayList ();
 	
-	public WindowModel(String login1, String password1, String pseudo1) throws ClassNotFoundException, SQLException {
+	public WindowModel(String login1, String password1, String pseudo1) throws ClassNotFoundException, SQLException, SocketException {
 		user = new User(login1, password1, pseudo1);
 		activeMembers = ActiveUsers ();
 	}

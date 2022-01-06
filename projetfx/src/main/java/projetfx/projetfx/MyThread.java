@@ -32,44 +32,43 @@ public class MyThread extends Thread
 	public void run() {
 		try {
 			
-		BufferedReader br = new BufferedReader(new InputStreamReader(service.getInputStream()));
-		System.out.println("br fait");
+			BufferedReader br = new BufferedReader(new InputStreamReader(service.getInputStream()));
+			System.out.println("br fait");
 			
-		//Mise en place des échange de données en entrée et sortie
-	      PrintStream output = new PrintStream(service.getOutputStream());
-	      System.out.println("échange de données mis en place ");
+			//Mise en place des échange de données en entrée et sortie
+		    PrintStream output = new PrintStream(service.getOutputStream());
+		    System.out.println("échange de données mis en place ");
+		      
+		    // Recevoir de la donnée
 	      
-	   // Recevoir de la donnée
-	      
-	      //message+date+pseudo
-	      line = br.readLine();
-	      System.out.println(line+"\n");
-	      String[] recup = line.split(",");
-	      String message = recup[0];
-	      System.out.println(message+"\n");
-	      String sdate = recup[1];
-	      System.out.println(sdate+"\n");
-	      String pseudo  = recup[2];
-	      System.out.println(pseudo+"\n");
-	      Timestamp date= Timestamp.valueOf(sdate);
-	      System.out.println(date+"\n");
-	      System.out.println("donnée récupérée ");
+		    //message+date+pseudo
+		    line = br.readLine();
+		    System.out.println(line+"\n");
+		    String[] recup = line.split(",");
+		    String message = recup[0];
+		    System.out.println(message+"\n");
+		    String sdate = recup[1];
+		    System.out.println(sdate+"\n");
+		    String pseudo  = recup[2];
+		    System.out.println(pseudo+"\n");
+		    Timestamp date= Timestamp.valueOf(sdate);
+		    System.out.println(date+"\n");
+		    System.out.println("donnée récupérée ");
 	      
 	      
-	      //Reconstitution du message
-	     Message message2 = new Message(pseudo,WindowModel.user.pseudo, message, date);
-	     System.out.println(WindowModel.user.pseudo);
-	     secondarycontroller.DisplayMessage(message2);
-	     System.out.println("message reconstitué");
+		    //Reconstitution du message
+		    Message message2 = new Message(pseudo,WindowModel.user.pseudo, message, date);
+		    System.out.println(WindowModel.user.pseudo);
+		    secondarycontroller.DisplayMessage(message2);
+		    System.out.println("message reconstitué");
 	      
-	    //Fermer la connection
-	      service.close();
-	      System.out.println("fermeture de connection ");
+		    //Fermer la connection
+		    service.close();
+		    System.out.println("fermeture de connection ");
 		} 
 		catch (IOException e) {
-		 System.out.println("exception levée");
-      e.printStackTrace();
-
+			System.out.println("exception levée");
+			e.printStackTrace();
 		}
 	}
 	

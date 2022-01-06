@@ -19,6 +19,7 @@ public class PrimaryController{
 	String pseudo1;
 	String login1;
 	String password1;
+	String adIP1;
 	
 	
 	WindowModel windowmodel;
@@ -30,6 +31,7 @@ public class PrimaryController{
     	pseudo1= pseudo.getText();
     	login1= login.getText();
     	password1= password.getText();
+    	adIP1=UDP_client.GetIP();
     	
     	windowmodel = new WindowModel(login1, password1, pseudo1);
 		
