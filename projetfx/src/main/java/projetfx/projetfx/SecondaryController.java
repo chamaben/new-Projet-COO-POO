@@ -1,6 +1,7 @@
 package projetfx.projetfx;
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,12 +41,18 @@ public class SecondaryController {
 	static String pseudo_destinataire= null;
 	
 	@FXML
-    private void initialize() throws ClassNotFoundException, SQLException {
+    private void initialize() throws ClassNotFoundException, SQLException, SocketException {
 		BonjourMessage();
 		// créer la liste de pseudos à afficher
 		activelist.setItems(WindowModel.activeMembers);
 		
 		WindowModel.serveur.receive();
+		WindowModel.user.adIP = UDP_client.GetIP();
+		DbConnect.Connexion();
+		Statement stmt = DbConnect.connection.createStatement();
+		String query = "UPDATE user SET adIP='"+WindowModel.user.adIP+"' WHERE login='"+WindowModel.user.login+"'";
+		stmt.executeUpdate(query);
+		DbConnect.FinConnexion();
     }
 	
 	

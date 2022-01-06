@@ -1,5 +1,4 @@
 package projetfx.projetfx;
-import java.net.InetAddress;
 import java.net.SocketException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +9,6 @@ public class User {
 	public String login;
 	public String password;
 	public String pseudo;
-	public InetAddress adress_IP;
 	public int etat;
 
 	public static int id=0;
