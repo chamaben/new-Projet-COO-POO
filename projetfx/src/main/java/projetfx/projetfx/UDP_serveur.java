@@ -13,6 +13,8 @@ public class UDP_serveur {
 		this.dgramSocket = new DatagramSocket(this.port);
 	}
 
+	//strocker l'ad ip et le pseudo dans la bdd
+	
 	public void run() throws IOException {
 		
 		//this.running = true;

@@ -10,16 +10,18 @@ import java.net.SocketException;
 //dans réception udp, stocker l'adresse ip reçue dans la bdd
 
 public class UDP_client {
-	private int port = 7907;
+	private int port = 7908;
 	private InetAddress host;
 	private DatagramSocket dgramSocket;
 	
 	public UDP_client() throws SocketException {
 		this.dgramSocket = new DatagramSocket();
 	}
+	
+	//envoyer un message à mla connexiin avec pseudo et ad ip
 
 	public String sendBroadcast(String message) throws IOException {
-		String line = "10.255.255.255";
+		String line = "10.1.255.255";
 		host = InetAddress.getByName(line);
 		this.dgramSocket.setBroadcast(true);
 		
