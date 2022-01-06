@@ -45,6 +45,7 @@ public class TCP_client {
 		
 		try {
 			String dest = SecondaryController.pseudo_destinataire;
+			System.out.println(dest);
 			String line;
 			DbConnect.Connexion();
 			System.out.println("bdd");
