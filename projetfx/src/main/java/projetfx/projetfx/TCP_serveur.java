@@ -13,8 +13,6 @@ public class TCP_serveur
 	static BufferedWriter os = null;
 	static int port = 7899;
 	public static  int num = 0;
-	static String line;
-	public static Socket service; 
 	static ServerSocket s;
 	public SecondaryController secondarycontroller;
 	
@@ -25,8 +23,11 @@ public class TCP_serveur
 			s = new ServerSocket(port);
 		    System.out.println(s.getLocalPort());
 		    Socket serviceSocket = null;
+		    
+		    //thread
 		    Thread_serveur thread = new Thread_serveur(num,serviceSocket);
 		      (Thread_serveur.Tab_s).add(thread);
+		      Thread_serveur.Tab_s.get(num).start();
 		      num++;
 		      
 		} catch (IOException e) {

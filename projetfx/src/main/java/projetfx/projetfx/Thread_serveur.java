@@ -16,7 +16,6 @@ public class Thread_serveur extends Thread {
 	
 	Thread_serveur(int num, Socket serviceassocie) {
 		super(Integer.toString(num));
-		start();
 		service = serviceassocie  ;
 	}
 	
@@ -26,17 +25,11 @@ public class Thread_serveur extends Thread {
 			try {
 	    	//Mise en attente du serveur On associe au thread son service socket 
 		      Socket serviceSocket =  serveur.s.accept();
-		     
-		      BufferedReader br = new BufferedReader(new InputStreamReader(serviceSocket.getInputStream()));
-				
-				//Mise en place des échange de données en entrée et sortie
-			      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
-			      System.out.println("échange de données mis en place ");  
-		      
 		      
 		      //créer un élément de la liste qui va ensuite se lance de son côté: le thread
 		      MyThread thread = new MyThread (num,serviceSocket);
 		      (MyThread.Tab).add(thread);
+		      MyThread.Tab.get(num).start();
 		      num++;
 	
 		      System.out.println("accept fait ");

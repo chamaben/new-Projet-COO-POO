@@ -22,7 +22,6 @@ public class MyThread extends Thread
 	//constructeur
 	MyThread(int num, Socket serviceassocie) {
 		super(Integer.toString(num));
-		start();
 		service = serviceassocie  ;
 	}
 	
@@ -66,11 +65,11 @@ public class MyThread extends Thread
 		}
 	}
 	
-	public static void main() {
+	//public static void main() {
 		
 		//remplissage des index de la liste avec des threads
-	    Tab.get(num).start();
-	    num ++;
+	    //Tab.get(num).start();
+	   // num ++;
 		    
-	}
+	//}
 }

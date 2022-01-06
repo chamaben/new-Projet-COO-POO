@@ -44,6 +44,7 @@ public class SecondaryController {
 		BonjourMessage();
 		// créer la liste de pseudos à afficher
 		activelist.setItems(WindowModel.activeMembers);
+		
 		//WindowModel.serveur.receive();
     }
 	
