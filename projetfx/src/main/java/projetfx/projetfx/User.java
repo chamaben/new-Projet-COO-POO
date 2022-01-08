@@ -50,8 +50,6 @@ public class User {
 		boolean found = true;
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user");
-		System.out.println("le pseudo est " + pseudo);
-		System.out.println("le login est "+ login);
 		while (rs.next()) {
 			if (pseudo.equals(rs.getString(3)) && !login.equals(rs.getString(1))){
 			found= false;
