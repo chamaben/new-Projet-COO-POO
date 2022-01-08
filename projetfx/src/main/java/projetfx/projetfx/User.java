@@ -69,6 +69,7 @@ public class User {
 		stmt.executeUpdate(query);
 		DbConnect.FinConnexion();
 		user1.pseudo=pseudo1;
+		WindowModel.user.pseudo= pseudo1;
 	}
 	
 	
