@@ -16,7 +16,7 @@ public class UDP_client {
 	private int port = 7908;
 	private InetAddress host;
 	private DatagramSocket dgramSocket;
-	private static String Interface = "eth0";
+	private static String Interface = "eth4";
 	
 	public UDP_client() throws SocketException {
 		this.dgramSocket = new DatagramSocket();
@@ -32,7 +32,7 @@ public class UDP_client {
 		
 		//envoie le datagram
 		this.dgramSocket.send(outPacket);
-		//System.out.println("Datagram envoyé");
+		//System.out.println("Datagram envoyPé");
 		
 		byte[] buf = new byte[256];
 		//crée un objet datagrampacket pour les datagrams entrants
@@ -61,6 +61,7 @@ public class UDP_client {
         Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
         for (NetworkInterface netint : Collections.list(nets))
         	if (netint.getName().equals(Interface)) {
+        		System.out.println(netint);
         		RetAddr=GrabIPbyName(netint);
         		
         	}

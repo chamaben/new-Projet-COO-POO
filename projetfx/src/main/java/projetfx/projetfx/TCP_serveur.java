@@ -26,12 +26,12 @@ public class TCP_serveur
 		    
 		    //thread
 		    Thread_serveur thread = new Thread_serveur(num,serviceSocket);
-		      (Thread_serveur.Tab_s).add(thread);
-		      Thread_serveur.Tab_s.get(num).start();
-		      num++;
+		    (Thread_serveur.Tab_s).add(thread);
+		    Thread_serveur.Tab_s.get(num).start();
+		    num++;
 		      
 		} catch (IOException e) {
-			 System.out.println("exception levée");
+			System.out.println("exception levée1");
 	        e.printStackTrace();
 
 		}
@@ -47,32 +47,30 @@ public class TCP_serveur
 		    
 		    
 		    //Mise en place des échange de données en entrée et sortie
-		      Socket serviceSocket =  s.accept();
+		    Socket serviceSocket =  s.accept();
 		      
-		      PrintStream output = new PrintStream(serviceSocket.getOutputStream());
-		      System.out.println("échange de données mit en place ");
+		    PrintStream output = new PrintStream(serviceSocket.getOutputStream());
+		    System.out.println("échange de données mit en place ");
 		      
-		   // Envoyer et recevoir de la donnée
-		      output.println(message+","+date+","+pseudo);
-		      System.out.println("envoi et réception de donnée ");
+		    // Envoyer et recevoir de la donnée
+		    output.println(message+","+date+","+pseudo);
+		    System.out.println("envoi et réception de donnée ");
 		      
 		    //Fermer la connection
-		      serviceSocket.close();
-		      System.out.println("fermeture de connection ");
-		    //}
+		    serviceSocket.close();
+		    System.out.println("fermeture de connection ");
+		    
 		} catch (IOException e) {
-			 System.out.println("exception levée");
+			System.out.println("exception levée");
 	        e.printStackTrace();
-
-	}
-		
 		}
+	}
 
 	
 	// le serveur est en état accept, quand il reçoit la requête, il accepte la connexion, lance un thread qui va envoyer le messages, et rebouble sur accept
 	public static void main(String[] args) throws IOException {		
 		receive();
-		//send("hello");
+		//send("hello","2022-01-12","cc");
 		
 	}
 }

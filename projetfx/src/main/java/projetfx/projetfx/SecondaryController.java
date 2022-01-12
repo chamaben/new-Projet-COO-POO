@@ -1,6 +1,7 @@
 package projetfx.projetfx;
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,15 +38,15 @@ public class SecondaryController {
 	@FXML
 	private Label date;
 	Message message1;
-	static String pseudo_destinataire= null;
+	public static String pseudo_destinataire= null;
 	static String login_destinataire=null;
 	
 	@FXML
-    private void initialize() throws ClassNotFoundException, SQLException {
+    private void initialize() throws ClassNotFoundException, SQLException, SocketException {
 		BonjourMessage();
 		// créer la liste de pseudos à afficher
 		activelist.setItems(WindowModel.activeMembers);
-		
+		WindowModel.user.adIP = UDP_client.GetIP();
 		WindowModel.serveur.receive();
     }
 	

@@ -24,13 +24,15 @@ public class TCP_client {
         
         try {
         	//récupérer le port sur lequel on va écouter 
-    		Socket socketOfClient = new Socket("host",port);
+        	System.out.println("receive client");
+    		Socket socketOfClient = new Socket("10.1.5.82",port);
     		System.out.println("sock créé");
 
             // Input stream at Client (Receive data from the server).
             is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
 
             String responseLine = is.readLine();
+            System.out.println(responseLine);
             
             is.close();
             socketOfClient.close();
@@ -44,15 +46,17 @@ public class TCP_client {
 	public static void send(String message, String date, String pseudo) throws ClassNotFoundException, SQLException {
 		
 		try {
-			String dest = SecondaryController.pseudo_destinataire;
+			String dest = SecondaryController.login_destinataire;
+			dest = "aa";
 			System.out.println(dest);
 			String line;
 			DbConnect.Connexion();
-			System.out.println("bdd");
-			String query = "SELECT adIP FROM tp_servlet_002.user WHERE pseudo='"+dest+"'";
-			ResultSet rs = DbConnect.statement.executeQuery(query);
+			System.out.println(dest);
+			ResultSet rs = DbConnect.statement.executeQuery("SELECT adIP FROM tp_servlet_002.user WHERE login='"+dest+"'");
+			System.out.println(rs);
 			if (rs.next()) {}
 			line = rs.getString(1);
+			System.out.println("line="+line+"\n");
 			DbConnect.FinConnexion();
 		
 	    	System.out.println("avant création socket");
@@ -78,9 +82,9 @@ public class TCP_client {
 	}
 	
 	public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+		
+		send("hello","2022-01-12","chamarche");
 		//receive();
-		send("hello","ee","rr");
 		
 	}
 }
