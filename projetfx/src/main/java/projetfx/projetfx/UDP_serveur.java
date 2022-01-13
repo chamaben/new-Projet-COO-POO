@@ -2,18 +2,21 @@ package projetfx.projetfx;
 
 import java.io.IOException;
 import java.net.*;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class UDP_serveur {
 	private int port = 7908;
 	private DatagramSocket dgramSocket;
 	//private boolean running;
 	private byte[] buffer = new byte[256];
+	private SecondaryController secondarycontroller;
 	
 	public UDP_serveur() throws SocketException {
 		this.dgramSocket = new DatagramSocket(this.port);
 	}
 	
-	public void run() throws IOException {
+	public void run() throws IOException, ClassNotFoundException, SQLException {
 		
 		//this.running = true;
 		
@@ -25,7 +28,26 @@ public class UDP_serveur {
 			
 			//accepte un datagram entrant
 			this.dgramSocket.receive(inPacket);
-			System.out.println(new String(inPacket.getData()));
+			String message = new String(inPacket.getData());
+			String[] recup = message.split(",");
+		    String login = recup[0];
+		    System.out.println(login+"\n");
+		    String etat = recup[1];
+		    System.out.println(etat+"\n");
+		    String ip  = recup[2];
+		    System.out.println(ip+"\n");
+		    
+		    int etat1= Integer.parseInt(etat); 
+		    if (etat1==1) {
+		    	//on récupère l'adresse ip
+		    	// 
+		    	secondarycontroller.RefreshPage();
+		    } 
+		    else if (etat1==0) {
+		    	
+		    }
+		    
+			// System.out.println(new String(inPacket.getData()));
 			//System.out.println("Datagram entrant accepté");
 			
 			//accepte les infos du paquet
@@ -58,7 +80,7 @@ public class UDP_serveur {
 		//System.out.println("Fermeture du datagramsocket");
 	}
 	
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) throws IOException, ClassNotFoundException, SQLException {
 		UDP_serveur udp = new UDP_serveur();
 		udp.run();
 	}

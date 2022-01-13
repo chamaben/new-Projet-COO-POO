@@ -80,8 +80,7 @@ public class SecondaryController {
 	}
 	
 	// actualise la liste des users actifs
-	@FXML
-	private void RefreshPage() throws ClassNotFoundException, SQLException {
+	@FXML void RefreshPage() throws ClassNotFoundException, SQLException {
 		WindowModel.activeMembers.clear();
 		WindowModel.activeMembers = WindowModel.ActiveUsers();
 		// supprimer tous les éléments de la liste

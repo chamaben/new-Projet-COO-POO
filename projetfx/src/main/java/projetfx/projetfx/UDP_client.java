@@ -96,6 +96,6 @@ public class UDP_client {
     }
 	*/
 	public static void main(String args[]) throws IOException, InterruptedException {
-		connexion("chouchou", "1", "100.00.00.00");
+		connexion("chama", "1", "100.00.00.00");
 	}
 }
