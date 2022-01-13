@@ -19,7 +19,7 @@ public class TCP_client {
 	
 	//le destinataire reçoit la requête TCP, il l'accepte et lance un thread puis revient sur accept (boucle infinie)
 	//initialiser la connexion TCP
-	
+	/*
 	public static void receive() {
         
         try {
@@ -27,7 +27,7 @@ public class TCP_client {
         	System.out.println("receive client");
     		Socket socketOfClient = new Socket("10.1.5.82",port);
     		System.out.println("sock créé");
-
+ 
             // Input stream at Client (Receive data from the server).
             is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
 
@@ -42,7 +42,7 @@ public class TCP_client {
             System.err.println("IOException:  " + e);
         }
 	}
-	
+	*/
 	public static void send(String message, String date, String pseudo) throws ClassNotFoundException, SQLException {
 		
 		try {
@@ -83,7 +83,7 @@ public class TCP_client {
 	
 	public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException, SQLException {
 		
-		send("hello","2022-01-12","chamarche");
+		//send("hello","2022-01-12","chamarche");
 		//receive();
 		
 	}
