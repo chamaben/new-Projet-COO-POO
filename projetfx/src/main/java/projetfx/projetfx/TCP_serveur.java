@@ -3,9 +3,6 @@ package projetfx.projetfx;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Timestamp;
-
-
 
 public class TCP_serveur
 {
@@ -58,6 +55,7 @@ public class TCP_serveur
 		      
 		    //Fermer la connection
 		    serviceSocket.close();
+		    s.close();
 		    System.out.println("fermeture de connection ");
 		    
 		} catch (IOException e) {
