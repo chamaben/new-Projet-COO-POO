@@ -16,7 +16,7 @@ public class UDP_client {
 	private int port = 7908;
 	private InetAddress host;
 	private DatagramSocket dgramSocket;
-	private static String Interface = "eth4";
+	private static String Interface = "eth0";
 	
 	public UDP_client() throws SocketException {
 		this.dgramSocket = new DatagramSocket();

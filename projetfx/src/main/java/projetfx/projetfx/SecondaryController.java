@@ -46,8 +46,13 @@ public class SecondaryController {
 		BonjourMessage();
 		// créer la liste de pseudos à afficher
 		activelist.setItems(WindowModel.activeMembers);
-		WindowModel.user.adIP = UDP_client.GetIP();
 		WindowModel.serveur.receive();
+		WindowModel.user.adIP = UDP_client.GetIP();
+		DbConnect.Connexion();
+		Statement stmt = DbConnect.connection.createStatement();
+		String query = "UPDATE user SET adIP='"+WindowModel.user.adIP+"'WHERE login='"+WindowModel.user.login+"'";
+		stmt.executeUpdate(query);
+		DbConnect.FinConnexion();
     }
 	
 	
