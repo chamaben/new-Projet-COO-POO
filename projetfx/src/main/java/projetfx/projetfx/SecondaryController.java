@@ -100,7 +100,7 @@ public class SecondaryController {
 	             ResultSet rs = DbConnect.statement.executeQuery("SELECT login FROM user WHERE (pseudo='"+pseudo_destinataire+"')");
 	             if (rs.next()) {
 	            	 login_destinataire= rs.getString(1);
-	 	            getHistory(pseudo_destinataire);
+	 	            getHistory(login_destinataire);
 	             }
 	            
 	            DbConnect.FinConnexion();
@@ -180,11 +180,11 @@ public class SecondaryController {
 		// creation d'une instance message
 		String contenu1= message_ecrit.getText(); 
 		java.sql.Timestamp ts = new Timestamp(System.currentTimeMillis());
-		Message message = new Message(WindowModel.user.pseudo, pseudo_destinataire, contenu1, (Timestamp) ts);
+		Message message = new Message(WindowModel.user.login, login_destinataire, contenu1, (Timestamp) ts);
 		// mettre le message dans la bdd
 		DbConnect.Connexion();
 		PreparedStatement stmt = DbConnect.connection.prepareStatement("INSERT INTO message VALUES (?, ?, ?, ?)");
-		stmt.setString(1,WindowModel.user.pseudo); 
+		stmt.setString(1,WindowModel.user.login); 
 		stmt.setString(2,login_destinataire); 
 		stmt.setString(3,contenu1); 
 		stmt.setTimestamp(4,ts); 

@@ -22,10 +22,11 @@ public class UDP_client {
 		this.dgramSocket = new DatagramSocket();
 	}
 
-	public String sendBroadcast(String message) throws IOException {
+	public String sendBroadcast(String login, String etat, String ip) throws IOException {
 		String line = "10.1.255.255";
 		host = InetAddress.getByName(line);
 		this.dgramSocket.setBroadcast(true);
+		String message = login + "," + etat + "," + ip;
 		
 		DatagramPacket outPacket = new DatagramPacket(message.getBytes(), message.length(),host, port);
 		
@@ -82,9 +83,9 @@ public class UDP_client {
         return RetAddr;
      }
     
-    public static void connexion(String pseudo) throws IOException {
+    public static void connexion(String login, String etat, String ip) throws IOException {
     	UDP_client client = new UDP_client();
-		client.sendBroadcast(pseudo+" vient de rejoindre le réseau ! ");
+		client.sendBroadcast(login, etat, ip);
 		client.close();
     }
     /*
@@ -95,6 +96,6 @@ public class UDP_client {
     }
 	*/
 	public static void main(String args[]) throws IOException, InterruptedException {
-		connexion("chouchou");
+		connexion("chouchou", "1", "100.00.00.00");
 	}
 }

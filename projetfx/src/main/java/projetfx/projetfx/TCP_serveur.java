@@ -38,7 +38,7 @@ public class TCP_serveur
 		
 	}
 		
-	public static void send(String message, String date, String pseudo) {
+	public static void send(String message, String date, String login) {
 			
 		try {
 			//création du socket
@@ -53,7 +53,7 @@ public class TCP_serveur
 		    System.out.println("échange de données mit en place ");
 		      
 		    // Envoyer et recevoir de la donnée
-		    output.println(message+","+date+","+pseudo);
+		    output.println(message+","+date+","+login);
 		    System.out.println("envoi et réception de donnée ");
 		      
 		    //Fermer la connection
