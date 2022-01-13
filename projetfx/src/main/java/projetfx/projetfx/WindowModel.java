@@ -12,7 +12,7 @@ public class WindowModel {
 	
 	public static User user;
 	public static ObservableList<String> activeMembers = FXCollections.observableArrayList();
-
+	static SecondaryController secondarycontroller;
 	
 	
 	public static TCP_serveur serveur;

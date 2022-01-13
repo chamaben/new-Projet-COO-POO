@@ -19,7 +19,7 @@ public class MyThread extends Thread
 		static String line;
 		public static ArrayList<MyThread> Tab = new ArrayList<MyThread>(); 
 		Socket service; 
-		private SecondaryController secondarycontroller;
+		
 	
 	//constructeur
 	MyThread(int num, Socket serviceassocie) {
@@ -61,7 +61,7 @@ public class MyThread extends Thread
 		    //Reconstitution du message pour affichage
 		    Message message2 = new Message(pseudo,WindowModel.user.pseudo, message, date);
 		    System.out.println(WindowModel.user.pseudo);
-		    secondarycontroller.DisplayMessage(message2);
+		    WindowModel.secondarycontroller.DisplayMessage(message2);
 		    System.out.println("message reconstitué");
 	      
 		    //Fermer la connection

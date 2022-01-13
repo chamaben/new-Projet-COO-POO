@@ -47,13 +47,15 @@ public class SecondaryController {
 		// créer la liste de pseudos à afficher
 		activelist.setItems(WindowModel.activeMembers);
 		WindowModel.serveur.receive();
+		System.out.println("serveur ouvert");
 		WindowModel.user.adIP = UDP_client.GetIP();
 		DbConnect.Connexion();
 		Statement stmt = DbConnect.connection.createStatement();
 		String query = "UPDATE user SET adIP='"+WindowModel.user.adIP+"'WHERE login='"+WindowModel.user.login+"'";
 		stmt.executeUpdate(query);
 		DbConnect.FinConnexion();
-		//UDP_client.connexion(WindowModel.user.login, "1", WindowModel.user.adIP);
+		UDP_serveur.run();
+		UDP_client.connexion(WindowModel.user.login, "1", WindowModel.user.adIP);
     }
 	
 	

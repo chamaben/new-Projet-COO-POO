@@ -19,8 +19,9 @@ public class DbConnect {
 			if (connection == null) {
 				System.out.println("Connexion fail");
 			}
-			System.out.println("Connexion ok");
+			System.out.println("Connexion ok à la bdd");
 			statement = connection.createStatement();
+			System.out.println("statement bdd créé");
 		} catch (SQLException e) {
 			System.out.println("Erreur en se connectant à la database "+e);
 		} catch (ClassNotFoundException c) {

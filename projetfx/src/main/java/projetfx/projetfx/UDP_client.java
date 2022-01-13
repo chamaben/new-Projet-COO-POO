@@ -27,7 +27,7 @@ public class UDP_client {
 		host = InetAddress.getByName(line);
 		this.dgramSocket.setBroadcast(true);
 		String message = login + "," + etat + "," + ip;
-		
+		System.out.println("dgamsocket créé");
 		DatagramPacket outPacket = new DatagramPacket(message.getBytes(), message.length(),host, port);
 		
 		
@@ -39,11 +39,11 @@ public class UDP_client {
 		//crée un objet datagrampacket pour les datagrams entrants
 		outPacket = new DatagramPacket(buf,buf.length);
 		//System.out.println("Datagrampacket créé");
-		
+		System.out.println("datagram entrant accepté");
 		//accepte un datagram entrant
 		this.dgramSocket.receive(outPacket);
 		//récupère la donnée dans le buffer
-		//System.out.println("Lecture dans le buffer");
+		System.out.println("Lecture dans le buffer");
 		String response = new String(outPacket.getData(),0,outPacket.getLength());
 		System.out.println("le message reçu est : "+response);
 		

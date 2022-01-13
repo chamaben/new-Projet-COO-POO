@@ -11,7 +11,7 @@ public class TCP_serveur
 	static int port = 7899;
 	public static  int num = 0;
 	static ServerSocket s;
-	public SecondaryController secondarycontroller;
+	
 	
 	public static void receive() {
 			
