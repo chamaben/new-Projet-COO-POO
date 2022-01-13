@@ -6,10 +6,9 @@ import java.sql.SQLException;
 
 public class UDP_serveur {
 	private int port = 7908;
-	private DatagramSocket dgramSocket;
+	private static DatagramSocket dgramSocket;
 	//private boolean running;
 	private static byte[] buffer = new byte[256];
-	private SecondaryController secondarycontroller;
 	
 	public UDP_serveur() throws SocketException {
 		this.dgramSocket = new DatagramSocket(this.port);
@@ -41,7 +40,7 @@ public class UDP_serveur {
 			    if (etat1==1) {
 			    	//on récupère l'adresse ip
 			    	// 
-			    	secondarycontroller.RefreshPage();
+			    	WindowModel.secondarycontroller.RefreshPage();
 			    } 
 			    else if (etat1==0) {
 			    	
@@ -55,7 +54,7 @@ public class UDP_serveur {
 				int clientPort = inPacket.getPort();
 				//System.out.println("Infos du paquet acceptées");
 				
-				inPacket = new DatagramPacket(this.buffer,this.buffer.length,clientAddress,clientPort);
+				inPacket = new DatagramPacket(buffer,buffer.length,clientAddress,clientPort);
 				
 				//récupère la donnée dans le buffer
 				//String message = new String(inPacket.getData(),0,inPacket.getLength());
@@ -83,7 +82,7 @@ public class UDP_serveur {
 			
 		}
 		//fermeture datagramsocket
-		this.dgramSocket.close();
+		dgramSocket.close();
 		//System.out.println("Fermeture du datagramsocket");
 	}
 	
