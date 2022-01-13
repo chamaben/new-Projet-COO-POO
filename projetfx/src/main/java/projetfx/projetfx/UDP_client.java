@@ -22,7 +22,7 @@ public class UDP_client {
 		this.dgramSocket = new DatagramSocket();
 	}
 
-	public String sendBroadcast(String login, String etat, String ip) throws IOException {
+	public void sendBroadcast(String login, String etat, String ip) throws IOException {
 		String line = "10.1.255.255";
 		host = InetAddress.getByName(line);
 		this.dgramSocket.setBroadcast(true);
@@ -35,19 +35,19 @@ public class UDP_client {
 		this.dgramSocket.send(outPacket);
 		//System.out.println("Datagram envoyPé");
 		
-		byte[] buf = new byte[256];
+		/*byte[] buf = new byte[256];
 		//crée un objet datagrampacket pour les datagrams entrants
 		outPacket = new DatagramPacket(buf,buf.length);
 		//System.out.println("Datagrampacket créé");
 		System.out.println("datagram entrant accepté");
 		//accepte un datagram entrant
-		this.dgramSocket.receive(outPacket);
+		dgramSocket.receive(outPacket);
 		//récupère la donnée dans le buffer
 		System.out.println("Lecture dans le buffer");
 		String response = new String(outPacket.getData(),0,outPacket.getLength());
 		System.out.println("le message reçu est : "+response);
 		
-		return response;
+		return response;*/
 		
 	}
 	

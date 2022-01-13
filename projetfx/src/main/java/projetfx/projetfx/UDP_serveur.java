@@ -50,7 +50,7 @@ public class UDP_serveur {
 				//System.out.println("Datagram entrant accepté");
 				
 				//accepte les infos du paquet
-				InetAddress clientAddress = inPacket.getAddress();
+				/*InetAddress clientAddress = inPacket.getAddress();
 				int clientPort = inPacket.getPort();
 				//System.out.println("Infos du paquet acceptées");
 				
@@ -66,12 +66,12 @@ public class UDP_serveur {
 				DatagramPacket outPacket = new DatagramPacket(response.getBytes(),response.length(),clientAddress,clientPort);
 				//System.out.println("le message réponse est : "+response);
 				
-				/*if (message.equals("fin")) {
+				if (message.equals("fin")) {
 					this.running = false;
-				}*/
+				}
 				//envoie le datagram réponse
 				dgramSocket.send(outPacket);
-				dgramSocket.send(inPacket);
+				dgramSocket.send(inPacket);*/
 				//System.out.println("Envoi du datagram réponse");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

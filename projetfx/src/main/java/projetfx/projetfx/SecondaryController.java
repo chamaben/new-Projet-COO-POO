@@ -54,7 +54,7 @@ public class SecondaryController {
 		String query = "UPDATE user SET adIP='"+WindowModel.user.adIP+"'WHERE login='"+WindowModel.user.login+"'";
 		stmt.executeUpdate(query);
 		DbConnect.FinConnexion();
-		UDP_serveur.run();
+		
 		UDP_client.connexion(WindowModel.user.login, "1", WindowModel.user.adIP);
     }
 	
