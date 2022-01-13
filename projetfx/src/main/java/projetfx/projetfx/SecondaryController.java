@@ -42,7 +42,7 @@ public class SecondaryController {
 	static String login_destinataire=null;
 	
 	@FXML
-    private void initialize() throws ClassNotFoundException, SQLException, SocketException {
+    private void initialize() throws ClassNotFoundException, SQLException, IOException {
 		BonjourMessage();
 		// créer la liste de pseudos à afficher
 		activelist.setItems(WindowModel.activeMembers);
@@ -53,6 +53,7 @@ public class SecondaryController {
 		String query = "UPDATE user SET adIP='"+WindowModel.user.adIP+"'WHERE login='"+WindowModel.user.login+"'";
 		stmt.executeUpdate(query);
 		DbConnect.FinConnexion();
+		UDP_client.connexion(WindowModel.user.login, "1", WindowModel.user.adIP);
     }
 	
 	
