@@ -55,7 +55,6 @@ public class SecondaryController {
 		stmt.executeUpdate(query);
 		DbConnect.FinConnexion();
 		
-		UDP_client.connexion(WindowModel.user.login, "1", WindowModel.user.adIP);
     }
 	
 	
@@ -69,6 +68,7 @@ public class SecondaryController {
     	} else {
     		// set pseudo pour le user
     		WindowModel.user.modifyPseudo(WindowModel.user, pseudo1);
+    		UDP_client.connexion(WindowModel.user.login, "1", WindowModel.user.adIP);
     		BonjourMessage();
     		if (login_destinataire!=null) {
     			StartChat();

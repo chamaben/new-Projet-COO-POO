@@ -34,7 +34,7 @@ public class UDP_client {
 		//envoie le datagram
 		this.dgramSocket.send(outPacket);
 		//System.out.println("Datagram envoyPé");
-		
+		/*
 		byte[] buf = new byte[256];
 		//crée un objet datagrampacket pour les datagrams entrants
 		outPacket = new DatagramPacket(buf,buf.length);
@@ -48,13 +48,13 @@ public class UDP_client {
 		System.out.println("le message reçu est : "+response);
 		
 		//return response;
-		
+		*/
 	}
 	
 	public void close() {
 		//fermeture datagramsocket
 		this.dgramSocket.close();
-		//System.out.println("Fermeture du datagramsocket");
+		System.out.println("Fermeture du datagramsocket");
 	}
 	
 	public static String GetIP() throws SocketException {
@@ -85,8 +85,8 @@ public class UDP_client {
     
     public static void connexion(String login, String etat, String ip) throws IOException {
     	UDP_client client = new UDP_client();
-		client.sendBroadcast(login, etat, ip);
-		client.close();
+    	client.sendBroadcast(login,etat,ip);
+    	client.close();
     }
     /*
     public static void changePseudo(String pseudo) throws IOException {

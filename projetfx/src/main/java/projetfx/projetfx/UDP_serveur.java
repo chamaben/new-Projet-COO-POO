@@ -9,9 +9,10 @@ public class UDP_serveur {
 	private static DatagramSocket dgramSocket;
 	//private boolean running;
 	private static byte[] buffer = new byte[256];
+	public static  int num = 0;
 	
 	public UDP_serveur() throws SocketException {
-		this.dgramSocket = new DatagramSocket(this.port);
+		dgramSocket = new DatagramSocket(this.port);
 	}
 	
 	public static void run() throws IOException, ClassNotFoundException, SQLException {
@@ -19,7 +20,7 @@ public class UDP_serveur {
 		//this.running = true;
 		
 		for (int i=0;i<1;i++) {
-			
+		//while(true) {
 			//crée un objet datagrampacket pour les datagrams entrants
 			DatagramPacket inPacket = new DatagramPacket(buffer,buffer.length);
 			//System.out.println("Objet datagram créé");
@@ -74,21 +75,25 @@ public class UDP_serveur {
 				dgramSocket.send(inPacket);*/
 				//System.out.println("Envoi du datagram réponse");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-		    
-			
 		}
 		//fermeture datagramsocket
 		dgramSocket.close();
-		//System.out.println("Fermeture du datagramsocket");
+		System.out.println("Fermeture du datagramsocket");
 	}
-	
+	/*
+	public static void receive() {
+		Thread_UDP thread = new Thread_UDP (num);
+    	(Thread_UDP.Tab_u).add(thread);
+	    System.out.println("thread ajouté");
+	    Thread_UDP.Tab_u.get(num).start();
+	    System.out.println("thread lancé ");
+	    num++;
+	}
+	*/
 	public static void main(String args[]) throws IOException, ClassNotFoundException, SQLException {
-		UDP_serveur udp = new UDP_serveur();
-		udp.run();
+		run();
 	}
 
 }
