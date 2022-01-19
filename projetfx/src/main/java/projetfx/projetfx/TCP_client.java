@@ -47,7 +47,7 @@ public class TCP_client {
 		
 		try {
 			String dest = SecondaryController.login_destinataire;
-			//dest = "chama";
+			dest = "aa";
 			System.out.println(dest);
 			String line;
 			DbConnect.Connexion();
@@ -83,7 +83,7 @@ public class TCP_client {
 	
 	public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException, SQLException {
 		
-		//send("hello","2022-01-12","chamarche");
+		send("hello","2022-01-12","chamarche");
 		//receive();
 		
 	}

@@ -5,7 +5,7 @@ import java.net.*;
 import java.sql.SQLException;
 
 public class UDP_serveur {
-	private int port = 7908;
+	private int port = 7907;
 	private static DatagramSocket dgramSocket;
 	//private boolean running;
 	private static byte[] buffer = new byte[256];
@@ -38,20 +38,20 @@ public class UDP_serveur {
 			    System.out.println(ip+"\n");
 			    
 			    int etat1= Integer.parseInt(etat); 
-			    if (etat1==1) {
+			    /*if (etat1==1) {
 			    	//on récupère l'adresse ip
 			    	// 
 			    	WindowModel.secondarycontroller.RefreshPage();
 			    } 
 			    else if (etat1==0) {
 			    	
-			    }
+			    }*/
 			    
-			 // System.out.println(new String(inPacket.getData()));
-				//System.out.println("Datagram entrant accepté");
+			  System.out.println(new String(inPacket.getData()));
+				System.out.println("Datagram entrant accepté");
 				
 				//accepte les infos du paquet
-				/*InetAddress clientAddress = inPacket.getAddress();
+				InetAddress clientAddress = inPacket.getAddress();
 				int clientPort = inPacket.getPort();
 				//System.out.println("Infos du paquet acceptées");
 				
@@ -66,13 +66,13 @@ public class UDP_serveur {
 				String response = "je suis le serveur et je parle";
 				DatagramPacket outPacket = new DatagramPacket(response.getBytes(),response.length(),clientAddress,clientPort);
 				//System.out.println("le message réponse est : "+response);
-				
+				/*
 				if (message.equals("fin")) {
 					this.running = false;
-				}
+				}*/
 				//envoie le datagram réponse
 				dgramSocket.send(outPacket);
-				dgramSocket.send(inPacket);*/
+				dgramSocket.send(inPacket);
 				//System.out.println("Envoi du datagram réponse");
 			} catch (Exception e) {
 				e.printStackTrace();

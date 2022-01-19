@@ -68,7 +68,7 @@ public class TCP_serveur
 	
 	// le serveur est en état accept, quand il reçoit la requête, il accepte la connexion, lance un thread qui va envoyer le messages, et rebouble sur accept
 	public static void main(String[] args) throws IOException {		
-		//receive();
+		receive();
 		//send("test","2022-01-12","cc");
 		
 	}

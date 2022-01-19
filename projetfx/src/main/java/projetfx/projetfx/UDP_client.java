@@ -13,7 +13,7 @@ import java.net.Inet4Address;
 //change pseudo
 
 public class UDP_client {
-	private int port = 7908;
+	private int port = 7907;
 	private InetAddress host;
 	private DatagramSocket dgramSocket;
 	private static String Interface = "eth0";
@@ -34,7 +34,7 @@ public class UDP_client {
 		//envoie le datagram
 		this.dgramSocket.send(outPacket);
 		//System.out.println("Datagram envoyPé");
-		/*
+		
 		byte[] buf = new byte[256];
 		//crée un objet datagrampacket pour les datagrams entrants
 		outPacket = new DatagramPacket(buf,buf.length);
@@ -48,7 +48,7 @@ public class UDP_client {
 		System.out.println("le message reçu est : "+response);
 		
 		//return response;
-		*/
+		
 	}
 	
 	public void close() {
