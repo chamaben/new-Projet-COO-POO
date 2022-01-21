@@ -139,12 +139,15 @@ public class SecondaryController {
 			DbConnect.Connexion();
 			String pseudo_dest = null;
             ResultSet rs = DbConnect.statement.executeQuery("SELECT pseudo FROM user WHERE (login='"+message.emetteur+"')");
+            System.out.println("display1");
             if (rs.next()) {
+            	System.out.println("display2");
             	pseudo_dest= rs.getString(1);
             }
            
            DbConnect.FinConnexion();
 			if (message.emetteur.equals(WindowModel.user.login)) {
+				System.out.println("display3");
 				chemin = "sent_message.fxml";
 				FXMLLoader loader = new FXMLLoader();  
 		        AnchorPane pane = loader.load(getClass().getResource(chemin).openStream());
@@ -161,6 +164,7 @@ public class SecondaryController {
 		        conversation.getChildren().add(pane);
 			}
 			else if (message.recepteur.equals(WindowModel.user.login)) {
+				System.out.println("display3");
 				chemin = "received_message.fxml";
 				FXMLLoader loader = new FXMLLoader();  
 		        AnchorPane pane = loader.load(getClass().getResource(chemin).openStream());
