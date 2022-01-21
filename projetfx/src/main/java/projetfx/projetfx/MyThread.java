@@ -45,22 +45,23 @@ public class MyThread extends Thread
 	      
 		    //message+date+pseudo
 		    line = br.readLine();
-		    System.out.println(line+"\n");
+		    System.out.println(line);
 		    String[] recup = line.split(",");
 		    String message = recup[0];
-		    System.out.println(message+"\n");
+		    System.out.println(message);
 		    String sdate = recup[1];
-		    System.out.println(sdate+"\n");
-		    String pseudo  = recup[2];
-		    System.out.println(pseudo+"\n");
+		    System.out.println(sdate);
+		    String login  = recup[2];
+		    System.out.println(login);
 		    Timestamp date= Timestamp.valueOf(sdate);
 		    System.out.println(date+"\n");
 		    System.out.println("donnée récupérée ");
 	      
 	      
 		    //Reconstitution du message pour affichage
-		    Message message2 = new Message(pseudo,WindowModel.user.pseudo, message, date);
-		    System.out.println(WindowModel.user.pseudo);
+		    Message message2 = new Message(login,WindowModel.user.login, message, date);
+		    System.out.println(WindowModel.user.login);
+		    // rajouter un if la fenêtre est ouverte / sinon notification
 		    WindowModel.secondarycontroller.DisplayMessage(message2);
 		    System.out.println("message reconstitué");
 	      

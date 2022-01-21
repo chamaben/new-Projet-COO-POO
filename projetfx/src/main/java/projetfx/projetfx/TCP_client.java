@@ -83,7 +83,7 @@ public class TCP_client {
 	
 	public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException, SQLException {
 		
-		send("hello","2022-01-12","chamarche");
+		send("hello","2022-01-12","chama");
 		//receive();
 		
 	}
