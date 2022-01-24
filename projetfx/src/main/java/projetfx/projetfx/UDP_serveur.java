@@ -76,12 +76,13 @@ public class UDP_serveur {
 	}
 	
 	public void close() {
-		//fermeture datagramsocket
-		this.dgramSocket.close();
-		System.out.println("Fermeture du datagramsocket");
 		// fermeture du thread udp
 	    Thread_UDP.Tab_u.get(num).interrupt();
 		System.out.println("Fermeture du thread");
+		//fermeture datagramsocket
+		//this.dgramSocket.close();
+		//System.out.println("Fermeture du datagramsocket");
+		
 	    // après fermeture du thread
 	    try {
 			WindowModel.secondarycontroller.RefreshPage();
@@ -103,7 +104,7 @@ public class UDP_serveur {
 	    System.out.println("thread ajouté");
 	    Thread_UDP.Tab_u.get(num).start();
 	    System.out.println("thread lancé ");
-	    num++;
+	    //num++;
 
 	}
 	
