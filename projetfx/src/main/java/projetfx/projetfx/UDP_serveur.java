@@ -75,23 +75,14 @@ public class UDP_serveur {
 		}
 		//fermeture datagramsocket
 		//dgramSocket.close();
-		System.out.println("Fermeture du datagramsocket");
 	}
 	
 	public void close() {
 		//fermeture datagramsocket
 		this.dgramSocket.close();
 		System.out.println("Fermeture du datagramsocket");
-	}
-	
-	public void receive() {
-		Thread_UDP thread = new Thread_UDP (num);
-    	(Thread_UDP.Tab_u).add(thread);
-	    System.out.println("thread ajouté");
-	    Thread_UDP.Tab_u.get(num).start();
-	    System.out.println("thread lancé ");
-	    Thread_UDP.Tab_u.get(num).interrupt();
-	    num++;
+		// fermeture du thread udp
+		WindowModel.serveur_udp.close();
 	    // après fermeture du thread
 	    try {
 			WindowModel.secondarycontroller.RefreshPage();
@@ -105,6 +96,17 @@ public class UDP_serveur {
 	    else{
 	    	
 	    }
+	}
+	
+	public void receive() {
+		Thread_UDP thread = new Thread_UDP (num);
+    	(Thread_UDP.Tab_u).add(thread);
+	    System.out.println("thread ajouté");
+	    Thread_UDP.Tab_u.get(num).start();
+	    System.out.println("thread lancé ");
+	    Thread_UDP.Tab_u.get(num).interrupt();
+	    num++;
+
 	}
 	
 	public static void main(String args[]) throws IOException, ClassNotFoundException, SQLException {

@@ -33,7 +33,7 @@ public class Thread_UDP extends Thread {
 		}
 	}
 		
-		WindowModel.serveur_udp.close();
+		
 		
 }
 }
