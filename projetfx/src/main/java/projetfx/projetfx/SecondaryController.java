@@ -49,6 +49,9 @@ public class SecondaryController {
 		activelist.setItems(WindowModel.activeMembers);
 		WindowModel.serveur.receive();
 		System.out.println("serveur ouvert");
+		WindowModel.serveur_udp.receive();
+		System.out.println("serveur udp ouvert");
+		UDP_client.connexion(WindowModel.user.login, "1", WindowModel.user.adIP);
 		WindowModel.user.adIP = UDP_client.GetIP();
 		DbConnect.Connexion();
 		Statement stmt = DbConnect.connection.createStatement();

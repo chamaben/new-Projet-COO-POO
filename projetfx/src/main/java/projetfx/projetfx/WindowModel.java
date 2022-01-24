@@ -16,6 +16,7 @@ public class WindowModel {
 	
 	
 	public static TCP_serveur serveur;
+	public static UDP_serveur serveur_udp;
 	// public static ObservableList<User> activeMembers;
 	
 	// ObservableList<String> items =FXCollections.observableArrayList ();
