@@ -83,8 +83,8 @@ public class UDP_serveur {
 		dgramSocket.close();
 		System.out.println("Fermeture du datagramsocket");
 	}
-	/*
-	public static void receive() {
+	
+	public void receive() {
 		Thread_UDP thread = new Thread_UDP (num);
     	(Thread_UDP.Tab_u).add(thread);
 	    System.out.println("thread ajouté");
@@ -92,10 +92,11 @@ public class UDP_serveur {
 	    System.out.println("thread lancé ");
 	    num++;
 	}
-	*/
+	
 	public static void main(String args[]) throws IOException, ClassNotFoundException, SQLException {
 		UDP_serveur udp = new UDP_serveur();
-		udp.run();
+		//udp.run();
+		udp.receive();
 	}
 
 }

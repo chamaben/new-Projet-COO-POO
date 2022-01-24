@@ -18,8 +18,9 @@ public class Thread_UDP extends Thread {
 	public void run() {
 		while(true) {
 			try {
-		      //créer un élément de la liste qui va ensuite se lance de son côté: le thread
-		      UDP_serveur.run();
+				//créer un élément de la liste qui va ensuite se lance de son côté: le thread
+				UDP_serveur udp = new UDP_serveur();
+				udp.run();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (SQLException e) {
