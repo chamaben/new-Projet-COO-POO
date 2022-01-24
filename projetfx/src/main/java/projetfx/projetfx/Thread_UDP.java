@@ -33,5 +33,17 @@ public class Thread_UDP extends Thread {
 		}
 	}
 		WindowModel.serveur_udp.close();
+		try {
+			WindowModel.secondarycontroller.RefreshPage();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		if (WindowModel.user.pseudo!=null) {
+			//WindowModel.secondarycontroller.StartChat();
+	    } 
+	    else{
+	    	
+	    }
 }
 }

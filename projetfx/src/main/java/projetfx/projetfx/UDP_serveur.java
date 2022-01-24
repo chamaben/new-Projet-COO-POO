@@ -10,6 +10,7 @@ public class UDP_serveur {
 	//private boolean running;
 	private byte[] buffer = new byte[256];
 	public static  int num = 0;
+	static int etat1= 0;
 	
 	public UDP_serveur() throws SocketException {
 		dgramSocket = new DatagramSocket(this.port);
@@ -37,15 +38,8 @@ public class UDP_serveur {
 			    String ip  = recup[2];
 			    //System.out.println(ip+"\n");
 			    
-			    int etat1= Integer.parseInt(etat); 
-			    if (etat1==1) {
-			    	//on récupère l'adresse ip
-			    	
-			    	WindowModel.secondarycontroller.RefreshPage();
-			    } 
-			    else if (etat1==0) {
-			    	
-			    }
+			    etat1= Integer.parseInt(etat); 
+			    
 			    
 			    //System.out.println(new String(inPacket.getData()));
 				System.out.println("Datagram entrant accepté");
