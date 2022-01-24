@@ -84,6 +84,12 @@ public class UDP_serveur {
 		System.out.println("Fermeture du datagramsocket");
 	}
 	
+	public void close() {
+		//fermeture datagramsocket
+		this.dgramSocket.close();
+		System.out.println("Fermeture du datagramsocket");
+	}
+	
 	public void receive() {
 		Thread_UDP thread = new Thread_UDP (num);
     	(Thread_UDP.Tab_u).add(thread);
@@ -97,6 +103,7 @@ public class UDP_serveur {
 		UDP_serveur udp = new UDP_serveur();
 		//udp.run();
 		udp.receive();
+		udp.close();
 	}
 
 }

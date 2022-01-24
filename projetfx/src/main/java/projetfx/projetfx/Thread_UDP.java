@@ -16,11 +16,12 @@ public class Thread_UDP extends Thread {
 	
 	
 	public void run() {
-		while(true) {
+		for (int i=0;i<1;i++) { {
 			try {
 				//créer un élément de la liste qui va ensuite se lance de son côté: le thread
 				UDP_serveur udp = new UDP_serveur();
 				udp.run();
+				//udp.close();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (SQLException e) {
@@ -28,7 +29,8 @@ public class Thread_UDP extends Thread {
 			}catch (IOException e) {
 				 System.out.println("exception levée");
 				 e.printStackTrace();
-				 }
 			}
+		}
 	}
+}
 }
