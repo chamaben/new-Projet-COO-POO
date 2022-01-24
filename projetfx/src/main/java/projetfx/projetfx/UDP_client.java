@@ -33,8 +33,8 @@ public class UDP_client {
 		
 		//envoie le datagram
 		this.dgramSocket.send(outPacket);
-		//System.out.println("Datagram envoyPé");
-		
+		System.out.println("Datagram envoyPé");
+		/*
 		byte[] buf = new byte[256];
 		//crée un objet datagrampacket pour les datagrams entrants
 		outPacket = new DatagramPacket(buf,buf.length);
@@ -46,7 +46,7 @@ public class UDP_client {
 		System.out.println("Lecture dans le buffer");
 		String response = new String(outPacket.getData(),0,outPacket.getLength());
 		System.out.println("le message reçu est : "+response);
-		
+		*/
 		//return response;
 		
 	}
