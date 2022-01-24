@@ -21,6 +21,7 @@ public class Thread_UDP extends Thread {
 				//créer un élément de la liste qui va ensuite se lance de son côté: le thread
 				//UDP_serveur udp = new UDP_serveur();
 				WindowModel.serveur_udp.run();
+				WindowModel.serveur_udp.close();
 				//udp.close();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
@@ -33,7 +34,7 @@ public class Thread_UDP extends Thread {
 		}
 	}
 		
-		WindowModel.serveur_udp.close();
+		
 		
 }
 }

@@ -247,6 +247,8 @@ public class SecondaryController {
 		// supprime le user de la liste active members
 		@SuppressWarnings({ "unused", "unlikely-arg-type" })
 		boolean rem = WindowModel.activeMembers.remove(WindowModel.user);
+		// se remettre à la page d'accueil
+		// fermer les threads tcp et udp
 			
     }
 	
