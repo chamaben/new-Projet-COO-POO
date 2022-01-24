@@ -14,7 +14,7 @@ public class User {
 	public static int id=0;
 	public String adIP;
 	
-	User(String login1,String password1,String pseudo1) throws SocketException{
+	public User(String login1,String password1,String pseudo1) throws SocketException{
 		this.login = login1;
 		this.password = password1;
 		this.pseudo = pseudo1;
