@@ -54,6 +54,7 @@ public class UDP_serveur {
 				//récupère la donnée dans le buffer
 				String mess = new String(inPacket.getData(),0,inPacket.getLength());
 				System.out.println("j'ai reçu le message (dans le buffer) : "+mess);
+				WindowModel.serveur_udp.close();
 				
 				//crée le datagram réponse
 				/*String response = "je suis le serveur et je parle";
@@ -73,8 +74,6 @@ public class UDP_serveur {
 				//e.printStackTrace();
 			//}
 		}
-		//fermeture datagramsocket
-		//dgramSocket.close();
 	}
 	
 	public void close() {
@@ -82,7 +81,8 @@ public class UDP_serveur {
 		this.dgramSocket.close();
 		System.out.println("Fermeture du datagramsocket");
 		// fermeture du thread udp
-		WindowModel.serveur_udp.close();
+	    Thread_UDP.Tab_u.get(num).interrupt();
+		System.out.println("Fermeture du thread");
 	    // après fermeture du thread
 	    try {
 			WindowModel.secondarycontroller.RefreshPage();
@@ -104,7 +104,6 @@ public class UDP_serveur {
 	    System.out.println("thread ajouté");
 	    Thread_UDP.Tab_u.get(num).start();
 	    System.out.println("thread lancé ");
-	    Thread_UDP.Tab_u.get(num).interrupt();
 	    num++;
 
 	}
