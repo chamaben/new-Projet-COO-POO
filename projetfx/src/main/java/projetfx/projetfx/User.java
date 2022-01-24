@@ -60,23 +60,25 @@ public class User {
 		return found;
 	}
 	
-	public void modifyPseudo(User user1, String pseudo1) throws ClassNotFoundException, SQLException{
+	public static void modifyPseudo(User user1, String pseudo1) throws ClassNotFoundException, SQLException{
 		DbConnect.Connexion();
 		Statement stmt = DbConnect.connection.createStatement();
 		String query = "UPDATE user SET pseudo='"+pseudo1+"' WHERE login='"+user1.login+"'";
 		stmt.executeUpdate(query);
 		DbConnect.FinConnexion();
 		user1.pseudo=pseudo1;
+		System.out.println("pb ici ?");
 		WindowModel.user.pseudo= pseudo1;
+		System.out.println("pb ici ??");
 	}
 	
 	
-	public static boolean UserExist(String user,String p) throws SQLException, ClassNotFoundException {
+	public static boolean UserExist(String login) throws SQLException, ClassNotFoundException {
 		boolean found = false;
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user");
 		while (rs.next()) {
-			if (user.equals(rs.getString(1))){
+			if (login.equals(rs.getString(1))){
 			found= true;
 			}
 		}
@@ -96,11 +98,11 @@ public class User {
 	
 	
 	
-	public static boolean VerifPassword(String user,String pswd) throws SQLException, ClassNotFoundException {
+	public static boolean VerifPassword(String login,String pswd) throws SQLException, ClassNotFoundException {
 		DbConnect.Connexion();
-		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user WHERE login='"+user+"'");
+		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user WHERE login='"+login+"'");
 		if (rs.next()) {
-			if (user.equals(rs.getString(1))) {
+			if (login.equals(rs.getString(1))) {
 			}else {
 				return false;
 			}
