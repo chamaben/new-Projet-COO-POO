@@ -32,6 +32,7 @@ public class Thread_UDP extends Thread {
 			}
 		}
 	}
+		return;
 		WindowModel.serveur_udp.close();
 		try {
 			WindowModel.secondarycontroller.RefreshPage();

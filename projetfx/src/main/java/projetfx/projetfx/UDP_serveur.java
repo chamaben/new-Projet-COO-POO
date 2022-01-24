@@ -91,6 +91,18 @@ public class UDP_serveur {
 	    Thread_UDP.Tab_u.get(num).start();
 	    System.out.println("thread lancé ");
 	    num++;
+	    try {
+			WindowModel.secondarycontroller.RefreshPage();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		if (WindowModel.user.pseudo!=null) {
+			//WindowModel.secondarycontroller.StartChat();
+	    } 
+	    else{
+	    	
+	    }
 	}
 	
 	public static void main(String args[]) throws IOException, ClassNotFoundException, SQLException {
