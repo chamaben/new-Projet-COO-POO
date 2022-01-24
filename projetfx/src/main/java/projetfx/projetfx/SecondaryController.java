@@ -46,6 +46,7 @@ public class SecondaryController {
 		BonjourMessage();
 		// créer la liste de pseudos à afficher
 		WindowModel.secondarycontroller = this;
+		WindowModel.serveur_udp= new UDP_serveur();
 		activelist.setItems(WindowModel.activeMembers);
 		WindowModel.serveur.receive();
 		System.out.println("serveur ouvert");

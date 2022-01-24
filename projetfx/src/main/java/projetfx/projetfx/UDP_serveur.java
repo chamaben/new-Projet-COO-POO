@@ -38,14 +38,14 @@ public class UDP_serveur {
 			    //System.out.println(ip+"\n");
 			    
 			    int etat1= Integer.parseInt(etat); 
-			    /*if (etat1==1) {
+			    if (etat1==1) {
 			    	//on récupère l'adresse ip
-			    	// 
+			    	
 			    	WindowModel.secondarycontroller.RefreshPage();
 			    } 
 			    else if (etat1==0) {
 			    	
-			    }*/
+			    }
 			    
 			    //System.out.println(new String(inPacket.getData()));
 				System.out.println("Datagram entrant accepté");
@@ -80,7 +80,7 @@ public class UDP_serveur {
 			//}
 		}
 		//fermeture datagramsocket
-		dgramSocket.close();
+		//dgramSocket.close();
 		System.out.println("Fermeture du datagramsocket");
 	}
 	
@@ -103,7 +103,7 @@ public class UDP_serveur {
 		UDP_serveur udp = new UDP_serveur();
 		//udp.run();
 		udp.receive();
-		udp.close();
+		//udp.close();
 	}
 
 }

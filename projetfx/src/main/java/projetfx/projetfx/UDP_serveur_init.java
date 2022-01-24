@@ -51,7 +51,7 @@ public class UDP_serveur_init {
 			*/
 		}
 		//fermeture datagramsocket
-		this.dgramSocket.close();
+		//this.dgramSocket.close();
 		System.out.println("Fermeture du datagramsocket");
 	}
 	

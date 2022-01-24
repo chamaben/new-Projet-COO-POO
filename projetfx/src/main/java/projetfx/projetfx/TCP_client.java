@@ -47,7 +47,7 @@ public class TCP_client {
 		
 		try {
 			String dest = SecondaryController.login_destinataire;
-			dest = "chama";
+			dest = "aa";
 			System.out.println(dest);
 			String line;
 			DbConnect.Connexion();
