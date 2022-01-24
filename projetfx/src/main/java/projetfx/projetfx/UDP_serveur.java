@@ -54,7 +54,6 @@ public class UDP_serveur {
 				//récupère la donnée dans le buffer
 				String mess = new String(inPacket.getData(),0,inPacket.getLength());
 				System.out.println("j'ai reçu le message (dans le buffer) : "+mess);
-				WindowModel.serveur_udp.close();
 				
 				//crée le datagram réponse
 				/*String response = "je suis le serveur et je parle";

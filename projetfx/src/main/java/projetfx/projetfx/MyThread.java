@@ -61,14 +61,15 @@ public class MyThread extends Thread
 		    //Reconstitution du message pour affichage
 		    Message message2 = new Message(login,WindowModel.user.login, message, date);
 		    System.out.println(WindowModel.user.login);
-		    // rajouter un if la fenêtre est ouverte / sinon notification
-		    WindowModel.secondarycontroller.DisplayMessage(message2);
-		    System.out.println("message reconstitué");
 	      
 		    //Fermer la connection
 		    br.close();
 		    service.close();
 		    System.out.println("fermeture de connection ");
+		    
+		    // rajouter un if la fenêtre est ouverte / sinon notification
+		    WindowModel.secondarycontroller.DisplayMessage(message2);
+		    System.out.println("message reconstitué");
 		} 
 		catch (IOException e) {
 			System.out.println("exception levée");
