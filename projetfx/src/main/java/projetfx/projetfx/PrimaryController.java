@@ -44,7 +44,7 @@ public class PrimaryController{
     		
     	} else {
     		System.out.println("pseudo valide 1");
-    		if (User.UserExist(login1, password1)) {
+    		if (User.UserExist(login1)) {
     			if (User.VerifPassword(login1,password1)) {
     				// connexion: passage à la page suivante
     				WindowModel.user.modifyPseudo(WindowModel.user, pseudo1);
