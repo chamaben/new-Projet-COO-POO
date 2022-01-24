@@ -90,7 +90,9 @@ public class UDP_serveur {
 	    System.out.println("thread ajouté");
 	    Thread_UDP.Tab_u.get(num).start();
 	    System.out.println("thread lancé ");
+	    Thread_UDP.Tab_u.get(num).interrupt();
 	    num++;
+	    // après fermeture du thread
 	    try {
 			WindowModel.secondarycontroller.RefreshPage();
 		} catch (ClassNotFoundException | SQLException e1) {
