@@ -5,7 +5,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
 //A faire: généraliser l'ad ip avec bdd
 //s'assurer que tcp fonctionne dans les 2 sens

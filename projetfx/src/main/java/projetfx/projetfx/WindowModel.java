@@ -4,7 +4,6 @@ import java.net.SocketException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 public class WindowModel {
@@ -18,6 +17,7 @@ public class WindowModel {
 	public static TCP_serveur serveur;
 	public static UDP_serveur serveur_udp;
 	// public static ObservableList<User> activeMembers;
+	
 	
 	// ObservableList<String> items =FXCollections.observableArrayList ();
 	

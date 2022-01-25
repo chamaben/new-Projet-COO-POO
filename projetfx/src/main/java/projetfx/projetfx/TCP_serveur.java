@@ -34,6 +34,12 @@ public class TCP_serveur
 		}
 		
 	}
+	
+	public void end_thread_tcp() {
+		for (int i=0;i<=num;i++) {
+			Thread_serveur.Tab_s.get(i).interrupt();
+		}
+	}
 
 	
 	// le serveur est en état accept, quand il reçoit la requête, il accepte la connexion, lance un thread qui va envoyer le messages, et rebouble sur accept

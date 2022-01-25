@@ -10,8 +10,10 @@ public class Message {
 	//public User recepteur;
 	public String recepteur;
 	public String contenu;
+	@SuppressWarnings("exports")
 	public Timestamp time;
 	
+	@SuppressWarnings("exports")
 	public Message(String emetteur1, String recepteur1, String contenu1, Timestamp time2) {
 		this.emetteur= emetteur1;
 		this.recepteur= recepteur1;

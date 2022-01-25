@@ -1,7 +1,6 @@
 package projetfx.projetfx;
 
 import java.io.IOException;
-import java.net.SocketException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,11 +43,10 @@ public class SecondaryController {
 	@FXML
     private void initialize() throws ClassNotFoundException, SQLException, IOException {
 		BonjourMessage();
-		// créer la liste de pseudos à afficher
 		WindowModel.secondarycontroller = this;
 		WindowModel.serveur_udp= new UDP_serveur();
 		activelist.setItems(WindowModel.activeMembers);
-		WindowModel.serveur.receive();
+		TCP_serveur.receive();
 		System.out.println("serveur ouvert");
 		WindowModel.serveur_udp.receive();
 		System.out.println("serveur udp ouvert");
@@ -100,8 +98,7 @@ public class SecondaryController {
 	
 	// Start chat
 	// a voir: est-ce qu'on envoie une demande de connexion TCP à cette étape
-	@FXML
-	private void StartChat() throws IOException, ClassNotFoundException, SQLException {
+	@FXML void StartChat() throws IOException, ClassNotFoundException, SQLException {
 		// étabissmenent connexion TCP
 		
 		 conversation.getChildren().clear();
@@ -220,7 +217,7 @@ public class SecondaryController {
 		String recherche= historique.getText();
 		conversation.getChildren().clear();
 		DbConnect.Connexion();
-		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM message WHERE ((emetteur='"+login_destinataire+"' AND recepteur='"+WindowModel.user.login+"') OR (emetteur='"+WindowModel.user.login+"' AND recepteur='"+login_destinataire+"')) AND (contenu='"+recherche+"')  ORDER BY date");
+		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM message WHERE ((emetteur='"+login_destinataire+"' AND recepteur='"+WindowModel.user.login+"') OR (emetteur='"+WindowModel.user.login+"' AND recepteur='"+login_destinataire+"')) AND (contenu LIKE '%"+recherche+"%')  ORDER BY date");
 		while (rs.next()) {
 			message1= new Message(rs.getString(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4));
 			DisplayMessage(message1);
@@ -244,11 +241,15 @@ public class SecondaryController {
 		String query = "UPDATE user SET etat='0' WHERE login='"+WindowModel.user.login+"'";
 		stmt.executeUpdate(query);
 		DbConnect.FinConnexion();
-		// supprime le user de la liste active members
-		@SuppressWarnings({ "unused", "unlikely-arg-type" })
-		boolean rem = WindowModel.activeMembers.remove(WindowModel.user);
+		UDP_client.connexion(WindowModel.user.login, "0", WindowModel.user.adIP);
+		//boolean rem = WindowModel.activeMembers.remove(WindowModel.user);
 		// se remettre à la page d'accueil
+		App.stage.setWidth(240);
+		App.stage.setHeight(235);
+		App.setRoot("primary");
 		// fermer les threads tcp et udp
+		WindowModel.serveur_udp.end_thread_udp();
+		WindowModel.serveur.end_thread_tcp();
 			
     }
 	
