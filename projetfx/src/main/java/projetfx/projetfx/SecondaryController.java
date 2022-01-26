@@ -241,6 +241,7 @@ public class SecondaryController {
 	@FXML
 	private void deconnexion() throws ClassNotFoundException, SQLException, IOException 
     {
+		VarGlobal.ClosingApp=true;
 		WindowModel.user.etat=0;
 		DbConnect.Connexion();
 		Statement stmt = DbConnect.connection.createStatement();
@@ -255,7 +256,7 @@ public class SecondaryController {
 		App.setRoot("primary");
 		TCP_serveur.end_thread_tcp();
 		UDP_serveur.end_thread_udp();
-			
+		VarGlobal.ClosingApp=false;
     }
 	
 	

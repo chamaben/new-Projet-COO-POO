@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class UDP_serveur {
 	static DatagramSocket dgramSocket;
-	private boolean running = true;
+	private static boolean running = true;
 	private byte[] buffer = new byte[256];
 	public static  int num_udp = 0;
 	static int etat1= 0;
@@ -15,7 +15,7 @@ public class UDP_serveur {
 		dgramSocket = new DatagramSocket(VarGlobal.portBroad);
 	}
 	
-	public void run() throws IOException, ClassNotFoundException, SQLException {
+	public void run() {
 		
 		//this.running = true;
 		
@@ -25,7 +25,14 @@ public class UDP_serveur {
 			System.out.println("Objet datagram créé");
 			
 			//accepte un datagram entrant
-				this.dgramSocket.receive(inPacket);
+				try {
+					dgramSocket.receive(inPacket);
+				} catch (IOException e1) {
+					if (VarGlobal.ClosingApp)
+						System.out.println("tout va bien");
+					System.out.println("Erreur sur dgramSocket");
+					break;
+				}
 				String message = new String(inPacket.getData());
 				String[] recup = message.split(",");
 			    String login = recup[0];
@@ -51,15 +58,29 @@ public class UDP_serveur {
 				//récupère la donnée dans le buffer
 				String mess = new String(inPacket.getData(),0,inPacket.getLength());
 				System.out.println("j'ai reçu le message (dans le buffer) : "+mess);
-				
 				try {
 					WindowModel.secondarycontroller.RefreshPage();
-				} catch (ClassNotFoundException | SQLException e1) {
+				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+					
 				if (SecondaryController.login_destinataire!=null) {
-					WindowModel.secondarycontroller.StartChat();
+					try {
+						WindowModel.secondarycontroller.StartChat();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			    } 
 				
 
@@ -83,6 +104,7 @@ public class UDP_serveur {
 			if (!Tudp.isInterrupted())
 				Tudp.interrupt();
 		}
+		running=false;
 		dgramSocket.close();
 	}
 	
