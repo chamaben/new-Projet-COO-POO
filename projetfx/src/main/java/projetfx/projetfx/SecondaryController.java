@@ -109,6 +109,7 @@ public class SecondaryController {
 	             ResultSet rs = DbConnect.statement.executeQuery("SELECT login FROM user WHERE (pseudo='"+pseudo_destinataire+"')");
 	             if (rs.next()) {
 	            	 login_destinataire= rs.getString(1);
+	            	 VarGlobal.current_active_user=login_destinataire;
 	 	            getHistory(login_destinataire);
 	             }
 	            
