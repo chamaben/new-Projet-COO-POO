@@ -10,17 +10,19 @@ public class Thread_serveur extends Thread {
 	TCP_serveur serveur;
 	public static  int num = 0;
 	public static ArrayList<Thread_serveur> Tab_s = new ArrayList<Thread_serveur>(); 
+	private boolean stop;
 	
 	Thread_serveur(int num, Socket serviceassocie) {
 		super(Integer.toString(num));
 		service = serviceassocie  ;
 		System.out.println("thread construit");
+		stop=false;
 	}
 	
 	
 	@SuppressWarnings("static-access")
 	public void run() {
-		while(true) {
+		while(!stop) {
 			try {
 	    	//Mise en attente du serveur On associe au thread son service socket 
 		      Socket serviceSocket =  serveur.s.accept();
@@ -40,4 +42,9 @@ public class Thread_serveur extends Thread {
 				}
 		    }
 	}
+	
+	public void stop_thread() {
+		stop=true;
+	}
 }
+
