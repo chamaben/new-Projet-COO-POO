@@ -23,7 +23,7 @@ public class App extends Application {
    @SuppressWarnings("exports")
 @Override
     public void start(Stage primarystage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 234, 234);
+        scene = new Scene(loadFXML("primary"), 240, 235);
         stage= primarystage;
         stage.setScene(scene);
         stage.setTitle("Chat");
@@ -53,16 +53,38 @@ public class App extends Application {
     
     private void deconnexion() throws ClassNotFoundException, SQLException, IOException 
     {
-		WindowModel.user.etat=0;
+    	VarGlobal.ClosingApp=true;
+    	WindowModel.user.etat=0;
 		DbConnect.Connexion();
 		Statement stmt = DbConnect.connection.createStatement();
 		String query = "UPDATE user SET etat='0' WHERE login='"+WindowModel.user.login+"'";
 		stmt.executeUpdate(query);
 		DbConnect.FinConnexion();
-		// supprime le user de la liste active members
-		@SuppressWarnings({ "unused", "unlikely-arg-type" })
-		boolean rem = WindowModel.activeMembers.remove(WindowModel.user);
+		UDP_client.connexion(WindowModel.user.login, "0", WindowModel.user.adIP);
+		//boolean rem = WindowModel.activeMembers.remove(WindowModel.user);
+		// se remettre à la page d'accueil
+		App.stage.setWidth(240);
+		App.stage.setHeight(235);
+		App.setRoot("primary");
+		TCP_serveur.end_thread_tcp();
+		UDP_serveur.end_thread_udp();
+		VarGlobal.ClosingApp=false;
 			
+    }
+    @Override
+    public void stop(){
+    	try {
+			deconnexion();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 }

@@ -60,7 +60,7 @@ public class User {
 		return found;
 	}
 	
-	public static void modifyPseudo(User user1, String pseudo1) throws ClassNotFoundException, SQLException{
+	public void modifyPseudo(User user1, String pseudo1) throws ClassNotFoundException, SQLException{
 		DbConnect.Connexion();
 		Statement stmt = DbConnect.connection.createStatement();
 		String query = "UPDATE user SET pseudo='"+pseudo1+"' WHERE login='"+user1.login+"'";

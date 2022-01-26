@@ -1,14 +1,13 @@
 package projetfx.projetfx;
 
 import java.io.IOException;
-import java.net.SocketException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -44,11 +43,10 @@ public class SecondaryController {
 	@FXML
     private void initialize() throws ClassNotFoundException, SQLException, IOException {
 		BonjourMessage();
-		// créer la liste de pseudos à afficher
 		WindowModel.secondarycontroller = this;
 		WindowModel.serveur_udp= new UDP_serveur();
 		activelist.setItems(WindowModel.activeMembers);
-		WindowModel.serveur.receive();
+		TCP_serveur.receive();
 		System.out.println("serveur ouvert");
 		WindowModel.serveur_udp.receive();
 		System.out.println("serveur udp ouvert");
@@ -100,8 +98,7 @@ public class SecondaryController {
 	
 	// Start chat
 	// a voir: est-ce qu'on envoie une demande de connexion TCP à cette étape
-	@FXML
-	private void StartChat() throws IOException, ClassNotFoundException, SQLException {
+	@FXML void StartChat() throws IOException, ClassNotFoundException, SQLException {
 		// étabissmenent connexion TCP
 		
 		 conversation.getChildren().clear();
@@ -112,6 +109,7 @@ public class SecondaryController {
 	             ResultSet rs = DbConnect.statement.executeQuery("SELECT login FROM user WHERE (pseudo='"+pseudo_destinataire+"')");
 	             if (rs.next()) {
 	            	 login_destinataire= rs.getString(1);
+	            	 VarGlobal.current_active_user=login_destinataire;
 	 	            getHistory(login_destinataire);
 	             }
 	            
@@ -164,10 +162,15 @@ public class SecondaryController {
 		        date1.setText(s);
 		        Label pseudo1 = (Label) pane1.getChildren().get(2);
 		        pseudo1.setText("Moi");
-		        
-		        conversation.getChildren().add(pane);
+		        Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						conversation.getChildren().add(pane);
+					}
+				});
 			}
 			else if (message.recepteur.equals(WindowModel.user.login)) {
+				MyThread.currentThread().interrupt();
 				System.out.println(message.contenu + "3");
 				chemin = "received_message.fxml";
 				FXMLLoader loader = new FXMLLoader();  
@@ -181,8 +184,14 @@ public class SecondaryController {
 		        date1.setText(s);
 		        Label pseudo1 = (Label) pane1.getChildren().get(2);
 		        pseudo1.setText(pseudo_dest);
+		        System.out.println(pane.toString());
+		        Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						conversation.getChildren().add(pane);
+					}
+				});
 		        
-		        conversation.getChildren().add(pane);
 			}
 			
 		}
@@ -220,7 +229,7 @@ public class SecondaryController {
 		String recherche= historique.getText();
 		conversation.getChildren().clear();
 		DbConnect.Connexion();
-		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM message WHERE ((emetteur='"+login_destinataire+"' AND recepteur='"+WindowModel.user.login+"') OR (emetteur='"+WindowModel.user.login+"' AND recepteur='"+login_destinataire+"')) AND (contenu='"+recherche+"')  ORDER BY date");
+		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM message WHERE ((emetteur='"+login_destinataire+"' AND recepteur='"+WindowModel.user.login+"') OR (emetteur='"+WindowModel.user.login+"' AND recepteur='"+login_destinataire+"')) AND (contenu LIKE '%"+recherche+"%')  ORDER BY date");
 		while (rs.next()) {
 			message1= new Message(rs.getString(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4));
 			DisplayMessage(message1);
@@ -228,28 +237,26 @@ public class SecondaryController {
 	}
 	
 	
-	// 
-	@FXML
-	public void EndChat() {
-		// terminer la connexion TCP
-	}
-	
 	// déconnexion
 	@FXML
 	private void deconnexion() throws ClassNotFoundException, SQLException, IOException 
     {
+		VarGlobal.ClosingApp=true;
 		WindowModel.user.etat=0;
 		DbConnect.Connexion();
 		Statement stmt = DbConnect.connection.createStatement();
 		String query = "UPDATE user SET etat='0' WHERE login='"+WindowModel.user.login+"'";
 		stmt.executeUpdate(query);
 		DbConnect.FinConnexion();
-		// supprime le user de la liste active members
-		@SuppressWarnings({ "unused", "unlikely-arg-type" })
-		boolean rem = WindowModel.activeMembers.remove(WindowModel.user);
+		UDP_client.connexion(WindowModel.user.login, "0", WindowModel.user.adIP);
+		//boolean rem = WindowModel.activeMembers.remove(WindowModel.user);
 		// se remettre à la page d'accueil
-		// fermer les threads tcp et udp
-			
+		App.stage.setWidth(245);
+		App.stage.setHeight(260);
+		App.setRoot("primary");
+		TCP_serveur.end_thread_tcp();
+		UDP_serveur.end_thread_udp();
+		VarGlobal.ClosingApp=false;
     }
 	
 	
