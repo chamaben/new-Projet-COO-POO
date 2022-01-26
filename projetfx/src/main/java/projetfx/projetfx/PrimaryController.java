@@ -40,7 +40,7 @@ public class PrimaryController{
 		// windowmodel.user= new User(login1, password1, pseudo1);
 		// SecondaryController secondaryController = new SecondaryController();
     	
-    	
+    	if ((pseudo1.length()!=0) & (login1.length()!=0) & ((password1.length()!=0))) {
     	if (!User.PseudoValide(login1, pseudo1)) {
     		// message d'erreur: pseudo non valide
     		error.setText("Pseudo non valide. Veuillez choisir un autre pseudo.");
@@ -70,6 +70,7 @@ public class PrimaryController{
 				App.stage.setHeight(579);
 				App.setRoot("secondary");
     		}
+    	}
     	}
         //outputText.setText(inputText.getText());
     }

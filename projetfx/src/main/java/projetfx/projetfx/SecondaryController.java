@@ -245,12 +245,9 @@ public class SecondaryController {
 		UDP_client.connexion(WindowModel.user.login, "0", WindowModel.user.adIP);
 		//boolean rem = WindowModel.activeMembers.remove(WindowModel.user);
 		// se remettre à la page d'accueil
-		App.stage.setWidth(240);
-		App.stage.setHeight(235);
+		App.stage.setWidth(245);
+		App.stage.setHeight(260);
 		App.setRoot("primary");
-		// fermer les threads tcp et udp
-		WindowModel.serveur_udp.end_thread_udp();
-		WindowModel.serveur.end_thread_tcp();
 			
     }
 	

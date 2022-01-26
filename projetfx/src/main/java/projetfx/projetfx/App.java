@@ -65,9 +65,6 @@ public class App extends Application {
 		App.stage.setWidth(240);
 		App.stage.setHeight(235);
 		App.setRoot("primary");
-		// fermer les threads tcp et udp
-		WindowModel.serveur_udp.end_thread_udp();
-		WindowModel.serveur.end_thread_tcp();
 			
     }
 
