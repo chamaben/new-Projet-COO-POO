@@ -165,6 +165,7 @@ public class SecondaryController {
 		        conversation.getChildren().add(pane);
 			}
 			else if (message.recepteur.equals(WindowModel.user.login)) {
+				MyThread.currentThread().interrupt();
 				System.out.println(message.contenu + "3");
 				chemin = "received_message.fxml";
 				FXMLLoader loader = new FXMLLoader();  
@@ -178,7 +179,7 @@ public class SecondaryController {
 		        date1.setText(s);
 		        Label pseudo1 = (Label) pane1.getChildren().get(2);
 		        pseudo1.setText(pseudo_dest);
-		        
+		        System.out.println(pane.toString());
 		        conversation.getChildren().add(pane);
 			}
 			

@@ -11,7 +11,6 @@
          <VBox prefHeight="236.0" prefWidth="240.0" style="-fx-background-color: white;">
             <children>
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez entrer vos informations" wrappingWidth="196.21630859375" />
-            <Text fx:id="error" fill="#cf2d11" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" translateY="5.0" />
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login" translateY="15.0" wrappingWidth="193.21630859375" />
                <TextField id="login" fx:id="login" prefHeight="25.0" prefWidth="210.0" translateY="15.0" />
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" translateY="25.0" wrappingWidth="185.21630859375" />
