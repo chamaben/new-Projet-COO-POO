@@ -49,8 +49,9 @@ public class Thread_serveur extends Thread {
 
 	@Override
 	public void interrupt() {
-		for (Thread_serveur Ts : Tab_s ) {
-			Ts.interrupt();
+		for (MyThread Ts : MyThread.Tab ) {
+			if (!Ts.isInterrupted())
+				Ts.interrupt();
 		}
 		running=false;
 		super.interrupt();

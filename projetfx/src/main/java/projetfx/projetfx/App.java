@@ -65,7 +65,23 @@ public class App extends Application {
 		App.stage.setWidth(240);
 		App.stage.setHeight(235);
 		App.setRoot("primary");
+		TCP_serveur.end_thread_tcp();
 			
+    }
+    @Override
+    public void stop(){
+    	try {
+			deconnexion();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 }

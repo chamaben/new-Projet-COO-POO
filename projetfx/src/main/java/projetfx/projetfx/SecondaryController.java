@@ -237,12 +237,6 @@ public class SecondaryController {
 	}
 	
 	
-	// 
-	@FXML
-	public void EndChat() {
-		// terminer la connexion TCP
-	}
-	
 	// déconnexion
 	@FXML
 	private void deconnexion() throws ClassNotFoundException, SQLException, IOException 
@@ -259,6 +253,8 @@ public class SecondaryController {
 		App.stage.setWidth(245);
 		App.stage.setHeight(260);
 		App.setRoot("primary");
+		TCP_serveur.end_thread_tcp();
+		UDP_serveur.end_thread_udp();
 			
     }
 	

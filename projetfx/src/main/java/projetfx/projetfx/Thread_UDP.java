@@ -13,7 +13,7 @@ public class Thread_UDP extends Thread {
 		System.out.println("thread construit");
 	}
 	
-	
+	@Override
 	public void run() {
 		for (int i=0;i<2;i++) { {
 			try {
@@ -27,23 +27,13 @@ public class Thread_UDP extends Thread {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}catch (IOException e) {
-				 System.out.println("exception levée");
-				 e.printStackTrace();
+				System.out.println("exception levée");
+				e.printStackTrace();
 			}
 		}
-	}
-		
-	
-		
-}
-	public void interrupt() {
-    	//Global.BroadServRunning=false;
-    	//UDP_serveur.dgramsocket.close();
-		try {
-			WindowModel.serveur_udp.close();
-			Thread.currentThread().interrupt();
-		} catch (ClassNotFoundException | IOException | SQLException e) {
-			e.printStackTrace();
 		}
-    }
+
+
+
+	}
 }

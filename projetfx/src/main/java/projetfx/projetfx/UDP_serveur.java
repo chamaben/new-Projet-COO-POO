@@ -5,8 +5,8 @@ import java.net.*;
 import java.sql.SQLException;
 
 public class UDP_serveur {
-	DatagramSocket dgramSocket;
-	//private boolean running;
+	static DatagramSocket dgramSocket;
+	private boolean running = true;
 	private byte[] buffer = new byte[256];
 	public static  int num_udp = 0;
 	static int etat1= 0;
@@ -19,8 +19,7 @@ public class UDP_serveur {
 		
 		//this.running = true;
 		
-		for (int i=0;i<1;i++) {
-		//while(true) {
+		while(running) {
 			//crée un objet datagrampacket pour les datagrams entrants
 			DatagramPacket inPacket = new DatagramPacket(this.buffer,this.buffer.length);
 			System.out.println("Objet datagram créé");
@@ -53,29 +52,21 @@ public class UDP_serveur {
 				String mess = new String(inPacket.getData(),0,inPacket.getLength());
 				System.out.println("j'ai reçu le message (dans le buffer) : "+mess);
 				
+				try {
+					WindowModel.secondarycontroller.RefreshPage();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				if (SecondaryController.login_destinataire!=null) {
+					WindowModel.secondarycontroller.StartChat();
+			    } 
+				
 
 		}
 	}
 	
-	public void close() throws ClassNotFoundException, IOException, SQLException {
-		// fermeture du thread udp
-	    //Thread_UDP.Tab_u.get(num_udp).interrupt();
-		//System.out.println("Fermeture du thread");
-		//fermeture datagramsocket
-		this.dgramSocket.close();
-		System.out.println("Fermeture du datagramsocket");
-		
-	    // après fermeture du thread
-	    try {
-			WindowModel.secondarycontroller.RefreshPage();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		if (SecondaryController.login_destinataire!=null) {
-			WindowModel.secondarycontroller.StartChat();
-	    } 
-	}
+
 	
 	public void receive() {
 		Thread_UDP thread = new Thread_UDP (num_udp);
@@ -87,10 +78,12 @@ public class UDP_serveur {
 
 	}
 	
-	public void end_thread_udp() {
-		for (int i=0;i<=num_udp;i++) {
-			Thread_UDP.Tab_u.get(i).interrupt();
+	public static void end_thread_udp() {
+		for (Thread_UDP Tudp : Thread_UDP.Tab_u) {
+			if (!Tudp.isInterrupted())
+				Tudp.interrupt();
 		}
+		dgramSocket.close();
 	}
 	
 	public static void main(String args[]) throws IOException, ClassNotFoundException, SQLException {
