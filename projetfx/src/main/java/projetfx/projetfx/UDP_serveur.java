@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class UDP_serveur {
 	private int port = 7907;
-	private DatagramSocket dgramSocket;
+	DatagramSocket dgramSocket;
 	//private boolean running;
 	private byte[] buffer = new byte[256];
 	public static  int num_udp = 0;
@@ -60,11 +60,11 @@ public class UDP_serveur {
 	
 	public void close() throws ClassNotFoundException, IOException, SQLException {
 		// fermeture du thread udp
-	    Thread_UDP.Tab_u.get(num_udp).interrupt();
-		System.out.println("Fermeture du thread");
+	    //Thread_UDP.Tab_u.get(num_udp).interrupt();
+		//System.out.println("Fermeture du thread");
 		//fermeture datagramsocket
-		//this.dgramSocket.close();
-		//System.out.println("Fermeture du datagramsocket");
+		this.dgramSocket.close();
+		System.out.println("Fermeture du datagramsocket");
 		
 	    // après fermeture du thread
 	    try {

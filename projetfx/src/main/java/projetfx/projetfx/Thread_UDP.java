@@ -20,7 +20,7 @@ public class Thread_UDP extends Thread {
 				//créer un élément de la liste qui va ensuite se lance de son côté: le thread
 				//UDP_serveur udp = new UDP_serveur();
 				WindowModel.serveur_udp.run();
-				WindowModel.serveur_udp.close();
+				//WindowModel.serveur_udp.close();
 				//udp.close();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
@@ -33,7 +33,17 @@ public class Thread_UDP extends Thread {
 		}
 	}
 		
-		
+	
 		
 }
+	public void interrupt() {
+    	//Global.BroadServRunning=false;
+    	//UDP_serveur.dgramsocket.close();
+		try {
+			WindowModel.serveur_udp.close();
+			Thread.currentThread().interrupt();
+		} catch (ClassNotFoundException | IOException | SQLException e) {
+			e.printStackTrace();
+		}
+    }
 }
