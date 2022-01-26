@@ -5,7 +5,6 @@ import java.net.*;
 import java.sql.SQLException;
 
 public class UDP_serveur {
-	private int port = 7907;
 	DatagramSocket dgramSocket;
 	//private boolean running;
 	private byte[] buffer = new byte[256];
@@ -13,7 +12,7 @@ public class UDP_serveur {
 	static int etat1= 0;
 	
 	public UDP_serveur() throws SocketException {
-		dgramSocket = new DatagramSocket(this.port);
+		dgramSocket = new DatagramSocket(VarGlobal.portBroad);
 	}
 	
 	public void run() throws IOException, ClassNotFoundException, SQLException {

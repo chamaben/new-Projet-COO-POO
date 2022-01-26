@@ -14,7 +14,6 @@ public class TCP_client {
 	static BufferedWriter os = null;
     static BufferedReader is = null;
 	String[] words = null;
-	static int port = 7899;
 	
 	//le destinataire reçoit la requête TCP, il l'accepte et lance un thread puis revient sur accept (boucle infinie)
 	//initialiser la connexion TCP
@@ -61,7 +60,7 @@ public class TCP_client {
 	    	System.out.println("avant création socket");
 	    	System.out.println(line);
 	    	//Socket socketOfClient = new Socket("host",Integer.parseInt(words[2]));
-	    	Socket socketOfClient = new Socket(InetAddress.getByName(line),port);
+	    	Socket socketOfClient = new Socket(InetAddress.getByName(line),VarGlobal.portTCP);
 	    	System.out.println("sock créé");
 	    	// Create output stream at the client (to send data to the server)
 	        //os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));

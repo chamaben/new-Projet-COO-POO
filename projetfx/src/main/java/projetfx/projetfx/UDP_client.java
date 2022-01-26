@@ -13,22 +13,20 @@ import java.net.Inet4Address;
 //change pseudo
 
 public class UDP_client {
-	private int port = 7907;
 	private InetAddress host;
 	private DatagramSocket dgramSocket;
-	private static String Interface = "eth0";
 	
 	public UDP_client() throws SocketException {
 		this.dgramSocket = new DatagramSocket();
 	}
 
 	public void sendBroadcast(String login, String etat, String ip) throws IOException {
-		String line = "10.1.255.255";
-		host = InetAddress.getByName(line);
+		
+		host = InetAddress.getByName(VarGlobal.adBroad);
 		this.dgramSocket.setBroadcast(true);
 		String message = login + "," + etat + "," + ip;
 		System.out.println("dgamsocket créé");
-		DatagramPacket outPacket = new DatagramPacket(message.getBytes(), message.length(),host, port);
+		DatagramPacket outPacket = new DatagramPacket(message.getBytes(), message.length(),host, VarGlobal.portBroad);
 		
 		
 		//envoie le datagram
@@ -61,7 +59,7 @@ public class UDP_client {
 		String RetAddr = null;
         Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
         for (NetworkInterface netint : Collections.list(nets))
-        	if (netint.getName().equals(Interface)) {
+        	if (netint.getName().equals(VarGlobal.Interface)) {
         		System.out.println(netint);
         		RetAddr=GrabIPbyName(netint);
         		

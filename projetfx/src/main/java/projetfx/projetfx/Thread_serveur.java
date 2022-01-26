@@ -11,6 +11,8 @@ public class Thread_serveur extends Thread {
 	public static  int num = 0;
 	public static ArrayList<Thread_serveur> Tab_s = new ArrayList<Thread_serveur>();
 	private boolean running = true;
+
+
 	
 	Thread_serveur(int num, Socket serviceassocie) {
 		super(Integer.toString(num));
@@ -23,6 +25,7 @@ public class Thread_serveur extends Thread {
 	@Override
 	public void run() {
 		while(running) {
+
 			try {
 	    	//Mise en attente du serveur On associe au thread son service socket 
 		      Socket serviceSocket =  serveur.s.accept();
@@ -43,6 +46,7 @@ public class Thread_serveur extends Thread {
 		    }
 	}
 	
+
 	@Override
 	public void interrupt() {
 		for (Thread_serveur Ts : Tab_s ) {
@@ -51,5 +55,6 @@ public class Thread_serveur extends Thread {
 		running=false;
 		super.interrupt();
 	}
-	
+
 }
+

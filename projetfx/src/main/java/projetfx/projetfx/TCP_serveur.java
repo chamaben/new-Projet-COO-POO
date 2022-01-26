@@ -8,7 +8,6 @@ public class TCP_serveur
 {
 	
 	static BufferedWriter os = null;
-	static int port = 7899;
 	public static  int num = 0;
 	static ServerSocket s;
 	
@@ -17,7 +16,7 @@ public class TCP_serveur
 			
 		try {
 			//création du socket
-			s = new ServerSocket(port);
+			s = new ServerSocket(VarGlobal.portTCP);
 		    System.out.println(s.getLocalPort());
 		    Socket serviceSocket = null;
 		    
