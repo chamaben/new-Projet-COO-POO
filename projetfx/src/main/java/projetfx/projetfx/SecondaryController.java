@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -161,8 +161,12 @@ public class SecondaryController {
 		        date1.setText(s);
 		        Label pseudo1 = (Label) pane1.getChildren().get(2);
 		        pseudo1.setText("Moi");
-		        
-		        conversation.getChildren().add(pane);
+		        Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						conversation.getChildren().add(pane);
+					}
+				});
 			}
 			else if (message.recepteur.equals(WindowModel.user.login)) {
 				MyThread.currentThread().interrupt();
@@ -180,7 +184,13 @@ public class SecondaryController {
 		        Label pseudo1 = (Label) pane1.getChildren().get(2);
 		        pseudo1.setText(pseudo_dest);
 		        System.out.println(pane.toString());
-		        conversation.getChildren().add(pane);
+		        Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						conversation.getChildren().add(pane);
+					}
+				});
+		        
 			}
 			
 		}

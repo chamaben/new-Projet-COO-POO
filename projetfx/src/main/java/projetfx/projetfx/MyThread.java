@@ -32,6 +32,7 @@ public class MyThread extends Thread
 	
 	
 	@SuppressWarnings("unused")
+	@Override
 	public void run() {
 		try {
 			
@@ -80,6 +81,18 @@ public class MyThread extends Thread
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void interrupt() {
+		
+		try {
+			service.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		super.interrupt();
 	}
 	
 	public static void send(String message, String date, String login) {
