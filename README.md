@@ -3,7 +3,7 @@
 Implementation project of a chat application for a company. 
 
 ## State
-- Last update: DATE
+- Last update: 28/01/2022
 - Dire ce qui marche et ce qui marche pas ici 
 
 ## Requierements
