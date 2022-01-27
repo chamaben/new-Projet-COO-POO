@@ -30,7 +30,8 @@ public class App extends Application {
         stage.show();
         stage.setOnCloseRequest(event -> {
         	try {
-				deconnexion();
+        		if (WindowModel.user!=null)
+        			deconnexion();
 			} catch (ClassNotFoundException | SQLException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -61,8 +62,6 @@ public class App extends Application {
 		stmt.executeUpdate(query);
 		DbConnect.FinConnexion();
 		UDP_client.connexion(WindowModel.user.login, "0", WindowModel.user.adIP);
-		//boolean rem = WindowModel.activeMembers.remove(WindowModel.user);
-		// se remettre à la page d'accueil
 		App.stage.setWidth(240);
 		App.stage.setHeight(235);
 		App.setRoot("primary");
@@ -74,7 +73,8 @@ public class App extends Application {
     @Override
     public void stop(){
     	try {
-			deconnexion();
+    		if (WindowModel.user!=null)
+    			deconnexion();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

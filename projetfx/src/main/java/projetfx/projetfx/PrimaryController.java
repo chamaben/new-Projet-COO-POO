@@ -46,7 +46,6 @@ public class PrimaryController{
     		error.setText("Pseudo non valide. Veuillez choisir un autre pseudo.");
     		
     	} else {
-    		System.out.println("pseudo valide 1");
     		if (User.UserExist(login1)) {
     			if (User.VerifPassword(login1,password1)) {
     				// connexion: passage à la page suivante
@@ -65,7 +64,6 @@ public class PrimaryController{
     			// création d'un nouveau user et passage à la page suivante
     			// la création de user est gérée par la fonction UserExist
 				User.CreateUser(WindowModel.user.login, WindowModel.user.password, WindowModel.user.pseudo, WindowModel.user.etat);
-				System.out.println("Nouveau user " + WindowModel.user.pseudo + " connecté");
 				App.stage.setWidth(660);
 				App.stage.setHeight(579);
 				App.setRoot("secondary");

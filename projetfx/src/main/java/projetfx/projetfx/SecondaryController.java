@@ -47,9 +47,7 @@ public class SecondaryController {
 		WindowModel.serveur_udp= new UDP_serveur();
 		activelist.setItems(WindowModel.activeMembers);
 		TCP_serveur.receive();
-		System.out.println("serveur ouvert");
 		WindowModel.serveur_udp.receive();
-		System.out.println("serveur udp ouvert");
 		UDP_client.connexion(WindowModel.user.login, "1", WindowModel.user.adIP);
 		WindowModel.user.adIP = UDP_client.GetIP();
 		DbConnect.Connexion();
@@ -66,6 +64,7 @@ public class SecondaryController {
 	private void modifypseudo() throws ClassNotFoundException, SQLException, IOException 
     {
     	String pseudo1= pseudo.getText();
+    	pseudo.clear();
     	if (!User.PseudoValide(WindowModel.user.login, pseudo1)) {
     		// message d'erreur: pseudo non valide
     	} else {
@@ -77,7 +76,6 @@ public class SecondaryController {
     			StartChat();
     		}
     	}
-        //outputText.setText(inputText.getText());*/
     }
 	
 	@FXML
@@ -125,6 +123,7 @@ public class SecondaryController {
 	// affiche l'historique si on clique sur une personne
 	private void getHistory(String pseudo_destinataire) throws SQLException, ClassNotFoundException, IOException {
 		// a faire : récupérer les messages dans la base de donnée
+		
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM message WHERE (emetteur='"+login_destinataire+"' AND recepteur='"+WindowModel.user.login+"') OR (emetteur='"+WindowModel.user.login+"' AND recepteur='"+login_destinataire+"') ORDER BY date");
 
@@ -142,9 +141,7 @@ public class SecondaryController {
 			DbConnect.Connexion();
 			String pseudo_dest = null;
             ResultSet rs = DbConnect.statement.executeQuery("SELECT pseudo FROM user WHERE (login='"+message.emetteur+"')");
-            //System.out.println(message.contenu + "1");
             if (rs.next()) {
-            	//System.out.println(message.contenu + "2");
             	pseudo_dest= rs.getString(1);
             }
            
@@ -171,7 +168,6 @@ public class SecondaryController {
 			}
 			else if (message.recepteur.equals(WindowModel.user.login)) {
 				MyThread.currentThread().interrupt();
-				System.out.println(message.contenu + "3");
 				chemin = "received_message.fxml";
 				FXMLLoader loader = new FXMLLoader();  
 		        AnchorPane pane = loader.load(getClass().getResource(chemin).openStream());
@@ -184,7 +180,6 @@ public class SecondaryController {
 		        date1.setText(s);
 		        Label pseudo1 = (Label) pane1.getChildren().get(2);
 		        pseudo1.setText(pseudo_dest);
-		        System.out.println(pane.toString());
 		        Platform.runLater(new Runnable() {
 					@Override
 					public void run() {

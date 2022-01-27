@@ -67,9 +67,7 @@ public class User {
 		stmt.executeUpdate(query);
 		DbConnect.FinConnexion();
 		user1.pseudo=pseudo1;
-		System.out.println("pb ici ?");
 		WindowModel.user.pseudo= pseudo1;
-		System.out.println("pb ici ??");
 	}
 	
 	
@@ -91,7 +89,6 @@ public class User {
 		DbConnect.Connexion();
 		ResultSet rs = DbConnect.statement.executeQuery("SELECT * FROM user");
 		int c = DbConnect.statement.executeUpdate("INSERT INTO `tp_servlet_002`.`user` (`login`, `password`, `pseudo`, `etat`, `adIP`) VALUES ('"+login+"','"+password+"', '"+pseudo+"', '"+Integer.toString(etat)+"', '"+UDP_client.GetIP()+"')");
-		System.out.println("user ajouté");
 	}
 		
 		

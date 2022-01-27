@@ -18,7 +18,6 @@ public class TCP_serveur
 		try {
 			//création du socket
 			s = new ServerSocket(VarGlobal.portTCP);
-		    System.out.println(s.getLocalPort());
 		    Socket serviceSocket = null;
 		    
 		    //thread
@@ -28,7 +27,6 @@ public class TCP_serveur
 		    num++;
 		      
 		} catch (IOException e) {
-			System.out.println("exception levée1");
 	        e.printStackTrace();
 	        s.close();
 
@@ -49,12 +47,5 @@ public class TCP_serveur
 		
 	}
 
-	
-	// le serveur est en état accept, quand il reçoit la requête, il accepte la connexion, lance un thread qui va envoyer le messages, et rebouble sur accept
-	/*public static void main(String[] args) throws IOException {		
-		receive();
-		//send("test","2022-01-12","cc");
-		
-	}*/
 }
 	

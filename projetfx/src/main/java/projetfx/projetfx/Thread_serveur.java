@@ -17,27 +17,21 @@ public class Thread_serveur extends Thread {
 	Thread_serveur(int num, Socket serviceassocie) {
 		super(Integer.toString(num));
 		service = serviceassocie  ;
-		System.out.println("thread construit");
 	}
 
 
 	@SuppressWarnings("static-access")
 	@Override
 	public void run() {
-		while(running) {
+		while(running&!VarGlobal.ClosingApp) {
 
 			try {
 				//Mise en attente du serveur On associe au thread son service socket 
-				if(VarGlobal.ClosingApp)
-					break;
 				Socket serviceSocket =  serveur.s.accept();
-				System.out.println("accept fait ");
 				//créer un élément de la liste qui va ensuite se lance de son côté: le thread
 				MyThread thread = new MyThread (num,serviceSocket);
 				(MyThread.Tab).add(thread);
-				System.out.println("thread ajouté");
 				MyThread.Tab.get(num).start();
-				System.out.println("thread lancé ");
 				num++;
 
 			}catch (IOException e) {

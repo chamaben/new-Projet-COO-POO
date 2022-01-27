@@ -25,34 +25,17 @@ public class UDP_client {
 		host = InetAddress.getByName(VarGlobal.adBroad);
 		this.dgramSocket.setBroadcast(true);
 		String message = login + "," + etat + "," + ip;
-		System.out.println("dgamsocket créé");
 		DatagramPacket outPacket = new DatagramPacket(message.getBytes(), message.length(),host, VarGlobal.portBroad);
 		
 		
 		//envoie le datagram
 		this.dgramSocket.send(outPacket);
-		System.out.println("Datagram envoyPé");
-		/*
-		byte[] buf = new byte[256];
-		//crée un objet datagrampacket pour les datagrams entrants
-		outPacket = new DatagramPacket(buf,buf.length);
-		//System.out.println("Datagrampacket créé");
-		System.out.println("datagram entrant accepté");
-		//accepte un datagram entrant
-		dgramSocket.receive(outPacket);
-		//récupère la donnée dans le buffer
-		System.out.println("Lecture dans le buffer");
-		String response = new String(outPacket.getData(),0,outPacket.getLength());
-		System.out.println("le message reçu est : "+response);
-		*/
-		//return response;
 		
 	}
 	
 	public void close() {
 		//fermeture datagramsocket
 		this.dgramSocket.close();
-		System.out.println("Fermeture du datagramsocket");
 	}
 	
 	public static String GetIP() throws SocketException {
@@ -60,7 +43,6 @@ public class UDP_client {
         Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
         for (NetworkInterface netint : Collections.list(nets))
         	if (netint.getName().equals(VarGlobal.Interface)) {
-        		System.out.println(netint);
         		RetAddr=GrabIPbyName(netint);
         		
         	}
