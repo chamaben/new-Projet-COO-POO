@@ -24,6 +24,8 @@ commandes de tests à mettre
 ```bash
 java -jar App.jar
 ```
+Un guide d'utilisation est disponible à la fin du Rapport de Projet présent dans ce dépôt.
+
 ## Maintainers
 - [Chama Benlafkih](https://github.com/chamaben)
 - [Carina Malleville](https://github.com/MaCarina) 
