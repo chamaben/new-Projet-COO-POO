@@ -20,8 +20,9 @@ git clone https://github.com/chamaben/new-Projet-COO-POO
 commandes de tests à mettre
 ```
 ### Usage
+-Se placer dans le dossier où l’exécutable à été téléchargé, ouvrir un terminal et exécuter la commande suivante : 
 ```bash
-commandes d'éxécution à mettre 
+java -jar App.jar
 ```
 ## Maintainers
 - [Chama Benlafkih](https://github.com/chamaben)
