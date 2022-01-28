@@ -1,6 +1,7 @@
 # Object Programation Project : Chat application
 
 Implementation project of a chat application for a company. 
+Attention, en l'état, si on se déconnecte en cliquant sur le bouton, nous avons une exception qui se lève si on tente de se reconnecter. Il faut donc fermer l'application et la rouvrir. Désolées pour la gêne occasionnée.
 
 ## State
 - Last update: 28/01/2022
@@ -26,6 +27,8 @@ java -jar App_Linux.jar
 java -jar App_Mac.jar
 A choisir en fonction du système d’exploitation utilisé.
 ```
+In vous est aussi possible de lancer l’application en double cliquant 2 fois sur le fichier .jar.
+
 Un guide d'utilisation est disponible à la fin du Rapport de Projet présent dans ce dépôt.
 
 ## Maintainers
