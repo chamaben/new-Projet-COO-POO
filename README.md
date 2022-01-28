@@ -18,7 +18,7 @@ git clone https://github.com/chamaben/new-Projet-COO-POO
 Pour télécharger notre application, vous pouvez en arrivant sur la page de notre dépôt Git, sur la droite dans l'onglet "release" télécharger la dernière version disponible.
 
 ### Test
-Il est possible de tester l'application en lançant les tests UDP, TCP eet BDD détaillés dans le rapport
+Il est possible de tester l'application en lançant les tests UDP, TCP et BDD détaillés dans le rapport
 
 ### Usage
 -Se placer dans le dossier où l’exécutable à été téléchargé, ouvrir un terminal et exécuter la commande suivante : 
