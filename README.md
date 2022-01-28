@@ -16,9 +16,8 @@ Implementation project of a chat application for a company.
 git clone https://github.com/chamaben/new-Projet-COO-POO
 ```
 ### Test
-```bash
-commandes de tests à mettre
-```
+Il est possible de tester l'application en lançant les tests UDP, TCP eet BDD détaillés dans le rapport
+
 ### Usage
 -Se placer dans le dossier où l’exécutable à été téléchargé, ouvrir un terminal et exécuter la commande suivante : 
 ```bash
