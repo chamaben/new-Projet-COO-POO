@@ -15,7 +15,7 @@ Implementation project of a chat application for a company.
 ```bash
 git clone https://github.com/chamaben/new-Projet-COO-POO
 ```
-Lien pour télécharger notre éxacutable: 
+Pour télécharger notre application, vous pouvez en arrivant sur la page de notre dépôt Git, sur la droite dans l'onglet "release" télécharger la dernière version disponible.
 
 ### Test
 Il est possible de tester l'application en lançant les tests UDP, TCP eet BDD détaillés dans le rapport
