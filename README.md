@@ -4,11 +4,9 @@ Implementation project of a chat application for a company.
 
 ## State
 - Last update: 28/01/2022
-- Dire ce qui marche et ce qui marche pas ici 
 
 ## Requierements
-- [tests](https://graphviz.org/) à remplir et changer le lien 
-- [install](https://dune.build/) à remplir et changer le lien 
+- [télécharger l'application](https://github.com/chamaben/new-Projet-COO-POO/releases)
 
 ## Getting started
 ### Installation
