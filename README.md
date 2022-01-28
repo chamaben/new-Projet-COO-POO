@@ -6,14 +6,14 @@ Implementation project of a chat application for a company.
 - Last update: 28/01/2022
 
 ## Requierements
-- [télécharger l'application](https://github.com/chamaben/new-Projet-COO-POO/releases)
+- [Télécharger l'application](https://github.com/chamaben/new-Projet-COO-POO/releases)
 
 ## Getting started
 ### Installation
 ```bash
 git clone https://github.com/chamaben/new-Projet-COO-POO
 ```
-Pour télécharger notre application, vous pouvez en arrivant sur la page de notre dépôt Git, sur la droite dans l'onglet "release" télécharger la dernière version disponible en choisissant le bon .jar en fonction du système d’exploitation de l’ordinateur (Linux, Windows ou Mac).
+Pour télécharger notre application, vous pouvez en arrivant sur la page de notre dépôt Git, sur la droite dans onglet "[release](https://github.com/chamaben/new-Projet-COO-POO/releases)" télécharger la dernière version disponible en choisissant le bon .jar en fonction du système d’exploitation de l’ordinateur (Linux, Windows ou Mac).
 
 ### Test
 Il est possible de tester l'application en lançant les tests UDP, TCP et BDD détaillés dans le rapport
